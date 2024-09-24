@@ -1,11 +1,12 @@
-using CQRS.API.Infrastructure;
-using CQRS.API.Repository;
+using CQRS.Domain.Abstractions.Repository;
+using CQRS.Persistence.Repository;
 using Microsoft.EntityFrameworkCore;
-using CQRS.API.Queries.Product;
-using CQRS.API.Commands.Product;
 using System.Reflection;
 using CQRS.API;
 using MediatR;
+using CQRS.Application.UserCases.V1.Commands.Product;
+using CQRS.Application.UserCases.V1.Queries.Product;
+using CQRS.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,7 +31,7 @@ builder.Services.AddScoped<GetAllProductsQueryHandler>();
 builder.Services.AddScoped<GetProductByIdQueryHandler>();
 
 
-builder.Services.AddMediatR(typeof(Program).Assembly);
+builder.Services.AddMediatR(typeof(CQRS.Application.UserCases.V1.Commands.ProductMediatR.CreateProductCommand).Assembly);
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

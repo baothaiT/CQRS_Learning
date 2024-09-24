@@ -1,5 +1,5 @@
-﻿using CQRS.API.Commands.Product;
-using CQRS.API.Queries.Product;
+﻿using CQRS.Application.UserCases.V1.Commands.Product;
+using CQRS.Application.UserCases.V1.Queries.Product;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CQRS.API.Controllers

@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using CQRS.API.Queries.ProductMediatR;
-using CQRS.API.Commands.ProductMediatR;
-using CQRS.API.DTO;
+using CQRS.Application.UserCases.V1.Commands.ProductMediatR;
+using CQRS.Application.UserCases.V1.Queries.ProductMediatR;
+using CQRS.Application.DTO;
 using Azure.Core;
 
 namespace CQRS.API.Controllers
