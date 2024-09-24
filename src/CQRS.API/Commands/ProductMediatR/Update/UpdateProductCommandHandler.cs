@@ -19,7 +19,7 @@ namespace CQRS.API.Commands.ProductMediatR
             if (product != null)
             {
                 product.Name = command.Name;
-                product.Price = command.Price;
+                //product.Price = command.Price;
                 product.Stock = command.Stock;
                 await _repository.UpdateProductAsync(product);
             }

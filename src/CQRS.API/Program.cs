@@ -21,13 +21,13 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 //// Register Command Handlers
-//builder.Services.AddScoped<CreateProductCommandHandler>();
-//builder.Services.AddScoped<UpdateProductCommandHandler>();
-//builder.Services.AddScoped<DeleteProductCommandHandler>();
+builder.Services.AddScoped<CreateProductCommandHandler>();
+builder.Services.AddScoped<UpdateProductCommandHandler>();
+builder.Services.AddScoped<DeleteProductCommandHandler>();
 
-//// Register Query Handlers
-//builder.Services.AddScoped<GetAllProductsQueryHandler>();
-//builder.Services.AddScoped<GetProductByIdQueryHandler>();
+// Register Query Handlers
+builder.Services.AddScoped<GetAllProductsQueryHandler>();
+builder.Services.AddScoped<GetProductByIdQueryHandler>();
 
 
 builder.Services.AddMediatR(typeof(Program).Assembly);

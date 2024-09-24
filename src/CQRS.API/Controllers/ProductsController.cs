@@ -28,7 +28,7 @@ namespace CQRS.API.Controllers
             _getByIdHandler = getByIdHandler;
         }
 
-        [HttpGet("GetAll")]
+        [HttpGet]
         public async Task<IActionResult> GetAll()
         {
             var products = await _getAllHandler.Handle(new GetAllProductsQuery());
@@ -45,7 +45,7 @@ namespace CQRS.API.Controllers
             return Ok(product);
         }
 
-        [HttpPost("create")]
+        [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateProductCommand command)
         {
             await _createHandler.Handle(command);

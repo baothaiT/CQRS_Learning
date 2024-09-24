@@ -1,12 +1,9 @@
-﻿using MediatR;
+﻿using CQRS.API.DTO;
+using MediatR;
 
 namespace CQRS.API.Commands.ProductMediatR
 {
-    public class CreateProductCommand : IRequest<Models.Product>
+    public class CreateProductCommand : CreateProductDto, IRequest<Models.Product>
     {
-        public Guid Id { get; }
-        public string Name { get; set; }
-        public decimal Price { get; set; }
-        public int Stock { get; set; }
     }
 }

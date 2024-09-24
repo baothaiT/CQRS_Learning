@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using CQRS.API.Queries.ProductMediatR;
 using CQRS.API.Commands.ProductMediatR;
+using CQRS.API.DTO;
+using Azure.Core;
 
 namespace CQRS.API.Controllers
 {
@@ -10,48 +12,63 @@ namespace CQRS.API.Controllers
     public class ProductsMediatRController : Controller
     {
         private readonly IMediator _mediator;
+        private readonly ISender _sender;
 
-        public ProductsMediatRController(IMediator mediator)
+        public ProductsMediatRController(IMediator mediator, ISender sender)
         {
+            _sender = sender;
             _mediator = mediator;
         }
 
-        [HttpGet("getAll")]
+        [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var products = await _mediator.Send(new GetAllProductsQuery());
+            var products = await _sender.Send(new GetAllProductsQuery());
             return Ok(products);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(Guid id)
         {
-            var product = await _mediator.Send(new GetProductByIdQuery { Id = id });
+            var product = await _sender.Send(new GetProductByIdQuery { Id = id });
             if (product == null)
                 return NotFound();
 
             return Ok(product);
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> Create([FromBody] CreateProductCommand command)
-        //{
-        //    var id = await _mediator.Send(command);
-        //    return CreatedAtAction(nameof(GetById), new { id }, command);
-        //}
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] CreateProductDto createProdutDto)
+        {
+            var command = new CreateProductCommand
+            {
+                Name = createProdutDto.Name,
+                Price = createProdutDto.Price,
+                Stock = createProdutDto.Stock
+            };
 
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> Update(Guid id, [FromBody] UpdateProductCommand command)
-        //{
-        //    command.Id = id;
-        //    await _mediator.Send(command);
-        //    return NoContent();
-        //}
+            var id = await _sender.Send(command);
+            return CreatedAtAction(nameof(GetById), new { id }, command);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(Guid id, [FromBody] UpdateProductDto updateProdutDto)
+        {
+            var command = new UpdateProductCommand
+            {
+                Id = id,
+                Name = updateProdutDto.Name,
+                Price = updateProdutDto.Price,
+                Stock = updateProdutDto.Stock
+            };
+            await _mediator.Send(command);
+            return NoContent();
+        }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            await _mediator.Send(new DeleteProductCommand { Id = id });
+            await _sender.Send(new DeleteProductCommand { Id = id });
             return NoContent();
         }
     }
