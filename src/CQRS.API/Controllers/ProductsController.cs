@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CQRS.API.Controllers
 {
+    [ApiController]
+    [Route("[controller]")]
     public class ProductsController : Controller
     {
         private readonly CreateProductCommandHandler _createHandler;

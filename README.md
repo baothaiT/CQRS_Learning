@@ -12,6 +12,9 @@ Install-Package Microsoft.EntityFrameworkCore.Sqlite
 Install-Package Microsoft.EntityFrameworkCore.Tools
 Install-Package Microsoft.EntityFrameworkCore
 
+Install-Package MediatR.Extensions.Microsoft.DependencyInjection
+Install-Package MediatR.EntityFrameworkCore
+
 ## Command EF
 Add-Migration InitialCreate
 Update-Database

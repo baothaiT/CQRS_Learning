@@ -1,8 +1,11 @@
-using CQRS.API.Commands.Product;
 using CQRS.API.Infrastructure;
-using CQRS.API.Queries.Product;
 using CQRS.API.Repository;
 using Microsoft.EntityFrameworkCore;
+using CQRS.API.Queries.Product;
+using CQRS.API.Commands.Product;
+using System.Reflection;
+using CQRS.API;
+using MediatR;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,14 +20,17 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 // Register Repositories
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
-// Register Command Handlers
-builder.Services.AddScoped<CreateProductCommandHandler>();
-builder.Services.AddScoped<UpdateProductCommandHandler>();
-builder.Services.AddScoped<DeleteProductCommandHandler>();
+//// Register Command Handlers
+//builder.Services.AddScoped<CreateProductCommandHandler>();
+//builder.Services.AddScoped<UpdateProductCommandHandler>();
+//builder.Services.AddScoped<DeleteProductCommandHandler>();
 
-// Register Query Handlers
-builder.Services.AddScoped<GetAllProductsQueryHandler>();
-builder.Services.AddScoped<GetProductByIdQueryHandler>();
+//// Register Query Handlers
+//builder.Services.AddScoped<GetAllProductsQueryHandler>();
+//builder.Services.AddScoped<GetProductByIdQueryHandler>();
+
+
+builder.Services.AddMediatR(typeof(Program).Assembly);
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
