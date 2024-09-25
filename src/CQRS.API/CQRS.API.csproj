@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CQRS.Application\CQRS.Application.csproj" />
+    <ProjectReference Include="..\CQRS.Contract\CQRS.Contract.csproj" />
     <ProjectReference Include="..\CQRS.Infrastructure\CQRS.Infrastructure.csproj" />
     <ProjectReference Include="..\CQRS.Persistence\CQRS.Persistence.csproj" />
   </ItemGroup>

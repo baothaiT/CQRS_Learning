@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using CQRS.Application.UserCases.V1.Commands.ProductMediatR;
 using CQRS.Application.UserCases.V1.Queries.ProductMediatR;
-using CQRS.Application.DTO;
+using CQRS.Contract.Share.DTO;
 using Azure.Core;
 
 namespace CQRS.API.Controllers

@@ -1,4 +1,4 @@
-﻿using CQRS.Application.DTO;
+﻿using CQRS.Contract.Share.DTO;
 using CQRS.Domain.Entities;
 using MediatR;
 

@@ -14,19 +14,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CQRS.Application", "src\CQRS.Application\CQRS.Application.csproj", "{FCB53590-67FE-4236-B1E8-C28193B4B383}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CQRS.Domain", "src\CQRS.Domain\CQRS.Domain.csproj", "{29843209-5E42-42B2-8531-04C199FEF0F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CQRS.Domain", "src\CQRS.Domain\CQRS.Domain.csproj", "{29843209-5E42-42B2-8531-04C199FEF0F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CQRS.Infrastructure", "src\CQRS.Infrastructure\CQRS.Infrastructure.csproj", "{564BC8BA-6B2E-4D30-8A4C-EE31687C3B0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CQRS.Infrastructure", "src\CQRS.Infrastructure\CQRS.Infrastructure.csproj", "{564BC8BA-6B2E-4D30-8A4C-EE31687C3B0C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{C22BE54A-06DB-4B24-91B0-368D4D839EDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CQRS.Infrastructure.Mongo", "src\CQRS.Infrastructure.Mongo\CQRS.Infrastructure.Mongo.csproj", "{B441CA1D-DEFE-4582-8346-0DE3A2C5A666}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CQRS.Infrastructure.Mongo", "src\CQRS.Infrastructure.Mongo\CQRS.Infrastructure.Mongo.csproj", "{B441CA1D-DEFE-4582-8346-0DE3A2C5A666}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CQRS.Contract", "src\CQRS.Contract\CQRS.Contract.csproj", "{7B595AD8-1973-47CA-BE4C-3C54DD837632}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CQRS.Contract", "src\CQRS.Contract\CQRS.Contract.csproj", "{7B595AD8-1973-47CA-BE4C-3C54DD837632}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CQRS.Persistence", "src\CQRS.Persistence\CQRS.Persistence.csproj", "{9B2CBAB8-7936-4395-9F7D-603B060DD473}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CQRS.Persistence", "src\CQRS.Persistence\CQRS.Persistence.csproj", "{9B2CBAB8-7936-4395-9F7D-603B060DD473}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CQRS.Infrastructure.MessageBus", "src\CQRS.Infrastructure.MessageBus\CQRS.Infrastructure.MessageBus.csproj", "{407A4DF7-FFA0-4B68-B63F-9C41A7E26519}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CQRS.Infrastructure.MessageBus", "src\CQRS.Infrastructure.MessageBus\CQRS.Infrastructure.MessageBus.csproj", "{407A4DF7-FFA0-4B68-B63F-9C41A7E26519}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CQRS.AspNetUI", "src\CQRS.AspNetUI\CQRS.AspNetUI.csproj", "{B658B420-CD4F-48C2-AF06-A20C1840900D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -66,6 +68,10 @@ Global
 		{407A4DF7-FFA0-4B68-B63F-9C41A7E26519}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{407A4DF7-FFA0-4B68-B63F-9C41A7E26519}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{407A4DF7-FFA0-4B68-B63F-9C41A7E26519}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B658B420-CD4F-48C2-AF06-A20C1840900D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B658B420-CD4F-48C2-AF06-A20C1840900D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B658B420-CD4F-48C2-AF06-A20C1840900D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B658B420-CD4F-48C2-AF06-A20C1840900D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -79,6 +85,7 @@ Global
 		{7B595AD8-1973-47CA-BE4C-3C54DD837632} = {90E54CA3-8D24-42B3-9362-2D652B49050D}
 		{9B2CBAB8-7936-4395-9F7D-603B060DD473} = {90E54CA3-8D24-42B3-9362-2D652B49050D}
 		{407A4DF7-FFA0-4B68-B63F-9C41A7E26519} = {90E54CA3-8D24-42B3-9362-2D652B49050D}
+		{B658B420-CD4F-48C2-AF06-A20C1840900D} = {90E54CA3-8D24-42B3-9362-2D652B49050D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0D580EDA-F4D3-4448-9008-E8DCA7C6C7A1}
