@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>E:\Learn\Development\C#\Lab\Design-Partern\CQRS\Lab-CQRS\src\CQRS.API\bin\Release\net8.0\publish\</_PublishTargetUrl>
+    <History>True|2024-09-24T20:53:17.3339147Z||;True|2024-09-25T03:53:09.0120632+07:00||;False|2024-09-25T03:52:56.5650565+07:00||;True|2024-09-25T03:36:48.2479247+07:00||;True|2024-09-25T03:25:36.8265104+07:00||;True|2024-09-25T02:56:00.1151284+07:00||;True|2024-09-25T02:46:41.8067419+07:00||;True|2024-09-25T02:44:03.0722560+07:00||;True|2024-09-25T02:24:02.9758628+07:00||;</History>
+    <LastFailureDetails />
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Server=%28localdb%29\mssqllocaldb%3bDatabase=ProductDb1%3bTrusted_Connection=True%3bMultipleActiveResultSets=true</Value>
+    </DestinationConnectionStrings>
+    <DestinationConnectionStrings Include="SeverConnectionTest">
+      <Value>Server=%28localdb%29\mssqllocaldb%3bDatabase=ProductDb1%3bTrusted_Connection=True%3bMultipleActiveResultSets=true</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>
