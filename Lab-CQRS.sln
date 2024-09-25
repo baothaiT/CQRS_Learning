@@ -28,7 +28,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CQRS.Persistence", "src\CQR
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CQRS.Infrastructure.MessageBus", "src\CQRS.Infrastructure.MessageBus\CQRS.Infrastructure.MessageBus.csproj", "{407A4DF7-FFA0-4B68-B63F-9C41A7E26519}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CQRS.AspNetUI", "src\CQRS.AspNetUI\CQRS.AspNetUI.csproj", "{B658B420-CD4F-48C2-AF06-A20C1840900D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CQRS.AspNetUI", "src\CQRS.AspNetUI\CQRS.AspNetUI.csproj", "{B658B420-CD4F-48C2-AF06-A20C1840900D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
