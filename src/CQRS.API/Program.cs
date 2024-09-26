@@ -7,12 +7,17 @@ using MediatR;
 using CQRS.Application.UserCases.V1.Commands.Product;
 using CQRS.Application.UserCases.V1.Queries.Product;
 using CQRS.Persistence;
+using CQRS.Persistence.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(options =>
+{
+    options.SuppressAsyncSuffixInActionNames = false;
+});
+
 
 // Register the AppDbContext with SQL Server or SQLite
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -20,6 +25,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 // Register Repositories
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IProxyRepository, ProxyRepository>();
 
 //// Register Command Handlers
 builder.Services.AddScoped<CreateProductCommandHandler>();
@@ -31,7 +37,7 @@ builder.Services.AddScoped<GetAllProductsQueryHandler>();
 builder.Services.AddScoped<GetProductByIdQueryHandler>();
 
 
-builder.Services.AddMediatR(typeof(CQRS.Application.UserCases.V1.Commands.ProductMediatR.CreateProductCommand).Assembly);
+builder.Services.AddMediatR(typeof(CreateProductCommand).Assembly);
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

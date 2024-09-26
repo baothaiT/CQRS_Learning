@@ -11,13 +11,11 @@ namespace CQRS.API.Controllers
     [Route("[controller]")]
     public class ProductsMediatRController : Controller
     {
-        private readonly IMediator _mediator;
         private readonly ISender _sender;
 
-        public ProductsMediatRController(IMediator mediator, ISender sender)
+        public ProductsMediatRController(ISender sender)
         {
             _sender = sender;
-            _mediator = mediator;
         }
 
         [HttpGet]
@@ -61,7 +59,7 @@ namespace CQRS.API.Controllers
                 Price = updateProdutDto.Price,
                 Stock = updateProdutDto.Stock
             };
-            await _mediator.Send(command);
+            await _sender.Send(command);
             return NoContent();
         }
 

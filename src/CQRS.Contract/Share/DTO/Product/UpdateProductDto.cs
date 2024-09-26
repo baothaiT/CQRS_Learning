@@ -1,7 +1,6 @@
-﻿namespace CQRS.Contract.Share.DTO
+﻿namespace CQRS.Contract.Share.DTO;
+
+public class UpdateProductDto: ProductBaseDto
 {
-    public class UpdateProductDto: ProductBase
-    {
-        public Guid Id { get; set; }
-    }
+    public Guid Id { get; set; }
 }

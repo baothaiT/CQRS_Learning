@@ -14,22 +14,22 @@ namespace CQRS.AspNetUI.Services
             _httpClient = httpClient;
         }
 
-        public async Task<IEnumerable<GetProductDTO>> GetProductsAsync()
+        public async Task<IEnumerable<GetProductDto>> GetProductsAsync()
         {
             var response = await _httpClient.GetAsync("ProductsMediatR");
             response.EnsureSuccessStatusCode();
 
             var jsonResponse = await response.Content.ReadAsStringAsync();
-            return JsonSerializer.Deserialize<IEnumerable<GetProductDTO>>(jsonResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            return JsonSerializer.Deserialize<IEnumerable<GetProductDto>>(jsonResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
         }
 
-        public async Task<GetProductDTO> GetProductByIdAsync(string id)
+        public async Task<GetProductDto> GetProductByIdAsync(string id)
         {
             var response = await _httpClient.GetAsync($"ProductsMediatR/{id}");
             response.EnsureSuccessStatusCode();
 
             var jsonResponse = await response.Content.ReadAsStringAsync();
-            return JsonSerializer.Deserialize<GetProductDTO>(jsonResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            return JsonSerializer.Deserialize<GetProductDto>(jsonResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
         }
 
         public async Task CreateProductAsync(CreateProductDto product)

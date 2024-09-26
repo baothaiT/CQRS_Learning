@@ -10,6 +10,11 @@ builder.Services.AddHttpClient<IProductService, ProductService>(client =>
     client.BaseAddress = new Uri("http://localhost:5199/"); // Replace with your API URL
 });
 
+builder.Services.AddHttpClient<IProxyService, ProxyService>(client =>
+{
+    client.BaseAddress = new Uri("http://localhost:5199/"); // Replace with your API URL
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

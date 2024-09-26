@@ -17,4 +17,10 @@
     <ProjectReference Include="..\CQRS.Domain\CQRS.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Using Include="CQRS.Contract.Share.DTO" />
+    <Using Include="CQRS.Domain.Entities" />
+    <Using Include="MediatR" />
+  </ItemGroup>
+
 </Project>

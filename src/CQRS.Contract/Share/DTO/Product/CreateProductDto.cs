@@ -1,6 +1,6 @@
 ﻿namespace CQRS.Contract.Share.DTO
 {
-    public class CreateProductDto: ProductBase
+    public class CreateProductDto: ProductBaseDto
     {
     }
 
