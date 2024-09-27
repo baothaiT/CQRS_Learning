@@ -9,43 +9,43 @@ using System.Threading.Tasks;
 
 namespace CQRS.Persistence.Repositories;
 
-public class AccountsInProjectRepository : IRepository<AccountsInProjectEntity>
+public class BrowserRepository : IRepository<BrowserEntity>
 {
     private readonly AppDbContext _context;
 
-    public AccountsInProjectRepository(AppDbContext context)
+    public BrowserRepository(AppDbContext context)
     {
         _context = context;
     }
 
-    public async Task<IEnumerable<AccountsInProjectEntity>> GetAllAsync()
+    public async Task<IEnumerable<BrowserEntity>> GetAllAsync()
     {
-        return await _context.AccountsInProjectTable.ToListAsync();
+        return await _context.BrowserTable.ToListAsync();
     }
 
-    public async Task<AccountsInProjectEntity> GetByIdAsync(Guid id)
+    public async Task<BrowserEntity> GetByIdAsync(Guid id)
     {
-        return await _context.AccountsInProjectTable.FindAsync(id);
+        return await _context.BrowserTable.FindAsync(id);
     }
 
-    public async Task AddAsync(AccountsInProjectEntity accountsInProject)
+    public async Task AddAsync(BrowserEntity accountsInProject)
     {
-        _context.AccountsInProjectTable.Add(accountsInProject);
+        _context.BrowserTable.Add(accountsInProject);
         await _context.SaveChangesAsync();
     }
 
-    public async Task UpdateAsync(AccountsInProjectEntity accountsInProject)
+    public async Task UpdateAsync(BrowserEntity accountsInProject)
     {
-        _context.AccountsInProjectTable.Update(accountsInProject);
+        _context.BrowserTable.Update(accountsInProject);
         await _context.SaveChangesAsync();
     }
 
     public async Task DeleteAsync(Guid id)
     {
-        var accountsInProject = await _context.AccountsInProjectTable.FindAsync(id);
+        var accountsInProject = await _context.BrowserTable.FindAsync(id);
         if (accountsInProject != null)
         {
-            _context.AccountsInProjectTable.Remove(accountsInProject);
+            _context.BrowserTable.Remove(accountsInProject);
             await _context.SaveChangesAsync();
         }
     }

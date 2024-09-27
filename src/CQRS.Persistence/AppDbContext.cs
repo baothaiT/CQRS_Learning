@@ -171,22 +171,22 @@ public class AppDbContext : DbContext
 
     private ModelBuilder SeedingData(ModelBuilder modelBuilder)
     {
-        // Seeding Proxy
-        #region ProxyTable
-        Guid proxyId1 = Guid.NewGuid();
-        Guid proxyId2 = Guid.NewGuid();
-        Guid proxyId3 = Guid.NewGuid();
+        //// Seeding Proxy
+        //#region ProxyTable
+        //Guid proxyId1 = Guid.NewGuid();
+        //Guid proxyId2 = Guid.NewGuid();
+        //Guid proxyId3 = Guid.NewGuid();
 
-        ProxyEntity proxyDb1 = new ProxyEntity { Id = proxyId1, Ip = "192.168.1.6", Port = 8080, User = "proxyUser1", Password = "proxyPass1", IsDelete = false };
-        ProxyEntity proxyDb2 = new ProxyEntity { Id = proxyId2, Ip = "192.168.1.7", Port = 8080, User = "proxyUser2", Password = "proxyPass2", IsDelete = false };
-        ProxyEntity proxyDb3 = new ProxyEntity { Id = proxyId3, Ip = "192.168.1.8", Port = 8080, User = "proxyUser2", Password = "proxyPass2", IsDelete = false };
+        //ProxyEntity proxyDb1 = new ProxyEntity { Id = proxyId1, Ip = "192.168.1.6", Port = 8080, User = "proxyUser1", Password = "proxyPass1", IsDelete = false };
+        //ProxyEntity proxyDb2 = new ProxyEntity { Id = proxyId2, Ip = "192.168.1.7", Port = 8080, User = "proxyUser2", Password = "proxyPass2", IsDelete = false };
+        //ProxyEntity proxyDb3 = new ProxyEntity { Id = proxyId3, Ip = "192.168.1.8", Port = 8080, User = "proxyUser2", Password = "proxyPass2", IsDelete = false };
 
-        modelBuilder.Entity<ProxyEntity>().HasData(
-            proxyDb1,
-            proxyDb2,
-            proxyDb3
-        );
-        #endregion
+        //modelBuilder.Entity<ProxyEntity>().HasData(
+        //    proxyDb1,
+        //    proxyDb2,
+        //    proxyDb3
+        //);
+        //#endregion
 
         //// Seeding AccountType
         //#region AccountTypeTable

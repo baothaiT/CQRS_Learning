@@ -9,43 +9,43 @@ using System.Threading.Tasks;
 
 namespace CQRS.Persistence.Repositories;
 
-public class BrowserRepository : IRepository<BrowserEntity>
+public class AccountsInBrowserRepository : IRepository<AccountsInBrowserEntity>
 {
     private readonly AppDbContext _context;
 
-    public BrowserRepository(AppDbContext context)
+    public AccountsInBrowserRepository(AppDbContext context)
     {
         _context = context;
     }
 
-    public async Task<IEnumerable<BrowserEntity>> GetAllAsync()
+    public async Task<IEnumerable<AccountsInBrowserEntity>> GetAllAsync()
     {
-        return await _context.BrowserTable.ToListAsync();
+        return await _context.AccountsInBrowserTable.ToListAsync();
     }
 
-    public async Task<BrowserEntity> GetByIdAsync(Guid id)
+    public async Task<AccountsInBrowserEntity> GetByIdAsync(Guid id)
     {
-        return await _context.BrowserTable.FindAsync(id);
+        return await _context.AccountsInBrowserTable.FindAsync(id);
     }
 
-    public async Task AddAsync(BrowserEntity browser)
+    public async Task AddAsync(AccountsInBrowserEntity accountsInBrowser)
     {
-        _context.BrowserTable.Add(browser);
+        _context.AccountsInBrowserTable.Add(accountsInBrowser);
         await _context.SaveChangesAsync();
     }
 
-    public async Task UpdateAsync(BrowserEntity browser)
+    public async Task UpdateAsync(AccountsInBrowserEntity accountsInBrowser)
     {
-        _context.BrowserTable.Update(browser);
+        _context.AccountsInBrowserTable.Update(accountsInBrowser);
         await _context.SaveChangesAsync();
     }
 
     public async Task DeleteAsync(Guid id)
     {
-        var browser = await _context.BrowserTable.FindAsync(id);
-        if (browser != null)
+        var accountsInBrowser = await _context.AccountsInBrowserTable.FindAsync(id);
+        if (accountsInBrowser != null)
         {
-            _context.BrowserTable.Remove(browser);
+            _context.AccountsInBrowserTable.Remove(accountsInBrowser);
             await _context.SaveChangesAsync();
         }
     }

@@ -14,5 +14,5 @@ public class BrowserEntity: BasedTableEntity
 
     public DateTime CreateDate { get; set; }
 
-    public ICollection<AccountsInBrowserEntity> Browser_AccountsInBrowser { get; set; }
+    public ICollection<AccountsInBrowserEntity>? Browser_AccountsInBrowser { get; set; }
 }

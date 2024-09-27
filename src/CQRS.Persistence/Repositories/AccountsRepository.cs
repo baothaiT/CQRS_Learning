@@ -9,43 +9,43 @@ using System.Threading.Tasks;
 
 namespace CQRS.Persistence.Repositories;
 
-public class BrowserRepository : IRepository<BrowserEntity>
+public class AccountsRepository : IRepository<AccountEntity>
 {
     private readonly AppDbContext _context;
 
-    public BrowserRepository(AppDbContext context)
+    public AccountsRepository(AppDbContext context)
     {
         _context = context;
     }
 
-    public async Task<IEnumerable<BrowserEntity>> GetAllAsync()
+    public async Task<IEnumerable<AccountEntity>> GetAllAsync()
     {
-        return await _context.BrowserTable.ToListAsync();
+        return await _context.AccountTable.ToListAsync();
     }
 
-    public async Task<BrowserEntity> GetByIdAsync(Guid id)
+    public async Task<AccountEntity> GetByIdAsync(Guid id)
     {
-        return await _context.BrowserTable.FindAsync(id);
+        return await _context.AccountTable.FindAsync(id);
     }
 
-    public async Task AddAsync(BrowserEntity browser)
+    public async Task AddAsync(AccountEntity browser)
     {
-        _context.BrowserTable.Add(browser);
+        _context.AccountTable.Add(browser);
         await _context.SaveChangesAsync();
     }
 
-    public async Task UpdateAsync(BrowserEntity browser)
+    public async Task UpdateAsync(AccountEntity browser)
     {
-        _context.BrowserTable.Update(browser);
+        _context.AccountTable.Update(browser);
         await _context.SaveChangesAsync();
     }
 
     public async Task DeleteAsync(Guid id)
     {
-        var browser = await _context.BrowserTable.FindAsync(id);
+        var browser = await _context.AccountTable.FindAsync(id);
         if (browser != null)
         {
-            _context.BrowserTable.Remove(browser);
+            _context.AccountTable.Remove(browser);
             await _context.SaveChangesAsync();
         }
     }
