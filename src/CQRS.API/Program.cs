@@ -8,6 +8,7 @@ using CQRS.Application.UserCases.V1.Commands.Product;
 using CQRS.Application.UserCases.V1.Queries.Product;
 using CQRS.Persistence;
 using CQRS.Persistence.Repositories;
+using CQRS.Domain.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,7 +26,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 // Register Repositories
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
-builder.Services.AddScoped<IProxyRepository, ProxyRepository>();
+//builder.Services.AddScoped<IProxyRepository, ProxyRepository>();
+
+builder.Services.AddScoped<IRepository<ProxyEntity>, ProxyRepository>();
 
 //// Register Command Handlers
 builder.Services.AddScoped<CreateProductCommandHandler>();

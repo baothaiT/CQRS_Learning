@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 
 namespace CQRS.Application.UserCases.V1.Queries.Proxy;
 
-public class GetAllProxyQueryHandler : BasedProxyQueriesHandler, IRequestHandler<GetAllProxyQuery, IEnumerable<ProxyEntity>>
+public class GetAllProxyQueryHandler : BasedQueriesHandler<ProxyEntity>, IRequestHandler<GetAllProxyQuery, IEnumerable<ProxyEntity>>
 {
-    public GetAllProxyQueryHandler(IProxyRepository proxyRepository) : base(proxyRepository)
+    public GetAllProxyQueryHandler(IRepository<ProxyEntity> repository) : base(repository)
     {
 
     }
 
     public async Task<IEnumerable<ProxyEntity>> Handle(GetAllProxyQuery query, CancellationToken cancellationToken)
     {
-        return await _proxyRepository.GetAllProxyAsync();
+        return await _repository.GetAllAsync();
     }
 
 }

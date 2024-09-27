@@ -9,17 +9,17 @@ using CQRS.Domain.Abstractions.Repository;
 
 namespace CQRS.Application.UserCases.V1.Commands.Proxy;
 
-public class UpdateProxyCommandHandler : BasedProxyCommandHandler, IRequestHandler<UpdateProxyCommand, ProxyEntity>
+public class UpdateProxyCommandHandler : BasedCommandHandler<ProxyEntity>, IRequestHandler<UpdateProxyCommand, ProxyEntity>
 {
 
-    public UpdateProxyCommandHandler(IProxyRepository proxyRepository) : base(proxyRepository)
+    public UpdateProxyCommandHandler(IRepository<ProxyEntity> repository) : base(repository)
     {
 
     }
 
     public async Task<ProxyEntity> Handle(UpdateProxyCommand request, CancellationToken cancellationToken)
     {
-        var proxy = await _proxyRepository.GetProxyByIdAsync(request.Id);
+        var proxy = await _repository.GetByIdAsync(request.Id);
         if(proxy != null)
         {
             ProxyEntity proxyEntity = new ProxyEntity
@@ -31,7 +31,7 @@ public class UpdateProxyCommandHandler : BasedProxyCommandHandler, IRequestHandl
                 Password = request.Password,
                 IsDelete = request.IsDelete,
             };
-            await _proxyRepository.UpdateProxyAsync(proxyEntity);
+            await _repository.UpdateAsync(proxyEntity);
             return proxyEntity;
         }
         throw new NotImplementedException();

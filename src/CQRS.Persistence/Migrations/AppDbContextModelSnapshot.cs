@@ -321,7 +321,7 @@ namespace CQRS.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("5088b53c-66f2-44b4-8d74-664b746c53ef"),
+                            Id = new Guid("0a2023fc-5c0e-46e0-b1ca-324d1c621383"),
                             Ip = "192.168.1.6",
                             IsDelete = false,
                             Password = "proxyPass1",
@@ -330,7 +330,7 @@ namespace CQRS.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("1c17593c-1f15-46e2-b23c-f4971e75ce5d"),
+                            Id = new Guid("be44b29e-8bfa-4f3c-8db2-f3e1f8ef0cc2"),
                             Ip = "192.168.1.7",
                             IsDelete = false,
                             Password = "proxyPass2",
@@ -339,7 +339,7 @@ namespace CQRS.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("34941776-5565-45d2-a8d5-5e97eda28ed6"),
+                            Id = new Guid("56528af1-4e18-481c-bef4-55f8ece9f051"),
                             Ip = "192.168.1.8",
                             IsDelete = false,
                             Password = "proxyPass2",

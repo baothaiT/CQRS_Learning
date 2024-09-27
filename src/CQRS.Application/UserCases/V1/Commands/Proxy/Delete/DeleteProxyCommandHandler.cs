@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace CQRS.Application.UserCases.V1.Commands.Proxy;
 
-public class DeleteProxyCommandHandler : BasedProxyCommandHandler, IRequestHandler<DeleteProxyCommand>
+public class DeleteProxyCommandHandler : BasedCommandHandler<ProxyEntity>, IRequestHandler<DeleteProxyCommand>
 {
-    public DeleteProxyCommandHandler(IProxyRepository proxyRepository) : base(proxyRepository)
+    public DeleteProxyCommandHandler(IRepository<ProxyEntity> repository) : base(repository)
     {
 
     }
 
     public async Task<Unit> Handle(DeleteProxyCommand request, CancellationToken cancellationToken)
     {
-        await _proxyRepository.DeleteProxyAsync(request.Id);
+        await _repository.DeleteAsync(request.Id);
         return Unit.Value;
     }
 }

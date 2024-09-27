@@ -335,27 +335,13 @@ namespace CQRS.Persistence.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "AccountType",
-                columns: new[] { "Id", "IsDelete", "TypeName" },
-                values: new object[,]
-                {
-                    { new Guid("32b6df0d-da33-48af-8616-062c748af79e"), false, 0 },
-                    { new Guid("35154da0-0fb2-40d2-b6ec-19ff0d50085b"), false, 1 }
-                });
-
-            migrationBuilder.InsertData(
                 table: "Proxy",
                 columns: new[] { "Id", "Ip", "IsDelete", "Password", "Port", "User" },
-                values: new object[] { new Guid("fff4e167-5595-41ed-825e-d1f59c640089"), "192.168.1.1", false, "proxyPass1", 8080, "proxyUser1" });
-
-            migrationBuilder.InsertData(
-                table: "Account",
-                columns: new[] { "Id", "CreateDate", "Email", "IsDelete", "IsStatus", "Password", "Proxy", "UserName", "UserType" },
                 values: new object[,]
                 {
-                    { new Guid("d50c7da5-947a-4324-8f93-887c23ef204e"), new DateTime(2024, 9, 26, 23, 41, 25, 736, DateTimeKind.Local).AddTicks(6665), "User@example.com", false, true, "UserPass", new Guid("fff4e167-5595-41ed-825e-d1f59c640089"), "User2", new Guid("35154da0-0fb2-40d2-b6ec-19ff0d50085b") },
-                    { new Guid("d6d5636f-7ca4-4ba2-a625-803988257fe5"), new DateTime(2024, 9, 26, 23, 41, 25, 736, DateTimeKind.Local).AddTicks(6667), "User@example.com", false, true, "UserPass", null, "User3", new Guid("35154da0-0fb2-40d2-b6ec-19ff0d50085b") },
-                    { new Guid("f1fad7d7-7aa8-44ca-87d6-3aa27db11414"), new DateTime(2024, 9, 26, 23, 41, 25, 736, DateTimeKind.Local).AddTicks(6654), "User@example.com", false, true, "UserPass", new Guid("fff4e167-5595-41ed-825e-d1f59c640089"), "User1", new Guid("32b6df0d-da33-48af-8616-062c748af79e") }
+                    { new Guid("0a2023fc-5c0e-46e0-b1ca-324d1c621383"), "192.168.1.6", false, "proxyPass1", 8080, "proxyUser1" },
+                    { new Guid("56528af1-4e18-481c-bef4-55f8ece9f051"), "192.168.1.8", false, "proxyPass2", 8080, "proxyUser2" },
+                    { new Guid("be44b29e-8bfa-4f3c-8db2-f3e1f8ef0cc2"), "192.168.1.7", false, "proxyPass2", 8080, "proxyUser2" }
                 });
 
             migrationBuilder.CreateIndex(

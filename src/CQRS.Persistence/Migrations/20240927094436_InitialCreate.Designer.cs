@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CQRS.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240926164908_InitialCreate5")]
-    partial class InitialCreate5
+    [Migration("20240927094436_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -324,7 +324,7 @@ namespace CQRS.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("9995ec0d-4b1b-403a-a932-04c0a963f8bb"),
+                            Id = new Guid("0a2023fc-5c0e-46e0-b1ca-324d1c621383"),
                             Ip = "192.168.1.6",
                             IsDelete = false,
                             Password = "proxyPass1",
@@ -333,8 +333,17 @@ namespace CQRS.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("91bc8153-2b0e-4c07-a599-2cd933ffbdc3"),
+                            Id = new Guid("be44b29e-8bfa-4f3c-8db2-f3e1f8ef0cc2"),
                             Ip = "192.168.1.7",
+                            IsDelete = false,
+                            Password = "proxyPass2",
+                            Port = 8080,
+                            User = "proxyUser2"
+                        },
+                        new
+                        {
+                            Id = new Guid("56528af1-4e18-481c-bef4-55f8ece9f051"),
+                            Ip = "192.168.1.8",
                             IsDelete = false,
                             Password = "proxyPass2",
                             Port = 8080,

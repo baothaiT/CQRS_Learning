@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CQRS.Persistence.Repositories;
 
-public class ProxyRepository : IProxyRepository
+public class ProxyRepository : IRepository<ProxyEntity>
 {
     private readonly AppDbContext _context;
 
@@ -18,29 +18,29 @@ public class ProxyRepository : IProxyRepository
         _context = context;
     }
 
-    public async Task<IEnumerable<ProxyEntity>> GetAllProxyAsync()
+    public async Task<IEnumerable<ProxyEntity>> GetAllAsync()
     {
         return await _context.Proxy.ToListAsync();
     }
 
-    public async Task<ProxyEntity> GetProxyByIdAsync(Guid id)
+    public async Task<ProxyEntity> GetByIdAsync(Guid id)
     {
         return await _context.Proxy.FindAsync(id);
     }
 
-    public async Task AddProxyAsync(ProxyEntity proxy)
+    public async Task AddAsync(ProxyEntity proxy)
     {
         _context.Proxy.Add(proxy);
         await _context.SaveChangesAsync();
     }
 
-    public async Task UpdateProxyAsync(ProxyEntity proxy)
+    public async Task UpdateAsync(ProxyEntity proxy)
     {
         _context.Proxy.Update(proxy);
         await _context.SaveChangesAsync();
     }
 
-    public async Task DeleteProxyAsync(Guid id)
+    public async Task DeleteAsync(Guid id)
     {
         var proxy = await _context.Proxy.FindAsync(id);
         if (proxy != null)
