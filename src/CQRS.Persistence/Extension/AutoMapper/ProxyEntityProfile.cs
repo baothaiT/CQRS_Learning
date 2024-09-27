@@ -12,7 +12,6 @@ namespace CQRS.Persistence.Etension.AutoMapper
     {
         public ProxyEntityProfile()
         {
-            // Ignore the primary key (Id) to avoid overwriting it
             CreateMap<ProxyEntity, ProxyEntity>();
         }
     }

@@ -19,7 +19,7 @@ public class AccountEntity: BasedTableEntity
     public ProxyEntity? Account_Proxy { get; set; }
 
     // Navigation AccountType
-    public Guid UserType { get; set; } // FK to AccountType
+    public Guid? UserType { get; set; } // FK to AccountType
     public AccountTypeEntity? AccountType { get; set; }
 
 

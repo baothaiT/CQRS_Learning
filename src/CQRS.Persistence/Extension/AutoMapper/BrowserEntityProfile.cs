@@ -12,7 +12,6 @@ namespace CQRS.Persistence.Extension.AutoMapper
     {
         public BrowserEntityProfile()
         {
-            // Ignore the primary key (Id) to avoid overwriting it
             CreateMap<BrowserEntity, BrowserEntity>();
         }
     }

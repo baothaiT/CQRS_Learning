@@ -32,22 +32,24 @@ builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 builder.Services.AddScoped<IRepository<ProxyEntity>, ProxyRepository>();
 builder.Services.AddScoped<IRepository<BrowserEntity>, BrowserRepository>();
+builder.Services.AddScoped<IRepository<AccountEntity>, AccountsRepository>();
 
 
 // Automapper CQRS.Persistence
-//builder.Services.AddAutoMapper(typeof(AccountsEntityProfile).Assembly);
-//builder.Services.AddAutoMapper(typeof(AccountsInBrowserEntityProfile).Assembly);
-//builder.Services.AddAutoMapper(typeof(AccountsInProjectProfile).Assembly);
-//builder.Services.AddAutoMapper(typeof(AccountTypeProfile).Assembly);
+builder.Services.AddAutoMapper(typeof(AccountsEntityProfile).Assembly);
+builder.Services.AddAutoMapper(typeof(AccountsInBrowserEntityProfile).Assembly);
+builder.Services.AddAutoMapper(typeof(AccountsInProjectProfile).Assembly);
+builder.Services.AddAutoMapper(typeof(AccountTypeProfile).Assembly);
 builder.Services.AddAutoMapper(typeof(BrowserEntityProfile).Assembly);
-//builder.Services.AddAutoMapper(typeof(LogsProfile).Assembly);
-//builder.Services.AddAutoMapper(typeof(LogsProfile).Assembly);
+builder.Services.AddAutoMapper(typeof(LogsProfile).Assembly);
+builder.Services.AddAutoMapper(typeof(LogsProfile).Assembly);
 builder.Services.AddAutoMapper(typeof(ProxyEntityProfile).Assembly);
 
 
 // Automapper CQRS.Application
 builder.Services.AddAutoMapper(typeof(ProxyCommandProfile).Assembly);
 builder.Services.AddAutoMapper(typeof(BrowserCommandProfile).Assembly);
+builder.Services.AddAutoMapper(typeof(AccountCommandProfile).Assembly);
 
 //// Register Command Handlers
 builder.Services.AddScoped<CreateProductCommandHandler>();

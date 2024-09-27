@@ -1,53 +1,49 @@
-﻿using CQRS.Application.UserCases.V1.Queries.Proxy;
+﻿using AutoMapper;
+using CQRS.Application.UserCases.V1.Queries.Account;
+using CQRS.Application.UserCases.V1.Commands.Account;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using CQRS.Application.UserCases.V1.Commands.Browser;
-using CQRS.Application.UserCases.V1.Queries.Browser;
-using CQRS.Application.UserCases.V1.Commands.Proxy;
 using CQRS.Contract.Share.DTO;
-using System.Net.NetworkInformation;
-using AutoMapper;
 
 namespace CQRS.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class BrowserController : Controller
+    public class AccountController : Controller
     {
         private readonly ISender _sender;
         private readonly IMapper _mapper;
 
-        public BrowserController(ISender sender, IMapper mapper)
+        public AccountController(ISender sender, IMapper mapper)
         {
             _sender = sender;
             _mapper = mapper;
         }
-
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var browser = await _sender.Send(new GetAllBrowserQuery());
-            return Ok(browser);
+            var account = await _sender.Send(new GetAllAccountQuery());
+            return Ok(account);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(Guid id)
         {
-            var browser = await _sender.Send(new GetBrowserByIdQuery { Id = id });
-            if (browser == null)
+            var account = await _sender.Send(new GetAccountByIdQuery { Id = id });
+            if (account == null)
                 return NotFound();
 
-            return Ok(browser);
+            return Ok(account);
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create([FromBody] CreateBrowserDto createBrowserDto)
+        public async Task<ActionResult> Create([FromBody] CreateAccountsDto createAccountsDto)
         {
             try
             {
-                CreateBrowserCommand command = new CreateBrowserCommand();
+                CreateAccountCommand command = new CreateAccountCommand();
 
-                _mapper.Map(createBrowserDto, command);
+                _mapper.Map(createAccountsDto, command);
                 var response = await _sender.Send(command);
 
                 //return CreatedAtAction(nameof(GetById), new { response }, response);
@@ -61,14 +57,14 @@ namespace CQRS.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> Update(Guid id, [FromBody] UpdateBrowserDto updateBrowserDto)
+        public async Task<ActionResult> Update(Guid id, [FromBody] UpdateAccountsDto updateAccountDto)
         {
             try
             {
-                UpdateBrowserCommand command = new UpdateBrowserCommand();
+                UpdateAccountCommand command = new UpdateAccountCommand();
 
-                updateBrowserDto.Id = id;
-                _mapper.Map(updateBrowserDto, command);
+                updateAccountDto.Id = id;
+                _mapper.Map(updateAccountDto, command);
 
                 var browser = await _sender.Send(command);
                 return Ok(browser);
@@ -84,7 +80,7 @@ namespace CQRS.API.Controllers
         {
             try
             {
-                var query = await _sender.Send(new DeleteBrowserCommand { Id = id });
+                var query = await _sender.Send(new DeleteAccountCommand { Id = id });
                 return Ok();
             }
             catch

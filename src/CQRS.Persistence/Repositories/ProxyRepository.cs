@@ -45,8 +45,6 @@ public class ProxyRepository : IRepository<ProxyEntity>
         if (found != null)
         {
             _mapper.Map(proxy, found);
-
-            found = proxy;
             await _context.SaveChangesAsync();
         }
     }
