@@ -10,23 +10,23 @@ public class AppDbContext : DbContext
         : base(options)
     {
     }
-    public DbSet<ProductEntity> Products { get; set; }
+    public DbSet<ProductEntity> ProductsTable { get; set; }
 
-    public DbSet<AccountEntity> Account { get; set; }
-    public DbSet<AccountTypeEntity> AccountType { get; set; }
-    public DbSet<LogsEntity> Logs { get; set; }
-    public DbSet<ProxyEntity> Proxy { get; set; }
-    public DbSet<BrowserEntity> Browser { get; set; }
-    public DbSet<AccountsInBrowserEntity> AccountsInBrowser { get; set; }
-    public DbSet<ProjectEntity> Project { get; set; }
-    public DbSet<AccountsInProjectEntity> AccountsInProject { get; set; }
-    public DbSet<ScriptsInProjectEntity> ScriptsInProject { get; set; }
-    public DbSet<PlanEntity> Plan { get; set; }
-    public DbSet<ScriptEntity> Script { get; set; }
-    public DbSet<ScriptsInPlanEntity> ScriptsInPlan { get; set; }
-    public DbSet<DevicesEntity> Devices { get; set; }
-    public DbSet<ScheduleEntity> Schedule { get; set; }
-    public DbSet<PlansInScheduleEntity> PlansInSchedule { get; set; }
+    public DbSet<AccountEntity> AccountTable { get; set; }
+    public DbSet<AccountTypeEntity> AccountTypeTable { get; set; }
+    public DbSet<LogsEntity> LogsTable { get; set; }
+    public DbSet<ProxyEntity> ProxyTable { get; set; }
+    public DbSet<BrowserEntity> BrowserTable { get; set; }
+    public DbSet<AccountsInBrowserEntity> AccountsInBrowserTable { get; set; }
+    public DbSet<ProjectEntity> ProjectTable { get; set; }
+    public DbSet<AccountsInProjectEntity> AccountsInProjectTable { get; set; }
+    public DbSet<ScriptsInProjectEntity> ScriptsInProjectTable { get; set; }
+    public DbSet<PlanEntity> PlanTable { get; set; }
+    public DbSet<ScriptEntity> ScriptTable { get; set; }
+    public DbSet<ScriptsInPlanEntity> ScriptsInPlanTable { get; set; }
+    public DbSet<DevicesEntity> DevicesTable { get; set; }
+    public DbSet<ScheduleEntity> ScheduleTable { get; set; }
+    public DbSet<PlansInScheduleEntity> PlansInScheduleTable { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

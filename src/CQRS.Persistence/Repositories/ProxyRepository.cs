@@ -20,32 +20,32 @@ public class ProxyRepository : IProxyRepository
 
     public async Task<IEnumerable<ProxyEntity>> GetAllProxyAsync()
     {
-        return await _context.Proxy.ToListAsync();
+        return await _context.ProxyTable.ToListAsync();
     }
 
     public async Task<ProxyEntity> GetProxyByIdAsync(Guid id)
     {
-        return await _context.Proxy.FindAsync(id);
+        return await _context.ProxyTable.FindAsync(id);
     }
 
     public async Task AddProxyAsync(ProxyEntity proxy)
     {
-        _context.Proxy.Add(proxy);
+        _context.ProxyTable.Add(proxy);
         await _context.SaveChangesAsync();
     }
 
     public async Task UpdateProxyAsync(ProxyEntity proxy)
     {
-        _context.Proxy.Update(proxy);
+        _context.ProxyTable.Update(proxy);
         await _context.SaveChangesAsync();
     }
 
     public async Task DeleteProxyAsync(Guid id)
     {
-        var proxy = await _context.Proxy.FindAsync(id);
+        var proxy = await _context.ProxyTable.FindAsync(id);
         if (proxy != null)
         {
-            _context.Proxy.Remove(proxy);
+            _context.ProxyTable.Remove(proxy);
             await _context.SaveChangesAsync();
         }
     }
