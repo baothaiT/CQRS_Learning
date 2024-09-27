@@ -8,8 +8,7 @@ namespace CQRS.Contract.Share.DTO;
 
 public class AccountsInBrowserBaseDto
 {
-    public string Name { get; set; }
-    public string Path { get; set; }
-    public bool IsStatus { get; set; }
-    public DateTime CreateDate { get; set; }
+    public Guid BrowserId { get; set; }
+    public Guid AccountId { get; set; }
+    public bool IsDelete { get; set; }
 }

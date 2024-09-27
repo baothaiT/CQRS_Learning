@@ -7,12 +7,9 @@ using System.Threading.Tasks;
 
 namespace CQRS.Domain.Abstractions.Repository
 {
-    public interface IAccountsInBrowserRepository
+    public interface IAccountsInBrowserRepository<T> : IWriteRepository<T>
     {
-        Task<IEnumerable<AccountsInBrowserEntity>> GetAllAccountsInBrowserAsync();
-        Task<AccountsInBrowserEntity> GetAccountsInBrowserByIdAsync(Guid id);
-        Task AddAccountsInBrowserAsync(AccountsInBrowserEntity accountsInBrowser);
-        Task UpdateAccountsInBrowserAsync(AccountsInBrowserEntity accountsInBrowser);
-        Task DeleteAccountsInBrowserAsync(Guid id);
+        Task<IEnumerable<AccountsInBrowserEntity>> GetAllAsync();
+        Task<AccountsInBrowserEntity> GetByIdAsync(Guid idAccount, Guid idBrowser);
     }
 }

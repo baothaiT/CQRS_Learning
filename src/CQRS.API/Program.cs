@@ -33,6 +33,7 @@ builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IRepository<ProxyEntity>, ProxyRepository>();
 builder.Services.AddScoped<IRepository<BrowserEntity>, BrowserRepository>();
 builder.Services.AddScoped<IRepository<AccountEntity>, AccountsRepository>();
+builder.Services.AddScoped<IAccountsInBrowserRepository<AccountsInBrowserEntity>, AccountsInBrowserRepository>();
 
 
 // Automapper CQRS.Persistence
@@ -50,6 +51,7 @@ builder.Services.AddAutoMapper(typeof(ProxyEntityProfile).Assembly);
 builder.Services.AddAutoMapper(typeof(ProxyCommandProfile).Assembly);
 builder.Services.AddAutoMapper(typeof(BrowserCommandProfile).Assembly);
 builder.Services.AddAutoMapper(typeof(AccountCommandProfile).Assembly);
+builder.Services.AddAutoMapper(typeof(AccountsInBrowserCommandProfile).Assembly);
 
 //// Register Command Handlers
 builder.Services.AddScoped<CreateProductCommandHandler>();

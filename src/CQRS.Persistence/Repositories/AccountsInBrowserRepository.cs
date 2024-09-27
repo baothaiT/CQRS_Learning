@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CQRS.Persistence.Repositories;
 
-public class AccountsInBrowserRepository : IRepository<AccountsInBrowserEntity>
+public class AccountsInBrowserRepository : IAccountsInBrowserRepository<AccountsInBrowserEntity>
 {
     private readonly AppDbContext _context;
     private readonly IMapper _mapper;
@@ -25,9 +25,9 @@ public class AccountsInBrowserRepository : IRepository<AccountsInBrowserEntity>
         return await _context.AccountsInBrowserTable.ToListAsync();
     }
 
-    public async Task<AccountsInBrowserEntity> GetByIdAsync(Guid id)
+    public async Task<AccountsInBrowserEntity> GetByIdAsync(Guid idAccount, Guid idBrowser)
     {
-        return await _context.AccountsInBrowserTable.FindAsync(id);
+        return await _context.AccountsInBrowserTable?.FirstOrDefaultAsync(x => x.AccountId == idAccount && x.BrowserId == idBrowser);
     }
 
     public async Task AddAsync(AccountsInBrowserEntity accountsInBrowser)
@@ -38,7 +38,11 @@ public class AccountsInBrowserRepository : IRepository<AccountsInBrowserEntity>
 
     public async Task UpdateAsync(AccountsInBrowserEntity accountsInBrowser)
     {
-        _context.AccountsInBrowserTable.Update(accountsInBrowser);
+        var response = await GetByIdAsync(accountsInBrowser.AccountId, accountsInBrowser.BrowserId);
+        if(response != null)
+        {
+            _mapper.Map(accountsInBrowser, response);
+        }
         await _context.SaveChangesAsync();
     }
 

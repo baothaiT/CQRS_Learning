@@ -8,6 +8,4 @@ namespace CQRS.Contract.Share.DTO;
 
 public class UpdateAccountsInBrowserDto : AccountsInBrowserBaseDto
 {
-    public Guid Id { get; set; }
-    public bool IsDelete { get; set; }
 }
