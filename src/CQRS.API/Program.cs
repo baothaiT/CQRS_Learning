@@ -9,6 +9,9 @@ using CQRS.Application.UserCases.V1.Queries.Product;
 using CQRS.Persistence;
 using CQRS.Persistence.Repositories;
 using CQRS.Domain.Entities;
+using CQRS.Persistence.Etension.AutoMapper;
+using CQRS.Application.Extension.AutoMapper;
+using CQRS.Persistence.Extension.AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,9 +29,25 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 // Register Repositories
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
-//builder.Services.AddScoped<IProxyRepository, ProxyRepository>();
 
 builder.Services.AddScoped<IRepository<ProxyEntity>, ProxyRepository>();
+builder.Services.AddScoped<IRepository<BrowserEntity>, BrowserRepository>();
+
+
+// Automapper CQRS.Persistence
+//builder.Services.AddAutoMapper(typeof(AccountsEntityProfile).Assembly);
+//builder.Services.AddAutoMapper(typeof(AccountsInBrowserEntityProfile).Assembly);
+//builder.Services.AddAutoMapper(typeof(AccountsInProjectProfile).Assembly);
+//builder.Services.AddAutoMapper(typeof(AccountTypeProfile).Assembly);
+builder.Services.AddAutoMapper(typeof(BrowserEntityProfile).Assembly);
+//builder.Services.AddAutoMapper(typeof(LogsProfile).Assembly);
+//builder.Services.AddAutoMapper(typeof(LogsProfile).Assembly);
+builder.Services.AddAutoMapper(typeof(ProxyEntityProfile).Assembly);
+
+
+// Automapper CQRS.Application
+builder.Services.AddAutoMapper(typeof(ProxyCommandProfile).Assembly);
+builder.Services.AddAutoMapper(typeof(BrowserCommandProfile).Assembly);
 
 //// Register Command Handlers
 builder.Services.AddScoped<CreateProductCommandHandler>();
@@ -50,11 +69,11 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-//if (app.Environment.IsDevelopment())
-//{
+if (app.Environment.IsDevelopment())
+{
     app.UseSwagger();
     app.UseSwaggerUI();
-//}
+}
 
 app.UseHttpsRedirection();
 

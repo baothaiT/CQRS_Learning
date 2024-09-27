@@ -16,6 +16,9 @@ Install-Package MediatR -Version 11.1.0
 Install-Package MediatR.Extensions.Microsoft.DependencyInjection -Version 11.1.0
 Install-Package MediatR.CommandQuery.EntityFrameworkCore -Version 11.0.750
 
+Install-Package AutoMapper
+Install-Package AutoMapper.Extensions.Microsoft.DependencyInjection
+
 ## Command EF
 Add-Migration InitialCreate
 Update-Database

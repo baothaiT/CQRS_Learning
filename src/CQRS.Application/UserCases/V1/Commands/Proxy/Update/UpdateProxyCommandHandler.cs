@@ -6,15 +6,17 @@ using System.Threading.Tasks;
 using MediatR;
 using CQRS.Contract.Share.DTO;
 using CQRS.Domain.Abstractions.Repository;
+using AutoMapper;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace CQRS.Application.UserCases.V1.Commands.Proxy;
 
 public class UpdateProxyCommandHandler : BasedCommandHandler<ProxyEntity>, IRequestHandler<UpdateProxyCommand, ProxyEntity>
 {
-
-    public UpdateProxyCommandHandler(IRepository<ProxyEntity> repository) : base(repository)
+    private readonly IMapper _mapper;
+    public UpdateProxyCommandHandler(IRepository<ProxyEntity> repository, IMapper mapper) : base(repository)
     {
-
+        _mapper = mapper;
     }
 
     public async Task<ProxyEntity> Handle(UpdateProxyCommand request, CancellationToken cancellationToken)
@@ -22,15 +24,9 @@ public class UpdateProxyCommandHandler : BasedCommandHandler<ProxyEntity>, IRequ
         var proxy = await _repository.GetByIdAsync(request.Id);
         if(proxy != null)
         {
-            ProxyEntity proxyEntity = new ProxyEntity
-            {
-                Id = request.Id,
-                Ip = request.Ip,
-                Port = request.Port,
-                User = request.User,
-                Password = request.Password,
-                IsDelete = request.IsDelete,
-            };
+            ProxyEntity proxyEntity = new ProxyEntity();
+            _mapper.Map(request, proxyEntity);
+
             await _repository.UpdateAsync(proxyEntity);
             return proxyEntity;
         }

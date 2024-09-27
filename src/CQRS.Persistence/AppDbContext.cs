@@ -10,183 +10,183 @@ public class AppDbContext : DbContext
         : base(options)
     {
     }
-    public DbSet<ProductEntity> Products { get; set; }
+    public DbSet<ProductEntity> ProductsTable { get; set; }
 
-    public DbSet<AccountEntity> Account { get; set; }
-    public DbSet<AccountTypeEntity> AccountType { get; set; }
-    public DbSet<LogsEntity> Logs { get; set; }
-    public DbSet<ProxyEntity> Proxy { get; set; }
-    public DbSet<BrowserEntity> Browser { get; set; }
-    public DbSet<AccountsInBrowserEntity> AccountsInBrowser { get; set; }
-    public DbSet<ProjectEntity> Project { get; set; }
-    public DbSet<AccountsInProjectEntity> AccountsInProject { get; set; }
-    public DbSet<ScriptsInProjectEntity> ScriptsInProject { get; set; }
-    public DbSet<PlanEntity> Plan { get; set; }
-    public DbSet<ScriptEntity> Script { get; set; }
-    public DbSet<ScriptsInPlanEntity> ScriptsInPlan { get; set; }
-    public DbSet<DevicesEntity> Devices { get; set; }
-    public DbSet<ScheduleEntity> Schedule { get; set; }
-    public DbSet<PlansInScheduleEntity> PlansInSchedule { get; set; }
+    //public DbSet<AccountEntity> AccountTable { get; set; }
+    //public DbSet<AccountTypeEntity> AccountTypeTable { get; set; }
+    //public DbSet<LogsEntity> LogsTable { get; set; }
+    public DbSet<ProxyEntity> ProxyTable { get; set; }
+    public DbSet<BrowserEntity> BrowserTable { get; set; }
+    //public DbSet<AccountsInBrowserEntity> AccountsInBrowserTable { get; set; }
+    //public DbSet<ProjectEntity> ProjectTable { get; set; }
+    //public DbSet<AccountsInProjectEntity> AccountsInProjectTable { get; set; }
+    //public DbSet<ScriptsInProjectEntity> ScriptsInProjectTable { get; set; }
+    //public DbSet<PlanEntity> PlanTable { get; set; }
+    //public DbSet<ScriptEntity> ScriptTable { get; set; }
+    //public DbSet<ScriptsInPlanEntity> ScriptsInPlanTable { get; set; }
+    //public DbSet<DevicesEntity> DevicesTable { get; set; }
+    //public DbSet<ScheduleEntity> ScheduleTable { get; set; }
+    //public DbSet<PlansInScheduleEntity> PlansInScheduleTable { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
 
-        // Account Configuration
-        modelBuilder.Entity<AccountEntity>()
-            .HasKey(ap => new { ap.Id });
+        //// Account Configuration
+        //modelBuilder.Entity<AccountEntity>()
+        //    .HasKey(ap => new { ap.Id });
 
-        // AccountType Configuration
-        modelBuilder.Entity<AccountTypeEntity>()
-            .HasKey(ap => new { ap.Id });
+        //// AccountType Configuration
+        //modelBuilder.Entity<AccountTypeEntity>()
+        //    .HasKey(ap => new { ap.Id });
 
-        // Relationship between Account and AccountType
-        modelBuilder.Entity<AccountEntity>()
-            .HasOne(a => a.AccountType)
-            .WithMany(at => at.AccountType_Accounts)
-            .HasForeignKey(a => a.UserType);
+        //// Relationship between Account and AccountType
+        //modelBuilder.Entity<AccountEntity>()
+        //    .HasOne(a => a.AccountType)
+        //    .WithMany(at => at.AccountType_Accounts)
+        //    .HasForeignKey(a => a.UserType);
 
-        // Logs Configuration
-        modelBuilder.Entity<LogsEntity>()
-            .HasKey(ap => new { ap.Id });
+        //// Logs Configuration
+        //modelBuilder.Entity<LogsEntity>()
+        //    .HasKey(ap => new { ap.Id });
 
-        // Relationship between Account and Logs
-        modelBuilder.Entity<LogsEntity>()
-            .HasOne(a => a.Logs_Account)
-            .WithMany(at => at.Logs)
-            .HasForeignKey(a => a.User);
+        //// Relationship between Account and Logs
+        //modelBuilder.Entity<LogsEntity>()
+        //    .HasOne(a => a.Logs_Account)
+        //    .WithMany(at => at.Logs)
+        //    .HasForeignKey(a => a.User);
 
-        // Proxy Configuration
-        modelBuilder.Entity<ProxyEntity>()
-            .HasKey(ap => new { ap.Id });
+        //// Proxy Configuration
+        //modelBuilder.Entity<ProxyEntity>()
+        //    .HasKey(ap => new { ap.Id });
 
-        // Relationship between Account and Logs
+        //// Relationship between Account and Logs
 
-        modelBuilder.Entity<AccountEntity>()
-            .HasOne(a => a.Account_Proxy)
-            .WithMany(at => at.Logs_Account)
-            .HasForeignKey(a => a.Proxy);
+        //modelBuilder.Entity<AccountEntity>()
+        //    .HasOne(a => a.Account_Proxy)
+        //    .WithMany(at => at.Logs_Account)
+        //    .HasForeignKey(a => a.Proxy);
 
-        // Browser Configuration
-        modelBuilder.Entity<BrowserEntity>()
-            .HasKey(ap => new { ap.Id });
+        //// Browser Configuration
+        //modelBuilder.Entity<BrowserEntity>()
+        //    .HasKey(ap => new { ap.Id });
 
-        // Browser Configuration
-        modelBuilder.Entity<AccountsInBrowserEntity>()
-            .HasKey(ab => new { ab.AccountId, ab.BrowserId });
+        //// Browser Configuration
+        //modelBuilder.Entity<AccountsInBrowserEntity>()
+        //    .HasKey(ab => new { ab.AccountId, ab.BrowserId });
 
-        // Relationship between AccountsInBrowser and Browser
-        modelBuilder.Entity<AccountsInBrowserEntity>()
-            .HasOne(a => a.AccountsInBrowser_Browser)
-            .WithMany(at => at.Browser_AccountsInBrowser)
-            .HasForeignKey(a => a.BrowserId);
+        //// Relationship between AccountsInBrowser and Browser
+        //modelBuilder.Entity<AccountsInBrowserEntity>()
+        //    .HasOne(a => a.AccountsInBrowser_Browser)
+        //    .WithMany(at => at.Browser_AccountsInBrowser)
+        //    .HasForeignKey(a => a.BrowserId);
 
-        // Relationship between AccountsInBrowser and Account
-        modelBuilder.Entity<AccountsInBrowserEntity>()
-            .HasOne(a => a.AccountsInBrowser_Account)
-            .WithMany(at => at.Account_AccountsInBrowser)
-            .HasForeignKey(a => a.AccountId);
+        //// Relationship between AccountsInBrowser and Account
+        //modelBuilder.Entity<AccountsInBrowserEntity>()
+        //    .HasOne(a => a.AccountsInBrowser_Account)
+        //    .WithMany(at => at.Account_AccountsInBrowser)
+        //    .HasForeignKey(a => a.AccountId);
 
-        // Project Configuration
-        modelBuilder.Entity<ProjectEntity>()
-            .HasKey(ap => new { ap.Id });
+        //// Project Configuration
+        //modelBuilder.Entity<ProjectEntity>()
+        //    .HasKey(ap => new { ap.Id });
 
-        // AccountsInProject Configuration
-        modelBuilder.Entity<AccountsInProjectEntity>()
-            .HasKey(ap => new { ap.AccountId, ap.ProjectId });
+        //// AccountsInProject Configuration
+        //modelBuilder.Entity<AccountsInProjectEntity>()
+        //    .HasKey(ap => new { ap.AccountId, ap.ProjectId });
 
-        // Relationship between AccountsInProject and Account
-        modelBuilder.Entity<AccountsInProjectEntity>()
-            .HasOne(a => a.AccountsInProject_Account)
-            .WithMany(at => at.Account_AccountsInProject)
-            .HasForeignKey(a => a.AccountId);
+        //// Relationship between AccountsInProject and Account
+        //modelBuilder.Entity<AccountsInProjectEntity>()
+        //    .HasOne(a => a.AccountsInProject_Account)
+        //    .WithMany(at => at.Account_AccountsInProject)
+        //    .HasForeignKey(a => a.AccountId);
 
-        // Relationship between AccountsInProject and Project
-        modelBuilder.Entity<AccountsInProjectEntity>()
-            .HasOne(a => a.AccountsInProject_Project)
-            .WithMany(at => at.AccountsInProject)
-            .HasForeignKey(a => a.ProjectId);
+        //// Relationship between AccountsInProject and Project
+        //modelBuilder.Entity<AccountsInProjectEntity>()
+        //    .HasOne(a => a.AccountsInProject_Project)
+        //    .WithMany(at => at.AccountsInProject)
+        //    .HasForeignKey(a => a.ProjectId);
 
-        // ScriptsInProject Configuration
-        modelBuilder.Entity<ScriptsInProjectEntity>()
-            .HasKey(spp => new { spp.ProjectId, spp.ScriptId });
+        //// ScriptsInProject Configuration
+        //modelBuilder.Entity<ScriptsInProjectEntity>()
+        //    .HasKey(spp => new { spp.ProjectId, spp.ScriptId });
 
-        // Script Configuration
-        modelBuilder.Entity<ScriptEntity>()
-            .HasKey(ap => new { ap.Id });
+        //// Script Configuration
+        //modelBuilder.Entity<ScriptEntity>()
+        //    .HasKey(ap => new { ap.Id });
 
-        // Relationship between ScriptsInProject and Project
-        modelBuilder.Entity<ScriptsInProjectEntity>()
-            .HasOne(a => a.ScriptsInProject_Project)
-            .WithMany(at => at.ScriptsInProjects)
-            .HasForeignKey(a => a.ProjectId);
+        //// Relationship between ScriptsInProject and Project
+        //modelBuilder.Entity<ScriptsInProjectEntity>()
+        //    .HasOne(a => a.ScriptsInProject_Project)
+        //    .WithMany(at => at.ScriptsInProjects)
+        //    .HasForeignKey(a => a.ProjectId);
 
-        // Relationship between ScriptsInProject and Script
-        modelBuilder.Entity<ScriptsInProjectEntity>()
-            .HasOne(a => a.ScriptsInProject_Script)
-            .WithMany(at => at.ScriptsInProjects)
-            .HasForeignKey(a => a.ScriptId);
+        //// Relationship between ScriptsInProject and Script
+        //modelBuilder.Entity<ScriptsInProjectEntity>()
+        //    .HasOne(a => a.ScriptsInProject_Script)
+        //    .WithMany(at => at.ScriptsInProjects)
+        //    .HasForeignKey(a => a.ScriptId);
 
-        // Plan Configuration
-        modelBuilder.Entity<PlanEntity>()
-            .HasKey(ap => new { ap.Id });
+        //// Plan Configuration
+        //modelBuilder.Entity<PlanEntity>()
+        //    .HasKey(ap => new { ap.Id });
 
-        // ScriptsInPlan Configuration
-        modelBuilder.Entity<ScriptsInPlanEntity>()
-            .HasKey(sp => new { sp.PlanId, sp.ScriptId });
+        //// ScriptsInPlan Configuration
+        //modelBuilder.Entity<ScriptsInPlanEntity>()
+        //    .HasKey(sp => new { sp.PlanId, sp.ScriptId });
 
-        // Schedule Configuration
-        modelBuilder.Entity<ScheduleEntity>()
-            .HasKey(ap => new { ap.Id });
+        //// Schedule Configuration
+        //modelBuilder.Entity<ScheduleEntity>()
+        //    .HasKey(ap => new { ap.Id });
 
-        // Devices Configuration
-        modelBuilder.Entity<DevicesEntity>()
-            .HasKey(ap => new { ap.Id });
+        //// Devices Configuration
+        //modelBuilder.Entity<DevicesEntity>()
+        //    .HasKey(ap => new { ap.Id });
 
-        // PlansInSchedule Configuration
-        modelBuilder.Entity<PlansInScheduleEntity>()
-            .HasKey(ps => new { ps.ScheduleId, ps.DeviceId, ps.PlanId });
+        //// PlansInSchedule Configuration
+        //modelBuilder.Entity<PlansInScheduleEntity>()
+        //    .HasKey(ps => new { ps.ScheduleId, ps.DeviceId, ps.PlanId });
 
-        // Relationship between PlansInSchedules and Schedules
-        modelBuilder.Entity<PlansInScheduleEntity>()
-            .HasOne(a => a.PlansInSchedule_Schedule)
-            .WithMany(at => at.PlansInSchedules)
-            .HasForeignKey(a => a.ScheduleId);
+        //// Relationship between PlansInSchedules and Schedules
+        //modelBuilder.Entity<PlansInScheduleEntity>()
+        //    .HasOne(a => a.PlansInSchedule_Schedule)
+        //    .WithMany(at => at.PlansInSchedules)
+        //    .HasForeignKey(a => a.ScheduleId);
 
-        // Relationship between PlansInSchedules and Devices
-        modelBuilder.Entity<PlansInScheduleEntity>()
-            .HasOne(a => a.PlansInSchedule_Device)
-            .WithMany(at => at.PlansInSchedules)
-            .HasForeignKey(a => a.DeviceId);
+        //// Relationship between PlansInSchedules and Devices
+        //modelBuilder.Entity<PlansInScheduleEntity>()
+        //    .HasOne(a => a.PlansInSchedule_Device)
+        //    .WithMany(at => at.PlansInSchedules)
+        //    .HasForeignKey(a => a.DeviceId);
 
-        // Relationship between PlansInSchedules and Plan
-        modelBuilder.Entity<PlansInScheduleEntity>()
-            .HasOne(a => a.PlansInSchedule_Plan)
-            .WithMany(at => at.PlansInSchedule)
-            .HasForeignKey(a => a.PlanId);
+        //// Relationship between PlansInSchedules and Plan
+        //modelBuilder.Entity<PlansInScheduleEntity>()
+        //    .HasOne(a => a.PlansInSchedule_Plan)
+        //    .WithMany(at => at.PlansInSchedule)
+        //    .HasForeignKey(a => a.PlanId);
 
 
-        modelBuilder = SeedingData(modelBuilder);
+        //modelBuilder = SeedingData(modelBuilder);
     }
 
     private ModelBuilder SeedingData(ModelBuilder modelBuilder)
     {
-        // Seeding Proxy
-        #region ProxyTable
-        Guid proxyId1 = Guid.NewGuid();
-        Guid proxyId2 = Guid.NewGuid();
-        Guid proxyId3 = Guid.NewGuid();
+        ////Seeding Proxy
+        //#region ProxyTable
+        //Guid proxyId1 = Guid.NewGuid();
+        //Guid proxyId2 = Guid.NewGuid();
+        //Guid proxyId3 = Guid.NewGuid();
 
-        ProxyEntity proxyDb1 = new ProxyEntity { Id = proxyId1, Ip = "192.168.1.6", Port = 8080, User = "proxyUser1", Password = "proxyPass1", IsDelete = false };
-        ProxyEntity proxyDb2 = new ProxyEntity { Id = proxyId2, Ip = "192.168.1.7", Port = 8080, User = "proxyUser2", Password = "proxyPass2", IsDelete = false };
-        ProxyEntity proxyDb3 = new ProxyEntity { Id = proxyId3, Ip = "192.168.1.8", Port = 8080, User = "proxyUser2", Password = "proxyPass2", IsDelete = false };
+        //ProxyEntity proxyDb1 = new ProxyEntity { Id = proxyId1, Ip = "192.168.1.6", Port = 8080, User = "proxyUser1", Password = "proxyPass1", IsDelete = false };
+        //ProxyEntity proxyDb2 = new ProxyEntity { Id = proxyId2, Ip = "192.168.1.7", Port = 8080, User = "proxyUser2", Password = "proxyPass2", IsDelete = false };
+        //ProxyEntity proxyDb3 = new ProxyEntity { Id = proxyId3, Ip = "192.168.1.8", Port = 8080, User = "proxyUser2", Password = "proxyPass2", IsDelete = false };
 
-        modelBuilder.Entity<ProxyEntity>().HasData(
-            proxyDb1,
-            proxyDb2,
-            proxyDb3
-        );
-        #endregion
+        //modelBuilder.Entity<ProxyEntity>().HasData(
+        //    proxyDb1,
+        //    proxyDb2,
+        //    proxyDb3
+        //);
+        //#endregion
 
         //// Seeding AccountType
         //#region AccountTypeTable
@@ -249,7 +249,7 @@ public class AppDbContext : DbContext
         //);
         //#endregion
 
-        //// Seeding Browser
+        ////Seeding Browser
         //#region BrowserTable
         //Guid browserId1 = Guid.NewGuid();
         //Guid browserId2 = Guid.NewGuid();

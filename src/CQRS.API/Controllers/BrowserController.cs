@@ -1,55 +1,57 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Http;
+﻿using CQRS.Application.UserCases.V1.Queries.Proxy;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using CQRS.Application.UserCases.V1.Queries.Proxy;
-using CQRS.Contract.Share.DTO;
+using CQRS.Application.UserCases.V1.Commands.Browser;
+using CQRS.Application.UserCases.V1.Queries.Browser;
 using CQRS.Application.UserCases.V1.Commands.Proxy;
+using CQRS.Contract.Share.DTO;
+using System.Net.NetworkInformation;
 using AutoMapper;
 
 namespace CQRS.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ProxyController : Controller
+    public class BrowserController : Controller
     {
         private readonly ISender _sender;
         private readonly IMapper _mapper;
-        public ProxyController(ISender sender, IMapper mapper)
+
+        public BrowserController(ISender sender, IMapper mapper)
         {
             _sender = sender;
             _mapper = mapper;
         }
-        // GET: ProxyController
+
         [HttpGet]
-        public async Task<ActionResult> Index()
+        public async Task<IActionResult> Index()
         {
-            var proxy = await _sender.Send(new GetAllProxyQuery());
+            var proxy = await _sender.Send(new GetAllBrowserQuery());
             return Ok(proxy);
         }
-
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(Guid id)
         {
-            var product = await _sender.Send(new GetProxyByIdQuery { Id = id });
-            if (product == null)
+            var browser = await _sender.Send(new GetBrowserByIdQuery { Id = id });
+            if (browser == null)
                 return NotFound();
 
-            return Ok(product);
+            return Ok(browser);
         }
 
-        // POST: ProxyController/Create
         [HttpPost]
-        public async Task<ActionResult> Create([FromBody] CreateProxyDto createProxyDto)
+        public async Task<ActionResult> Create([FromBody] CreateBrowserDto createBrowserDto)
         {
             try
             {
-                CreateProxyCommand command = new CreateProxyCommand();
+                CreateBrowserCommand command = new CreateBrowserCommand();
 
-                _mapper.Map(createProxyDto, command);
+                _mapper.Map(createBrowserDto, command);
                 var response = await _sender.Send(command);
 
                 //return CreatedAtAction(nameof(GetById), new { response }, response);
+
                 return Ok(response);
             }
             catch
@@ -59,17 +61,17 @@ namespace CQRS.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> Update(Guid id, [FromBody] UpdateProxyDto updateProxyDto)
+        public async Task<ActionResult> Update(Guid id, [FromBody] UpdateBrowserDto updateBrowserDto)
         {
             try
             {
-                UpdateProxyCommand updateProxyCommand = new UpdateProxyCommand();
+                UpdateBrowserCommand command = new UpdateBrowserCommand();
 
-                updateProxyDto.Id = id;
-                _mapper.Map(updateProxyDto, updateProxyCommand);
+                updateBrowserDto.Id = id;
+                _mapper.Map(updateBrowserDto, command);
 
-                var proxy = await _sender.Send(updateProxyCommand);
-                return Ok(proxy);
+                var browser = await _sender.Send(command);
+                return Ok(browser);
             }
             catch
             {
@@ -77,13 +79,12 @@ namespace CQRS.API.Controllers
             }
         }
 
-        // POST: ProxyController/Delete/5
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(Guid id)
         {
             try
             {
-                var query = await _sender.Send(new DeleteProxyCommand { Id = id });
+                var query = await _sender.Send(new DeleteBrowserCommand { Id = id });
                 return Ok();
             }
             catch

@@ -1,4 +1,6 @@
-﻿using CQRS.Domain.Abstractions.Repository;
+﻿using AutoMapper;
+using CQRS.Contract.Share.Services;
+using CQRS.Domain.Abstractions.Repository;
 using CQRS.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -12,40 +14,49 @@ namespace CQRS.Persistence.Repositories;
 public class ProxyRepository : IRepository<ProxyEntity>
 {
     private readonly AppDbContext _context;
+    private readonly IMapper _mapper;
 
-    public ProxyRepository(AppDbContext context)
+    public ProxyRepository(AppDbContext context, IMapper mapper)
     {
         _context = context;
+        _mapper = mapper;
     }
 
     public async Task<IEnumerable<ProxyEntity>> GetAllAsync()
     {
-        return await _context.Proxy.ToListAsync();
+        return await _context.ProxyTable.ToListAsync();
     }
 
     public async Task<ProxyEntity> GetByIdAsync(Guid id)
     {
-        return await _context.Proxy.FindAsync(id);
+        return await _context.ProxyTable.FindAsync(id);
     }
 
     public async Task AddAsync(ProxyEntity proxy)
     {
-        _context.Proxy.Add(proxy);
+        _context.ProxyTable.Add(proxy);
         await _context.SaveChangesAsync();
     }
 
     public async Task UpdateAsync(ProxyEntity proxy)
     {
-        _context.Proxy.Update(proxy);
-        await _context.SaveChangesAsync();
+        var found = await _context.ProxyTable.FindAsync(proxy.Id);
+
+        if (found != null)
+        {
+            _mapper.Map(proxy, found);
+
+            found = proxy;
+            await _context.SaveChangesAsync();
+        }
     }
 
     public async Task DeleteAsync(Guid id)
     {
-        var proxy = await _context.Proxy.FindAsync(id);
+        var proxy = await _context.ProxyTable.FindAsync(id);
         if (proxy != null)
         {
-            _context.Proxy.Remove(proxy);
+            _context.ProxyTable.Remove(proxy);
             await _context.SaveChangesAsync();
         }
     }
