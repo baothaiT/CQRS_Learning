@@ -1,10 +1,14 @@
 ﻿using AutoMapper;
+using CQRS.Contract.Share.DTO._JoinDTO;
 using CQRS.Domain.Abstractions.Repository;
 using CQRS.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -56,5 +60,32 @@ public class AccountsRepository : IAccountRepository<AccountEntity>
             _context.AccountTable.Remove(browser);
             await _context.SaveChangesAsync();
         }
+    }
+
+    public async Task<List<Account_Browser_DTO>> GetBrowserByAccountId(Guid IdAccount)
+    {
+        var browsers = await (from account in _context.AccountTable
+                             join accountInBrowser in _context.AccountsInBrowserTable on account.Id equals accountInBrowser.AccountId
+                             join browser in _context.BrowserTable on accountInBrowser.BrowserId equals browser.Id
+                             where account.Id == IdAccount
+                             select new Account_Browser_DTO
+                             {
+                                 AccountId = account.Id,
+                                 UserName = account.UserName,
+                                 Password = account.Password,
+                                 IsStatus = account.IsStatus,
+                                 AccountCreateDate = account.CreateDate,
+                                 BrowserId = browser.Id,
+                                 Name = browser.Name,
+                                 BrowserIsStatus = browser.IsStatus,
+                                 XPosition = browser.XPosition,
+                                 YPosition = browser.YPosition,
+                                 WithScreeen = browser.WithScreeen,
+                                 HightScreen = browser.HightScreen,
+                                 UserAgent = browser.UserAgent,
+                                 BrowserCreateDate = browser.CreateDate
+                             }).ToListAsync();
+
+        return browsers;
     }
 }

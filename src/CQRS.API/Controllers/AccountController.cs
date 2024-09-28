@@ -36,6 +36,16 @@ namespace CQRS.API.Controllers
             return Ok(account);
         }
 
+        [HttpGet("GetBrowserByAccountId/{id}")]
+        public async Task<IActionResult> GetBrowserByAccountId(Guid id)
+        {
+            var account = await _sender.Send(new GetBrowserByAccountIdQuery { AccountId = id });
+            if (account == null)
+                return NotFound();
+
+            return Ok(account);
+        }
+
         [HttpPost]
         public async Task<ActionResult> Create([FromBody] CreateAccountsDto createAccountsDto)
         {

@@ -12,6 +12,7 @@ using CQRS.Domain.Entities;
 using CQRS.Persistence.Etension.AutoMapper;
 using CQRS.Application.Extension.AutoMapper;
 using CQRS.Persistence.Extension.AutoMapper;
+using CQRS.Contract.Share.DTO._JoinDTO;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,6 +34,7 @@ builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IRepository<ProxyEntity>, ProxyRepository>();
 builder.Services.AddScoped<IRepository<BrowserEntity>, BrowserRepository>();
 builder.Services.AddScoped<IAccountRepository<AccountEntity>, AccountsRepository>();
+//builder.Services.AddScoped<IAccountRepository<Account_Browser_DTO>, AccountsRepository>();
 builder.Services.AddScoped<IAccountsInBrowserRepository<AccountsInBrowserEntity>, AccountsInBrowserRepository>();
 
 
