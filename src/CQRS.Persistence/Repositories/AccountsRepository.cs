@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CQRS.Persistence.Repositories;
 
-public class AccountsRepository : IRepository<AccountEntity>
+public class AccountsRepository : IAccountRepository<AccountEntity>
 {
     private readonly AppDbContext _context;
     private readonly IMapper _mapper;

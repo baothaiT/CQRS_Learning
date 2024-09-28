@@ -9,10 +9,6 @@ namespace CQRS.Domain.Abstractions.Repository
 {
     public interface ILogsRepository
     {
-        Task<IEnumerable<LogsEntity>> GetAllLogsAsync();
-        Task<LogsEntity> GetLogsByIdAsync(Guid id);
-        Task AddLogsAsync(LogsEntity logs);
-        Task UpdateLogsAsync(LogsEntity logs);
-        Task DeleteLogsAsync(Guid id);
+
     }
 }

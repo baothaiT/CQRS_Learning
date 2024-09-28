@@ -32,7 +32,7 @@ builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 builder.Services.AddScoped<IRepository<ProxyEntity>, ProxyRepository>();
 builder.Services.AddScoped<IRepository<BrowserEntity>, BrowserRepository>();
-builder.Services.AddScoped<IRepository<AccountEntity>, AccountsRepository>();
+builder.Services.AddScoped<IAccountRepository<AccountEntity>, AccountsRepository>();
 builder.Services.AddScoped<IAccountsInBrowserRepository<AccountsInBrowserEntity>, AccountsInBrowserRepository>();
 
 

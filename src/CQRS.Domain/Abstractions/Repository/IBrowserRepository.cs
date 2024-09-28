@@ -9,10 +9,5 @@ namespace CQRS.Domain.Abstractions.Repository
 {
     public interface IBrowserRepository
     {
-        Task<IEnumerable<BrowserEntity>> GetAllBrowserAsync();
-        Task<BrowserEntity> GetBrowserByIdAsync(Guid id);
-        Task AddBrowserAsync(BrowserEntity browser);
-        Task UpdateBrowserAsync(BrowserEntity browser);
-        Task DeleteBrowserAsync(Guid id);
     }
 }

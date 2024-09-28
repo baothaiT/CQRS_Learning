@@ -9,10 +9,6 @@ namespace CQRS.Domain.Abstractions.Repository
 {
     public interface IAccountsInProjectRepository
     {
-        Task<IEnumerable<AccountsInProjectEntity>> GetAllAccountsInProjectAsync();
-        Task<AccountsInProjectEntity> GetAccountsInProjectByIdAsync(Guid id);
-        Task AddAccountsInProjectAsync(AccountsInProjectEntity accountsInProject);
-        Task UpdateAccountsInProjectAsync(AccountsInProjectEntity accountsInProject);
-        Task DeleteAccountsInProjectAsync(Guid id);
+
     }
 }

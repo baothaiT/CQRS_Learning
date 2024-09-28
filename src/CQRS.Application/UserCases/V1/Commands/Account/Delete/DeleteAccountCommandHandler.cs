@@ -8,16 +8,17 @@ using System.Threading.Tasks;
 
 namespace CQRS.Application.UserCases.V1.Commands.Account;
 
-public class DeleteAccountCommandHandler : BasedCommandHandler<AccountEntity>, IRequestHandler<DeleteAccountCommand>
+public class DeleteAccountCommandHandler : IRequestHandler<DeleteAccountCommand>
 {
-    public DeleteAccountCommandHandler(IRepository<AccountEntity> repository) : base(repository)
+    private readonly IAccountRepository<AccountEntity> _accountRepository;
+    public DeleteAccountCommandHandler(IAccountRepository<AccountEntity> accountRepository)
     {
-
+        _accountRepository = accountRepository;
     }
 
     public async Task<Unit> Handle(DeleteAccountCommand request, CancellationToken cancellationToken)
     {
-        await _repository.DeleteAsync(request.Id);
+        await _accountRepository.DeleteAsync(request.Id);
         return Unit.Value;
     }
 }

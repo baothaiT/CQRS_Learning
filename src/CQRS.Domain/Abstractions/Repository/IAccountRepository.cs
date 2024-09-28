@@ -7,12 +7,8 @@ using System.Threading.Tasks;
 
 namespace CQRS.Domain.Abstractions.Repository
 {
-    public interface IAccountRepository
+    public interface IAccountRepository<T> : IRepository<T>
     {
-        Task<IEnumerable<AccountEntity>> GetAllAccountAsync();
-        Task<AccountEntity> GetAccountByIdAsync(Guid id);
-        Task AddAccountAsync(AccountEntity account);
-        Task UpdateAccountAsync(AccountEntity account);
-        Task DeleteAccountAsync(Guid id);
+
     }
 }

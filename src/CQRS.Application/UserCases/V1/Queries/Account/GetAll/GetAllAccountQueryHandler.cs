@@ -8,16 +8,17 @@ using System.Threading.Tasks;
 
 namespace CQRS.Application.UserCases.V1.Queries.Account;
 
-public class GetAllAccountQueryHandler : BasedQueriesHandler<AccountEntity>, IRequestHandler<GetAllAccountQuery, IEnumerable<AccountEntity>>
+public class GetAllAccountQueryHandler : IRequestHandler<GetAllAccountQuery, IEnumerable<AccountEntity>>
 {
-    public GetAllAccountQueryHandler(IRepository<AccountEntity> repository) : base(repository)
+    private readonly IAccountRepository<AccountEntity> _accountRepository;
+    public GetAllAccountQueryHandler(IAccountRepository<AccountEntity> accountRepository)
     {
-
+        _accountRepository = accountRepository;
     }
 
     public async Task<IEnumerable<AccountEntity>> Handle(GetAllAccountQuery query, CancellationToken cancellationToken)
     {
-        return await _repository.GetAllAsync();
+        return await _accountRepository.GetAllAsync();
     }
 
 }

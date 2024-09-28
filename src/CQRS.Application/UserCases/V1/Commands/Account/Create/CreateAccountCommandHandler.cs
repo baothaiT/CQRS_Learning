@@ -9,19 +9,21 @@ using System.Threading.Tasks;
 
 namespace CQRS.Application.UserCases.V1.Commands.Account;
 
-public class CreateAccountCommandHandler : BasedCommandHandler<AccountEntity>, IRequestHandler<CreateAccountCommand, AccountEntity>
+public class CreateAccountCommandHandler : IRequestHandler<CreateAccountCommand, AccountEntity>
 {
     private readonly IMapper _mapper;
-    public CreateAccountCommandHandler(IRepository<AccountEntity> repository, IMapper mapper) : base(repository)
+    private readonly IAccountRepository<AccountEntity> _accountRepository;
+    public CreateAccountCommandHandler(IMapper mapper, IAccountRepository<AccountEntity> accountRepository)
     {
         _mapper = mapper;
+        _accountRepository = accountRepository;
     }
     public async Task<AccountEntity> Handle(CreateAccountCommand request, CancellationToken cancellationToken)
     {
         AccountEntity AccountEntity = new AccountEntity();
         _mapper.Map(request, AccountEntity);
         AccountEntity.Id = Guid.NewGuid();
-        await _repository.AddAsync(AccountEntity);
+        await _accountRepository.AddAsync(AccountEntity);
         return AccountEntity;
     }
 }

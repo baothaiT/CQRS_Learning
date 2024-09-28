@@ -9,10 +9,5 @@ namespace CQRS.Domain.Abstractions.Repository
 {
     public interface IAccountTypeRepository
     {
-        Task<IEnumerable<AccountTypeEntity>> GetAllAccountTypeAsync();
-        Task<AccountTypeEntity> GetAccountTypeByIdAsync(Guid id);
-        Task AddAccountTypeAsync(AccountTypeEntity accountType);
-        Task UpdateAccountTypeAsync(AccountTypeEntity accountType);
-        Task DeleteAccountTypeAsync(Guid id);
     }
 }

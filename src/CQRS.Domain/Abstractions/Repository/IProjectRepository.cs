@@ -9,10 +9,6 @@ namespace CQRS.Domain.Abstractions.Repository
 {
     public interface IProjectRepository
     {
-        Task<IEnumerable<ProjectEntity>> GetAllProjectAsync();
-        Task<ProjectEntity> GetProjectByIdAsync(Guid id);
-        Task AddProjectAsync(ProjectEntity project);
-        Task UpdateProjectAsync(ProjectEntity project);
-        Task DeleteProjectAsync(Guid id);
+
     }
 }

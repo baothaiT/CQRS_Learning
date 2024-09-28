@@ -9,22 +9,24 @@ using System.Threading.Tasks;
 
 namespace CQRS.Application.UserCases.V1.Commands.Account;
 
-public class UpdateAccountCommandHandler : BasedCommandHandler<AccountEntity>, IRequestHandler<UpdateAccountCommand, AccountEntity>
+public class UpdateAccountCommandHandler : IRequestHandler<UpdateAccountCommand, AccountEntity>
 {
     private readonly IMapper _mapper;
-    public UpdateAccountCommandHandler(IRepository<AccountEntity> repository, IMapper mapper) : base(repository)
+    private readonly IAccountRepository<AccountEntity> _accountRepository;
+    public UpdateAccountCommandHandler(IMapper mapper, IAccountRepository<AccountEntity> accountRepository)
     {
         _mapper = mapper;
+        _accountRepository = accountRepository;
     }
 
     public async Task<AccountEntity> Handle(UpdateAccountCommand request, CancellationToken cancellationToken)
     {
-        var account = await _repository.GetByIdAsync(request.Id);
+        var account = await _accountRepository.GetByIdAsync(request.Id);
         if (account != null)
         {
             AccountEntity accountEntity = new AccountEntity();
             _mapper.Map(request, accountEntity);
-            await _repository.UpdateAsync(accountEntity);
+            await _accountRepository.UpdateAsync(accountEntity);
             return accountEntity;
         }
         throw new NotImplementedException();
