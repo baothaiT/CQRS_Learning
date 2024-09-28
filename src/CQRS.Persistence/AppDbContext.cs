@@ -32,6 +32,11 @@ public class AppDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
+        // Product Configuration
+        modelBuilder.Entity<ProductEntity>()
+            .Property(ap => ap.Price)
+            .HasPrecision(18, 4);
+
         // Account Configuration
         modelBuilder.Entity<AccountEntity>()
             .HasKey(ap => new { ap.Id });
@@ -70,6 +75,26 @@ public class AppDbContext : DbContext
         // Browser Configuration
         modelBuilder.Entity<BrowserEntity>()
             .HasKey(ap => new { ap.Id });
+
+        modelBuilder.Entity<BrowserEntity>()
+            .Property(a => a.XPosition)
+            .HasPrecision(18, 4);
+
+        modelBuilder.Entity<BrowserEntity>()
+            .Property(a => a.YPosition)
+            .HasPrecision(18, 4);
+
+        modelBuilder.Entity<BrowserEntity>()
+            .Property(a => a.WithScreeen)
+            .HasPrecision(18, 4);
+
+        modelBuilder.Entity<BrowserEntity>()
+            .Property(a => a.HightScreen)
+            .HasPrecision(18, 4);
+
+        modelBuilder.Entity<BrowserEntity>()
+            .Property(a => a.Scale)
+            .HasPrecision(18, 4);
 
         // Browser Configuration
         modelBuilder.Entity<AccountsInBrowserEntity>()
@@ -254,8 +279,32 @@ public class AppDbContext : DbContext
         Guid browserId1 = Guid.NewGuid();
         Guid browserId2 = Guid.NewGuid();
 
-        BrowserEntity browserDb1 = new BrowserEntity { Id = browserId1, IsDelete = false, Name = "Name1", Path = "Path", CreateDate = DateTime.Now };
-        BrowserEntity browserDb2 = new BrowserEntity { Id = browserId2, IsDelete = false, Name = "Name2", Path = "Path", CreateDate = DateTime.Now };
+        BrowserEntity browserDb1 = new BrowserEntity { 
+            Id = browserId1, 
+            IsDelete = false, 
+            Name = "Name1", 
+            Path = "Path", 
+            CreateDate = DateTime.Now, 
+            XPosition = 160,
+            YPosition = 50,
+            WithScreeen = 400,
+            HightScreen = 600,
+            Scale = 50,
+            UserAgent = string.Empty
+        };
+        BrowserEntity browserDb2 = new BrowserEntity { 
+            Id = browserId2, 
+            IsDelete = false, 
+            Name = "Name2", 
+            Path = "Path", 
+            CreateDate = DateTime.Now,
+            XPosition = 160,
+            YPosition = 50,
+            WithScreeen = 400,
+            HightScreen = 600,
+            Scale = 50,
+            UserAgent = string.Empty
+        };
 
         modelBuilder.Entity<BrowserEntity>().HasData(
             browserDb1,

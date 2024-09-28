@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CQRS.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240927175103_InitialCreate")]
+    [Migration("20240928080705_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -55,7 +55,7 @@ namespace CQRS.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("UserType")
+                    b.Property<Guid?>("UserType")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -65,6 +65,43 @@ namespace CQRS.Persistence.Migrations
                     b.HasIndex("UserType");
 
                     b.ToTable("AccountTable");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("fdacb69a-01a5-4bdf-961c-79b4189f14ea"),
+                            CreateDate = new DateTime(2024, 9, 28, 15, 7, 5, 320, DateTimeKind.Local).AddTicks(6487),
+                            Email = "User@example.com",
+                            IsDelete = false,
+                            IsStatus = true,
+                            Password = "UserPass",
+                            Proxy = new Guid("06e4ccbf-77d4-4ff2-9002-23c9749a7521"),
+                            UserName = "User1",
+                            UserType = new Guid("1e96c5a0-1524-4269-8c22-bcd4cc38c19f")
+                        },
+                        new
+                        {
+                            Id = new Guid("e7f95096-02e3-438d-8be7-2986504b2fa4"),
+                            CreateDate = new DateTime(2024, 9, 28, 15, 7, 5, 320, DateTimeKind.Local).AddTicks(6652),
+                            Email = "User@example.com",
+                            IsDelete = false,
+                            IsStatus = true,
+                            Password = "UserPass",
+                            Proxy = new Guid("06e4ccbf-77d4-4ff2-9002-23c9749a7521"),
+                            UserName = "User2",
+                            UserType = new Guid("aa9e0449-1ba7-4551-b141-bc766096620c")
+                        },
+                        new
+                        {
+                            Id = new Guid("81dc9483-9d3c-49e1-9557-4b5a85d5497d"),
+                            CreateDate = new DateTime(2024, 9, 28, 15, 7, 5, 320, DateTimeKind.Local).AddTicks(6654),
+                            Email = "User@example.com",
+                            IsDelete = false,
+                            IsStatus = true,
+                            Password = "UserPass",
+                            UserName = "User3",
+                            UserType = new Guid("aa9e0449-1ba7-4551-b141-bc766096620c")
+                        });
                 });
 
             modelBuilder.Entity("CQRS.Domain.Entities.AccountTypeEntity", b =>
@@ -82,6 +119,20 @@ namespace CQRS.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AccountTypeTable");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("1e96c5a0-1524-4269-8c22-bcd4cc38c19f"),
+                            IsDelete = false,
+                            TypeName = 0
+                        },
+                        new
+                        {
+                            Id = new Guid("aa9e0449-1ba7-4551-b141-bc766096620c"),
+                            IsDelete = false,
+                            TypeName = 1
+                        });
                 });
 
             modelBuilder.Entity("CQRS.Domain.Entities.AccountsInBrowserEntity", b =>
@@ -100,6 +151,20 @@ namespace CQRS.Persistence.Migrations
                     b.HasIndex("BrowserId");
 
                     b.ToTable("AccountsInBrowserTable");
+
+                    b.HasData(
+                        new
+                        {
+                            AccountId = new Guid("fdacb69a-01a5-4bdf-961c-79b4189f14ea"),
+                            BrowserId = new Guid("58f82d47-7ef0-4c01-8028-7b86d10b70a2"),
+                            IsDelete = false
+                        },
+                        new
+                        {
+                            AccountId = new Guid("e7f95096-02e3-438d-8be7-2986504b2fa4"),
+                            BrowserId = new Guid("2a2dd33e-21f6-4dae-baa6-e4548610996a"),
+                            IsDelete = false
+                        });
                 });
 
             modelBuilder.Entity("CQRS.Domain.Entities.AccountsInProjectEntity", b =>
@@ -118,6 +183,20 @@ namespace CQRS.Persistence.Migrations
                     b.HasIndex("ProjectId");
 
                     b.ToTable("AccountsInProjectTable");
+
+                    b.HasData(
+                        new
+                        {
+                            AccountId = new Guid("fdacb69a-01a5-4bdf-961c-79b4189f14ea"),
+                            ProjectId = new Guid("03f32fcf-aa52-455f-9855-cdf3729f39fd"),
+                            IsDelete = false
+                        },
+                        new
+                        {
+                            AccountId = new Guid("e7f95096-02e3-438d-8be7-2986504b2fa4"),
+                            ProjectId = new Guid("e7cfd962-1c04-442f-8dd8-6b35b3e591cd"),
+                            IsDelete = false
+                        });
                 });
 
             modelBuilder.Entity("CQRS.Domain.Entities.BrowserEntity", b =>
@@ -128,6 +207,10 @@ namespace CQRS.Persistence.Migrations
 
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<decimal?>("HightScreen")
+                        .HasPrecision(18, 4)
+                        .HasColumnType("decimal(18,4)");
 
                     b.Property<bool>("IsDelete")
                         .HasColumnType("bit");
@@ -143,9 +226,60 @@ namespace CQRS.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<decimal?>("Scale")
+                        .HasPrecision(18, 4)
+                        .HasColumnType("decimal(18,4)");
+
+                    b.Property<string>("UserAgent")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal?>("WithScreeen")
+                        .HasPrecision(18, 4)
+                        .HasColumnType("decimal(18,4)");
+
+                    b.Property<decimal?>("XPosition")
+                        .HasPrecision(18, 4)
+                        .HasColumnType("decimal(18,4)");
+
+                    b.Property<decimal?>("YPosition")
+                        .HasPrecision(18, 4)
+                        .HasColumnType("decimal(18,4)");
+
                     b.HasKey("Id");
 
                     b.ToTable("BrowserTable");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("58f82d47-7ef0-4c01-8028-7b86d10b70a2"),
+                            CreateDate = new DateTime(2024, 9, 28, 15, 7, 5, 320, DateTimeKind.Local).AddTicks(6734),
+                            HightScreen = 600m,
+                            IsDelete = false,
+                            IsStatus = false,
+                            Name = "Name1",
+                            Path = "Path",
+                            Scale = 50m,
+                            UserAgent = "",
+                            WithScreeen = 400m,
+                            XPosition = 160m,
+                            YPosition = 50m
+                        },
+                        new
+                        {
+                            Id = new Guid("2a2dd33e-21f6-4dae-baa6-e4548610996a"),
+                            CreateDate = new DateTime(2024, 9, 28, 15, 7, 5, 320, DateTimeKind.Local).AddTicks(6743),
+                            HightScreen = 600m,
+                            IsDelete = false,
+                            IsStatus = false,
+                            Name = "Name2",
+                            Path = "Path",
+                            Scale = 50m,
+                            UserAgent = "",
+                            WithScreeen = 400m,
+                            XPosition = 160m,
+                            YPosition = 50m
+                        });
                 });
 
             modelBuilder.Entity("CQRS.Domain.Entities.DevicesEntity", b =>
@@ -170,6 +304,24 @@ namespace CQRS.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("DevicesTable");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("dff63ac0-810a-49a6-80bb-085986df2517"),
+                            CreateDate = new DateTime(2024, 9, 28, 15, 7, 5, 320, DateTimeKind.Local).AddTicks(7004),
+                            IsDelete = false,
+                            IsStatus = 0,
+                            Name = "Name1"
+                        },
+                        new
+                        {
+                            Id = new Guid("bc1234ba-8656-45e4-a0ce-b0191af17dbd"),
+                            CreateDate = new DateTime(2024, 9, 28, 15, 7, 5, 320, DateTimeKind.Local).AddTicks(7005),
+                            IsDelete = false,
+                            IsStatus = 0,
+                            Name = "Name1"
+                        });
                 });
 
             modelBuilder.Entity("CQRS.Domain.Entities.LogsEntity", b =>
@@ -199,6 +351,26 @@ namespace CQRS.Persistence.Migrations
                     b.HasIndex("User");
 
                     b.ToTable("LogsTable");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("938343d9-2e8d-4b8b-8274-27e2aa6c9452"),
+                            Code = 200,
+                            CreateDate = new DateTime(2024, 9, 28, 15, 7, 5, 320, DateTimeKind.Local).AddTicks(6697),
+                            IsDelete = false,
+                            Message = "Message",
+                            User = new Guid("fdacb69a-01a5-4bdf-961c-79b4189f14ea")
+                        },
+                        new
+                        {
+                            Id = new Guid("e32d1f38-a88a-4d96-8982-e235c7d2d81b"),
+                            Code = 200,
+                            CreateDate = new DateTime(2024, 9, 28, 15, 7, 5, 320, DateTimeKind.Local).AddTicks(6698),
+                            IsDelete = false,
+                            Message = "Message",
+                            User = new Guid("e7f95096-02e3-438d-8be7-2986504b2fa4")
+                        });
                 });
 
             modelBuilder.Entity("CQRS.Domain.Entities.PlanEntity", b =>
@@ -220,6 +392,22 @@ namespace CQRS.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("PlanTable");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("86cf482d-221b-473e-9dde-55fed5cfdb86"),
+                            CreateDate = new DateTime(2024, 9, 28, 15, 7, 5, 320, DateTimeKind.Local).AddTicks(6930),
+                            IsDelete = false,
+                            Name = "Plan 1"
+                        },
+                        new
+                        {
+                            Id = new Guid("5910cb0a-7a84-45bc-94bd-bdefd3aa061a"),
+                            CreateDate = new DateTime(2024, 9, 28, 15, 7, 5, 320, DateTimeKind.Local).AddTicks(6932),
+                            IsDelete = false,
+                            Name = "Plan 2"
+                        });
                 });
 
             modelBuilder.Entity("CQRS.Domain.Entities.PlansInScheduleEntity", b =>
@@ -243,6 +431,22 @@ namespace CQRS.Persistence.Migrations
                     b.HasIndex("PlanId");
 
                     b.ToTable("PlansInScheduleTable");
+
+                    b.HasData(
+                        new
+                        {
+                            ScheduleId = new Guid("bd89777d-57e5-4a67-8942-121e72b4cff2"),
+                            DeviceId = new Guid("dff63ac0-810a-49a6-80bb-085986df2517"),
+                            PlanId = new Guid("86cf482d-221b-473e-9dde-55fed5cfdb86"),
+                            IsDelete = false
+                        },
+                        new
+                        {
+                            ScheduleId = new Guid("7e5e5bdd-0500-4c65-b1c4-370e8ac98117"),
+                            DeviceId = new Guid("bc1234ba-8656-45e4-a0ce-b0191af17dbd"),
+                            PlanId = new Guid("5910cb0a-7a84-45bc-94bd-bdefd3aa061a"),
+                            IsDelete = false
+                        });
                 });
 
             modelBuilder.Entity("CQRS.Domain.Entities.ProductEntity", b =>
@@ -256,7 +460,8 @@ namespace CQRS.Persistence.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                        .HasPrecision(18, 4)
+                        .HasColumnType("decimal(18,4)");
 
                     b.Property<int>("Stock")
                         .HasColumnType("int");
@@ -291,6 +496,26 @@ namespace CQRS.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ProjectTable");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("03f32fcf-aa52-455f-9855-cdf3729f39fd"),
+                            CreateDate = new DateTime(2024, 9, 28, 15, 7, 5, 320, DateTimeKind.Local).AddTicks(6809),
+                            EndDate = new DateTime(2024, 10, 3, 15, 7, 5, 320, DateTimeKind.Local).AddTicks(6804),
+                            IsDelete = false,
+                            Name = "Project1",
+                            StartDate = new DateTime(2024, 9, 28, 15, 7, 5, 320, DateTimeKind.Local).AddTicks(6803)
+                        },
+                        new
+                        {
+                            Id = new Guid("e7cfd962-1c04-442f-8dd8-6b35b3e591cd"),
+                            CreateDate = new DateTime(2024, 9, 28, 15, 7, 5, 320, DateTimeKind.Local).AddTicks(6812),
+                            EndDate = new DateTime(2024, 10, 3, 15, 7, 5, 320, DateTimeKind.Local).AddTicks(6812),
+                            IsDelete = false,
+                            Name = "Project2",
+                            StartDate = new DateTime(2024, 9, 28, 15, 7, 5, 320, DateTimeKind.Local).AddTicks(6811)
+                        });
                 });
 
             modelBuilder.Entity("CQRS.Domain.Entities.ProxyEntity", b =>
@@ -320,6 +545,35 @@ namespace CQRS.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ProxyTable");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("06e4ccbf-77d4-4ff2-9002-23c9749a7521"),
+                            Ip = "192.168.1.6",
+                            IsDelete = false,
+                            Password = "proxyPass1",
+                            Port = 8080,
+                            User = "proxyUser1"
+                        },
+                        new
+                        {
+                            Id = new Guid("36b22dd7-9f06-4343-8b40-3bbb1cd7d021"),
+                            Ip = "192.168.1.7",
+                            IsDelete = false,
+                            Password = "proxyPass2",
+                            Port = 8080,
+                            User = "proxyUser2"
+                        },
+                        new
+                        {
+                            Id = new Guid("9d02baf8-5da7-4f24-8ea3-396cacbb9a0f"),
+                            Ip = "192.168.1.8",
+                            IsDelete = false,
+                            Password = "proxyPass2",
+                            Port = 8080,
+                            User = "proxyUser2"
+                        });
                 });
 
             modelBuilder.Entity("CQRS.Domain.Entities.ScheduleEntity", b =>
@@ -350,6 +604,28 @@ namespace CQRS.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ScheduleTable");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("bd89777d-57e5-4a67-8942-121e72b4cff2"),
+                            CreateDate = new DateTime(2024, 9, 28, 15, 7, 5, 320, DateTimeKind.Local).AddTicks(6978),
+                            DateTimeStart = new DateTime(2024, 9, 28, 15, 7, 5, 320, DateTimeKind.Local).AddTicks(6977),
+                            IsDelete = false,
+                            IsRun = 0,
+                            IsStatus = 0,
+                            Name = "Name1"
+                        },
+                        new
+                        {
+                            Id = new Guid("7e5e5bdd-0500-4c65-b1c4-370e8ac98117"),
+                            CreateDate = new DateTime(2024, 9, 28, 15, 7, 5, 320, DateTimeKind.Local).AddTicks(6981),
+                            DateTimeStart = new DateTime(2024, 9, 28, 15, 7, 5, 320, DateTimeKind.Local).AddTicks(6980),
+                            IsDelete = false,
+                            IsRun = 0,
+                            IsStatus = 0,
+                            Name = "Name1"
+                        });
                 });
 
             modelBuilder.Entity("CQRS.Domain.Entities.ScriptEntity", b =>
@@ -371,6 +647,22 @@ namespace CQRS.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ScriptTable");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("b6d63d30-3e24-4b86-ba58-8810fcd82751"),
+                            CreateDate = new DateTime(2024, 9, 28, 15, 7, 5, 320, DateTimeKind.Local).AddTicks(6870),
+                            IsDelete = false,
+                            Name = "Script 1"
+                        },
+                        new
+                        {
+                            Id = new Guid("985bad44-e8b3-42ba-96e5-cdaa22185143"),
+                            CreateDate = new DateTime(2024, 9, 28, 15, 7, 5, 320, DateTimeKind.Local).AddTicks(6871),
+                            IsDelete = false,
+                            Name = "Script 2"
+                        });
                 });
 
             modelBuilder.Entity("CQRS.Domain.Entities.ScriptsInPlanEntity", b =>
@@ -384,10 +676,10 @@ namespace CQRS.Persistence.Migrations
                     b.Property<bool>("IsDelete")
                         .HasColumnType("bit");
 
-                    b.Property<Guid>("ScriptsInPlan_PlanId")
+                    b.Property<Guid?>("ScriptsInPlan_PlanId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ScriptsInPlan_ScriptId")
+                    b.Property<Guid?>("ScriptsInPlan_ScriptId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("PlanId", "ScriptId");
@@ -397,6 +689,20 @@ namespace CQRS.Persistence.Migrations
                     b.HasIndex("ScriptsInPlan_ScriptId");
 
                     b.ToTable("ScriptsInPlanTable");
+
+                    b.HasData(
+                        new
+                        {
+                            PlanId = new Guid("86cf482d-221b-473e-9dde-55fed5cfdb86"),
+                            ScriptId = new Guid("b6d63d30-3e24-4b86-ba58-8810fcd82751"),
+                            IsDelete = false
+                        },
+                        new
+                        {
+                            PlanId = new Guid("5910cb0a-7a84-45bc-94bd-bdefd3aa061a"),
+                            ScriptId = new Guid("985bad44-e8b3-42ba-96e5-cdaa22185143"),
+                            IsDelete = false
+                        });
                 });
 
             modelBuilder.Entity("CQRS.Domain.Entities.ScriptsInProjectEntity", b =>
@@ -415,6 +721,20 @@ namespace CQRS.Persistence.Migrations
                     b.HasIndex("ScriptId");
 
                     b.ToTable("ScriptsInProjectTable");
+
+                    b.HasData(
+                        new
+                        {
+                            ProjectId = new Guid("03f32fcf-aa52-455f-9855-cdf3729f39fd"),
+                            ScriptId = new Guid("b6d63d30-3e24-4b86-ba58-8810fcd82751"),
+                            IsDelete = false
+                        },
+                        new
+                        {
+                            ProjectId = new Guid("e7cfd962-1c04-442f-8dd8-6b35b3e591cd"),
+                            ScriptId = new Guid("985bad44-e8b3-42ba-96e5-cdaa22185143"),
+                            IsDelete = false
+                        });
                 });
 
             modelBuilder.Entity("CQRS.Domain.Entities.AccountEntity", b =>
@@ -425,9 +745,7 @@ namespace CQRS.Persistence.Migrations
 
                     b.HasOne("CQRS.Domain.Entities.AccountTypeEntity", "AccountType")
                         .WithMany("AccountType_Accounts")
-                        .HasForeignKey("UserType")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserType");
 
                     b.Navigation("AccountType");
 
@@ -514,15 +832,11 @@ namespace CQRS.Persistence.Migrations
                 {
                     b.HasOne("CQRS.Domain.Entities.PlanEntity", "ScriptsInPlan_Plan")
                         .WithMany("ScriptsInPlans")
-                        .HasForeignKey("ScriptsInPlan_PlanId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ScriptsInPlan_PlanId");
 
                     b.HasOne("CQRS.Domain.Entities.ScriptEntity", "ScriptsInPlan_Script")
                         .WithMany()
-                        .HasForeignKey("ScriptsInPlan_ScriptId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ScriptsInPlan_ScriptId");
 
                     b.Navigation("ScriptsInPlan_Plan");
 
