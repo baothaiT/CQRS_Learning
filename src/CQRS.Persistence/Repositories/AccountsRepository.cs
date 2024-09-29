@@ -64,27 +64,31 @@ public class AccountsRepository : IAccountRepository<AccountEntity>
 
     public async Task<List<Account_Browser_DTO>> GetBrowserByAccountId(Guid IdAccount)
     {
-        var browsers = await (from account in _context.AccountTable
-                             join accountInBrowser in _context.AccountsInBrowserTable on account.Id equals accountInBrowser.AccountId
-                             join browser in _context.BrowserTable on accountInBrowser.BrowserId equals browser.Id
-                             where account.Id == IdAccount
-                             select new Account_Browser_DTO
-                             {
-                                 AccountId = account.Id,
-                                 UserName = account.UserName,
-                                 Password = account.Password,
-                                 IsStatus = account.IsStatus,
-                                 AccountCreateDate = account.CreateDate,
-                                 BrowserId = browser.Id,
-                                 Name = browser.Name,
-                                 BrowserIsStatus = browser.IsStatus,
-                                 XPosition = browser.XPosition,
-                                 YPosition = browser.YPosition,
-                                 WithScreeen = browser.WithScreeen,
-                                 HightScreen = browser.HightScreen,
-                                 UserAgent = browser.UserAgent,
-                                 BrowserCreateDate = browser.CreateDate
-                             }).ToListAsync();
+        var browsers = await (from accountInBrowser in _context.AccountsInBrowserTable
+                              join account in _context.AccountTable
+                                  on accountInBrowser.AccountId equals account.Id into accountGroup
+                              from account in accountGroup.DefaultIfEmpty() // Simulates Right Join
+                              join browser in _context.BrowserTable
+                                  on accountInBrowser.BrowserId equals browser.Id into browserGroup
+                              from browser in browserGroup.DefaultIfEmpty() // Left Join
+                              where accountInBrowser.AccountId == IdAccount // Filter on the account ID
+                              select new Account_Browser_DTO
+                              {
+                                  AccountId = account.Id,
+                                  UserName = account != null ? account.UserName : null,
+                                  Password = account != null ? account.Password : null,
+                                  IsStatus = account.IsStatus,
+                                  AccountCreateDate = account.CreateDate,
+                                  BrowserId = browser.Id,
+                                  Name = browser != null ? browser.Name : null,
+                                  BrowserIsStatus = browser.IsStatus,
+                                  XPosition = browser != null ? browser.XPosition : (int?)null,
+                                  YPosition = browser != null ? browser.YPosition : (int?)null,
+                                  WithScreeen = browser != null ? browser.WithScreeen : (int?)null,
+                                  HightScreen = browser != null ? browser.HightScreen : (int?)null,
+                                  UserAgent = browser != null ? browser.UserAgent : null,
+                                  BrowserCreateDate = browser.CreateDate
+                              }).ToListAsync();
 
         return browsers;
     }
