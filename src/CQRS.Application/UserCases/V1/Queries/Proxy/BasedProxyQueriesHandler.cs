@@ -9,9 +9,9 @@ namespace CQRS.Application.UserCases.V1.Queries.Proxy;
 
 public class BasedProxyQueriesHandler
 {
-    protected readonly IProxyRepository _proxyRepository;
-    public BasedProxyQueriesHandler(IProxyRepository proxyRepository)
-    {
-        _proxyRepository = proxyRepository;
-    }
+    //protected readonly IProxyRepository _proxyRepository;
+    //public BasedProxyQueriesHandler(IProxyRepository proxyRepository)
+    //{
+    //    _proxyRepository = proxyRepository;
+    //}
 }

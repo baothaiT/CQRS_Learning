@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace CQRS.Persistence.Repositories;
 
-public class ProxyRepository : IRepository<ProxyEntity>
+public class ProxyRepository : IProxyRepository<ProxyEntity>
 {
     private readonly AppDbContext _context;
     private readonly IMapper _mapper;
@@ -57,5 +57,9 @@ public class ProxyRepository : IRepository<ProxyEntity>
             _context.ProxyTable.Remove(proxy);
             await _context.SaveChangesAsync();
         }
+    }
+    public async Task<ProxyEntity> GetProxyByIpAndPortAsync(string Ip, int Port)
+    {
+        return await _context.ProxyTable.FirstOrDefaultAsync(x => x.Ip == Ip && x.Port == Port);
     }
 }

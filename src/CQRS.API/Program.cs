@@ -36,7 +36,7 @@ builder.Services.AddScoped<IProxyService, ProxyService>();
 // Register Repositories
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
-builder.Services.AddScoped<IRepository<ProxyEntity>, ProxyRepository>();
+builder.Services.AddScoped<IProxyRepository<ProxyEntity>, ProxyRepository>();
 builder.Services.AddScoped<IRepository<BrowserEntity>, BrowserRepository>();
 builder.Services.AddScoped<IAccountRepository<AccountEntity>, AccountsRepository>();
 //builder.Services.AddScoped<IAccountRepository<Account_Browser_DTO>, AccountsRepository>();

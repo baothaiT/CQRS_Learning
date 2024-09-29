@@ -10,5 +10,6 @@ namespace CQRS.AspNetUI.Services.Interfaces
         Task UpdateProxyAsync(UpdateProxyDto proxy);
         Task DeleteProxyAsync(string id);
         Task<List<GetProxyDto>> IsProxyWorking(List<GetProxyDto> proxies);
+        Task UpdateProxiesAsync(List<GetProxyDto> proxies);
     }
 }

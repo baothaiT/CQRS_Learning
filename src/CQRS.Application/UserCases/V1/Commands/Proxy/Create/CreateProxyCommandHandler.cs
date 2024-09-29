@@ -9,10 +9,12 @@ using System.Threading.Tasks;
 
 namespace CQRS.Application.UserCases.V1.Commands.Proxy;
 
-public class CreateProxyCommandHandler : BasedCommandHandler<ProxyEntity>, IRequestHandler<CreateProxyCommand, ProxyEntity>
+public class CreateProxyCommandHandler : IRequestHandler<CreateProxyCommand, ProxyEntity>
 {
-    public CreateProxyCommandHandler(IRepository<ProxyEntity> repository): base(repository)
+    private readonly IProxyRepository<ProxyEntity> _proxyRepository;
+    public CreateProxyCommandHandler(IProxyRepository<ProxyEntity> proxyRepository)
     {
+        _proxyRepository = proxyRepository;
     }
     public async Task<ProxyEntity> Handle(CreateProxyCommand request, CancellationToken cancellationToken)
     {
@@ -22,10 +24,11 @@ public class CreateProxyCommandHandler : BasedCommandHandler<ProxyEntity>, IRequ
             Ip = request.Ip,
             Port = request.Port,
             User = request.User,
+            IsStatus = request.IsStatus,
             Password = request.Password
 
         };
-        await _repository.AddAsync(proxyEntity);
+        await _proxyRepository.AddAsync(proxyEntity);
         return proxyEntity;
     }
 }

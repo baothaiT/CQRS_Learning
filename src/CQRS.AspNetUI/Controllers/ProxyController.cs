@@ -54,6 +54,7 @@ namespace CQRS.AspNetUI.Controllers
 
 
             var proxiesChecked = await _proxyClientService.IsProxyWorking(proxyLsit);
+            await _proxyClientService.UpdateProxiesAsync(proxiesChecked);
             TempData["proxyDtos"] = JsonConvert.SerializeObject(proxiesChecked);
 
 

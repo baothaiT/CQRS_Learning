@@ -7,15 +7,16 @@ using System.Threading.Tasks;
 
 namespace CQRS.Application.UserCases.V1.Queries.Proxy;
 
-public class GetProxyByIdQueryHandler : BasedQueriesHandler<ProxyEntity>, IRequestHandler<GetProxyByIdQuery, ProxyEntity>
+public class GetProxyByIdQueryHandler : IRequestHandler<GetProxyByIdQuery, ProxyEntity>
 {
-    public GetProxyByIdQueryHandler(IRepository<ProxyEntity> repository) : base(repository)
+    private readonly IProxyRepository<ProxyEntity> _proxyRepository;
+    public GetProxyByIdQueryHandler(IProxyRepository<ProxyEntity> proxyRepository)
     {
-
+        _proxyRepository = proxyRepository;
     }
 
     public async Task<ProxyEntity> Handle(GetProxyByIdQuery query, CancellationToken cancellationToken)
     {
-        return await _repository.GetByIdAsync(query.Id);
+        return await _proxyRepository.GetByIdAsync(query.Id);
     }
 }

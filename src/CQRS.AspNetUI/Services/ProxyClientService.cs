@@ -62,5 +62,12 @@ namespace CQRS.AspNetUI.Services
             var jsonResponse = await response.Content.ReadAsStringAsync();
             return JsonSerializer.Deserialize<List<GetProxyDto>>(jsonResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
         }
+
+        public async Task UpdateProxiesAsync(List<GetProxyDto> proxies)
+        {
+            var content = new StringContent(JsonSerializer.Serialize(proxies), Encoding.UTF8, "application/json");
+            var response = await _httpClient.PostAsync("Proxy/UpdateProxies", content);
+            response.EnsureSuccessStatusCode();
+        }
     }
 }

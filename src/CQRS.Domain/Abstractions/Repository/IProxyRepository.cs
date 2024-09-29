@@ -7,12 +7,8 @@ using System.Threading.Tasks;
 
 namespace CQRS.Domain.Abstractions.Repository
 {
-    public interface IProxyRepository
+    public interface IProxyRepository<T> : IWriteRepository<T>, IReadRepository<T>
     {
-        Task<IEnumerable<ProxyEntity>> GetAllProxyAsync();
-        Task<ProxyEntity> GetProxyByIdAsync(Guid id);
-        Task AddProxyAsync(ProxyEntity proxy);
-        Task UpdateProxyAsync(ProxyEntity proxy);
-        Task DeleteProxyAsync(Guid id);
+        Task<ProxyEntity> GetProxyByIpAndPortAsync(string Ip, int Port);
     }
 }
