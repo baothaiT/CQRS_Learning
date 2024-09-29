@@ -6,9 +6,9 @@ namespace CQRS.AspNetUI.Controllers
 {
     public class ProductController : Controller
     {
-        private readonly IProductService _productService;
+        private readonly IProductClientService _productService;
 
-        public ProductController(IProductService productService)
+        public ProductController(IProductClientService productService)
         {
             _productService = productService;
         }

@@ -2,14 +2,15 @@
 using CQRS.Contract.Share.DTO;
 using System.Text.Json;
 using System.Text;
+using Microsoft.DotNet.MSIdentity.Shared;
 
 namespace CQRS.AspNetUI.Services
 {
-    public class ProxyService : IProxyService
+    public class ProxyClientService : IProxyClientService
     {
         private readonly HttpClient _httpClient;
 
-        public ProxyService(HttpClient httpClient)
+        public ProxyClientService(HttpClient httpClient)
         {
             _httpClient = httpClient;
         }
@@ -50,6 +51,16 @@ namespace CQRS.AspNetUI.Services
         {
             var response = await _httpClient.DeleteAsync($"Proxy/{id}");
             response.EnsureSuccessStatusCode();
+        }
+
+        public async Task<List<GetProxyDto>> IsProxyWorking(List<GetProxyDto> proxies)
+        {
+            var content = new StringContent(JsonSerializer.Serialize(proxies), Encoding.UTF8, "application/json");
+            var response = await _httpClient.PostAsync("Proxy/CheckProxies", content);
+            response.EnsureSuccessStatusCode();
+
+            var jsonResponse = await response.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<List<GetProxyDto>>(jsonResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
         }
     }
 }

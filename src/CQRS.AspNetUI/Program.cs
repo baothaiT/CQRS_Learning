@@ -1,16 +1,19 @@
 using CQRS.AspNetUI.Services.Interfaces;
 using CQRS.AspNetUI.Services;
+using CQRS.Infrastructure.Services;
+using CQRS.Infrastructure.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddHttpClient<IProductService, ProductService>(client =>
+builder.Services.AddScoped<IFileService, FileService>();
+builder.Services.AddHttpClient<IProductClientService, ProductClientService>(client =>
 {
     client.BaseAddress = new Uri("http://localhost:5199/"); // Replace with your API URL
 });
 
-builder.Services.AddHttpClient<IProxyService, ProxyService>(client =>
+builder.Services.AddHttpClient <IProxyClientService, ProxyClientService>(client =>
 {
     client.BaseAddress = new Uri("http://localhost:5199/"); // Replace with your API URL
 });

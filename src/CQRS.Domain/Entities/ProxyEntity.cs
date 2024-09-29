@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using CQRS.Contract.Share.Enum;
 
 namespace CQRS.Domain.Entities;
 
@@ -13,5 +14,6 @@ public class ProxyEntity: BasedTableEntity
     public int Port { get; set; }
     public string User { get; set; }
     public string Password { get; set; }
+    public ProxyStatusEnum? IsStatus { get; set; }
     public ICollection<AccountEntity>? Logs_Account { get; set; }
 }

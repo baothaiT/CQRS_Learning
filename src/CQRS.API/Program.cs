@@ -13,6 +13,8 @@ using CQRS.Persistence.Etension.AutoMapper;
 using CQRS.Application.Extension.AutoMapper;
 using CQRS.Persistence.Extension.AutoMapper;
 using CQRS.Contract.Share.DTO._JoinDTO;
+using CQRS.Application.Services;
+using CQRS.Application.Services.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +29,9 @@ builder.Services.AddControllers(options =>
 // Register the AppDbContext with SQL Server or SQLite
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SeverConnectionTest")));
+
+// Services
+builder.Services.AddScoped<IProxyService, ProxyService>();
 
 // Register Repositories
 builder.Services.AddScoped<IProductRepository, ProductRepository>();

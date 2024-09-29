@@ -5,6 +5,9 @@ using CQRS.Application.UserCases.V1.Queries.Proxy;
 using CQRS.Contract.Share.DTO;
 using CQRS.Application.UserCases.V1.Commands.Proxy;
 using AutoMapper;
+using CQRS.Contract.Share.Models;
+using CQRS.Application.Services.Interface;
+using CQRS.Domain.Entities;
 
 namespace CQRS.API.Controllers
 {
@@ -14,10 +17,12 @@ namespace CQRS.API.Controllers
     {
         private readonly ISender _sender;
         private readonly IMapper _mapper;
-        public ProxyController(ISender sender, IMapper mapper)
+        private readonly IProxyService _proxyService;
+        public ProxyController(ISender sender, IMapper mapper, IProxyService proxyService)
         {
             _sender = sender;
             _mapper = mapper;
+            _proxyService = proxyService;
         }
         // GET: ProxyController
         [HttpGet]
@@ -91,5 +96,16 @@ namespace CQRS.API.Controllers
                 return NoContent();
             }
         }
+
+        [HttpPost("CheckProxies")]
+        public async Task<IActionResult> CheckProxies([FromBody] List<GetProxyDto> proxies)
+        {
+            for (int i = 0; i < proxies.Count(); i++)
+            {
+                proxies[i] = await _proxyService.IsProxyWorking(proxies[i]);
+            }
+            return Ok(proxies);
+        }
+
     }
 }

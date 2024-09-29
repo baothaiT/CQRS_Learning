@@ -2,7 +2,7 @@
 
 namespace CQRS.AspNetUI.Services.Interfaces
 {
-    public interface IProductService
+    public interface IProductClientService
     {
         Task<IEnumerable<GetProductDto>> GetProductsAsync();
         Task<GetProductDto> GetProductByIdAsync(string id);

@@ -12,6 +12,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CQRS.Contract\CQRS.Contract.csproj" />
+    <ProjectReference Include="..\CQRS.Domain\CQRS.Domain.csproj" />
+    <ProjectReference Include="..\CQRS.Infrastructure\CQRS.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

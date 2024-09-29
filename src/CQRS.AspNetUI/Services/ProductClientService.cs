@@ -5,11 +5,11 @@ using System.Text;
 
 namespace CQRS.AspNetUI.Services
 {
-    public class ProductService : IProductService
+    public class ProductClientService : IProductClientService
     {
         private readonly HttpClient _httpClient;
 
-        public ProductService(HttpClient httpClient)
+        public ProductClientService(HttpClient httpClient)
         {
             _httpClient = httpClient;
         }
