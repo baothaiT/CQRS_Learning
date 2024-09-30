@@ -6,8 +6,7 @@ namespace CQRS.Persistence;
 
 public class AppDbContext : DbContext
 {
-    public AppDbContext(DbContextOptions<AppDbContext> options)
-        : base(options)
+    public AppDbContext(DbContextOptions<AppDbContext> options): base(options)
     {
     }
     public DbSet<ProductEntity> ProductsTable { get; set; }
@@ -69,9 +68,9 @@ public class AppDbContext : DbContext
 
         modelBuilder.Entity<AccountEntity>()
             .HasOne(a => a.Account_Proxy)
-            .WithMany(at => at.Logs_Account)
+            .WithMany(at => at.Proxy_Account)
             .HasForeignKey(a => a.Proxy)
-            .OnDelete(DeleteBehavior.SetNull); ;
+            .OnDelete(DeleteBehavior.SetNull);
 
         // Browser Configuration
         modelBuilder.Entity<BrowserEntity>()
@@ -105,13 +104,15 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<AccountsInBrowserEntity>()
             .HasOne(a => a.AccountsInBrowser_Browser)
             .WithMany(at => at.Browser_AccountsInBrowser)
-            .HasForeignKey(a => a.BrowserId);
+            .HasForeignKey(a => a.BrowserId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         // Relationship between AccountsInBrowser and Account
         modelBuilder.Entity<AccountsInBrowserEntity>()
             .HasOne(a => a.AccountsInBrowser_Account)
             .WithMany(at => at.Account_AccountsInBrowser)
-            .HasForeignKey(a => a.AccountId);
+            .HasForeignKey(a => a.AccountId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         // Project Configuration
         modelBuilder.Entity<ProjectEntity>()
@@ -203,9 +204,9 @@ public class AppDbContext : DbContext
         Guid proxyId2 = Guid.NewGuid();
         Guid proxyId3 = Guid.NewGuid();
 
-        ProxyEntity proxyDb1 = new ProxyEntity { Id = proxyId1, Ip = "192.168.1.6", Port = 8080, User = "proxyUser1", Password = "proxyPass1", IsDelete = false };
-        ProxyEntity proxyDb2 = new ProxyEntity { Id = proxyId2, Ip = "192.168.1.7", Port = 8080, User = "proxyUser2", Password = "proxyPass2", IsDelete = false };
-        ProxyEntity proxyDb3 = new ProxyEntity { Id = proxyId3, Ip = "192.168.1.8", Port = 8080, User = "proxyUser2", Password = "proxyPass2", IsDelete = false };
+        ProxyEntity proxyDb1 = new ProxyEntity { Id = proxyId1, Ip = "192.168.1.6", Port = 8080, User = "proxyUser1", Password = "proxyPass1", IsDelete = false, IsMigration = true };
+        ProxyEntity proxyDb2 = new ProxyEntity { Id = proxyId2, Ip = "192.168.1.7", Port = 8080, User = "proxyUser2", Password = "proxyPass2", IsDelete = false, IsMigration = true };
+        ProxyEntity proxyDb3 = new ProxyEntity { Id = proxyId3, Ip = "192.168.1.8", Port = 8080, User = "proxyUser2", Password = "proxyPass2", IsDelete = false, IsMigration = true };
 
         modelBuilder.Entity<ProxyEntity>().HasData(
             proxyDb1,
@@ -219,8 +220,8 @@ public class AppDbContext : DbContext
         Guid accountTypeId1 = Guid.NewGuid();
         Guid accountTypeId2 = Guid.NewGuid();
 
-        AccountTypeEntity accountTypeDb1 = new AccountTypeEntity { Id = accountTypeId1, TypeName = AccountTypeEnum.GameFi, IsDelete = false };
-        AccountTypeEntity accountTypeDb2 = new AccountTypeEntity { Id = accountTypeId2, TypeName = AccountTypeEnum.Depin, IsDelete = false };
+        AccountTypeEntity accountTypeDb1 = new AccountTypeEntity { Id = accountTypeId1, TypeName = AccountTypeEnum.GameFi, IsDelete = false, IsMigration = true };
+        AccountTypeEntity accountTypeDb2 = new AccountTypeEntity { Id = accountTypeId2, TypeName = AccountTypeEnum.Depin, IsDelete = false, IsMigration = true };
 
         modelBuilder.Entity<AccountTypeEntity>().HasData(
             accountTypeDb1,
@@ -234,9 +235,9 @@ public class AppDbContext : DbContext
         Guid accountId2 = Guid.NewGuid();
         Guid accountId3 = Guid.NewGuid();
 
-        AccountEntity accountDb1 = new AccountEntity { Id = accountId1, UserName = "User1", Password = "UserPass", Email = "User@example.com", IsDelete = false, IsStatus = true, CreateDate = DateTime.Now, UserType = accountTypeId1, Proxy = proxyId1 };
-        AccountEntity accountDb2 = new AccountEntity { Id = accountId2, UserName = "User2", Password = "UserPass", Email = "User@example.com", IsDelete = false, IsStatus = true, CreateDate = DateTime.Now, UserType = accountTypeId2, Proxy = proxyId1 };
-        AccountEntity accountDb3 = new AccountEntity { Id = accountId3, UserName = "User3", Password = "UserPass", Email = "User@example.com", IsDelete = false, IsStatus = true, CreateDate = DateTime.Now, UserType = accountTypeId2 };
+        AccountEntity accountDb1 = new AccountEntity { Id = accountId1, UserName = "User1", Password = "UserPass", Email = "User@example.com", IsDelete = false, IsStatus = true, CreateDate = DateTime.Now, UserType = accountTypeId1, Proxy = proxyId1, IsMigration = true };
+        AccountEntity accountDb2 = new AccountEntity { Id = accountId2, UserName = "User2", Password = "UserPass", Email = "User@example.com", IsDelete = false, IsStatus = true, CreateDate = DateTime.Now, UserType = accountTypeId2, Proxy = proxyId1, IsMigration = true };
+        AccountEntity accountDb3 = new AccountEntity { Id = accountId3, UserName = "User3", Password = "UserPass", Email = "User@example.com", IsDelete = false, IsStatus = true, CreateDate = DateTime.Now, UserType = accountTypeId2, IsMigration = true };
 
         modelBuilder.Entity<AccountEntity>().HasData(
             accountDb1,
@@ -257,7 +258,9 @@ public class AppDbContext : DbContext
             Code = 200,
             Message = "Message",
             CreateDate = DateTime.Now,
-            User = accountId1
+            User = accountId1,
+            IsMigration = true
+
         };
 
         LogsEntity logDb2 = new LogsEntity
@@ -267,7 +270,8 @@ public class AppDbContext : DbContext
             Code = 200,
             Message = "Message",
             CreateDate = DateTime.Now,
-            User = accountId2
+            User = accountId2,
+            IsMigration = true
         };
         modelBuilder.Entity<LogsEntity>().HasData(
             logDb1,
@@ -280,31 +284,35 @@ public class AppDbContext : DbContext
         Guid browserId1 = Guid.NewGuid();
         Guid browserId2 = Guid.NewGuid();
 
-        BrowserEntity browserDb1 = new BrowserEntity { 
-            Id = browserId1, 
-            IsDelete = false, 
-            Name = "Name1", 
-            Path = "Path", 
-            CreateDate = DateTime.Now, 
-            XPosition = 160,
-            YPosition = 50,
-            WithScreeen = 400,
-            HightScreen = 600,
-            Scale = 50,
-            UserAgent = string.Empty
-        };
-        BrowserEntity browserDb2 = new BrowserEntity { 
-            Id = browserId2, 
-            IsDelete = false, 
-            Name = "Name2", 
-            Path = "Path", 
+        BrowserEntity browserDb1 = new BrowserEntity
+        {
+            Id = browserId1,
+            IsDelete = false,
+            Name = "Name1",
+            Path = "Path",
             CreateDate = DateTime.Now,
             XPosition = 160,
             YPosition = 50,
             WithScreeen = 400,
             HightScreen = 600,
             Scale = 50,
-            UserAgent = string.Empty
+            UserAgent = string.Empty,
+            IsMigration = true
+        };
+        BrowserEntity browserDb2 = new BrowserEntity
+        {
+            Id = browserId2,
+            IsDelete = false,
+            Name = "Name2",
+            Path = "Path",
+            CreateDate = DateTime.Now,
+            XPosition = 160,
+            YPosition = 50,
+            WithScreeen = 400,
+            HightScreen = 600,
+            Scale = 50,
+            UserAgent = string.Empty,
+            IsMigration = true
         };
 
         modelBuilder.Entity<BrowserEntity>().HasData(
@@ -322,14 +330,16 @@ public class AppDbContext : DbContext
         {
             AccountId = accountId1,
             BrowserId = browserId1,
-            IsDelete = false
+            IsDelete = false,
+            IsMigration = true
         };
 
         AccountsInBrowserEntity accountsInBrowserDb2 = new AccountsInBrowserEntity
         {
             AccountId = accountId2,
             BrowserId = browserId2,
-            IsDelete = false
+            IsDelete = false,
+            IsMigration = true
         };
 
         modelBuilder.Entity<AccountsInBrowserEntity>().HasData(
@@ -350,7 +360,8 @@ public class AppDbContext : DbContext
             StartDate = DateTime.Now,
             EndDate = DateTime.Now.AddDays(5),
             CreateDate = DateTime.Now,
-            IsDelete = false
+            IsDelete = false,
+            IsMigration = true
         };
 
         ProjectEntity projectDb2 = new ProjectEntity
@@ -360,7 +371,8 @@ public class AppDbContext : DbContext
             StartDate = DateTime.Now,
             EndDate = DateTime.Now.AddDays(5),
             CreateDate = DateTime.Now,
-            IsDelete = false
+            IsDelete = false,
+            IsMigration = true
         };
 
         modelBuilder.Entity<ProjectEntity>().HasData(
@@ -378,14 +390,16 @@ public class AppDbContext : DbContext
         {
             AccountId = accountId1,
             ProjectId = projectId1,
-            IsDelete = false
+            IsDelete = false,
+            IsMigration = true
         };
 
         AccountsInProjectEntity accountsInProjectDb2 = new AccountsInProjectEntity
         {
             AccountId = accountId2,
             ProjectId = projectId2,
-            IsDelete = false
+            IsDelete = false,
+            IsMigration = true
         };
 
         modelBuilder.Entity<AccountsInProjectEntity>().HasData(
@@ -399,8 +413,8 @@ public class AppDbContext : DbContext
         Guid scriptId1 = Guid.NewGuid();
         Guid scriptId2 = Guid.NewGuid();
 
-        ScriptEntity scriptDb1 = new ScriptEntity { Id = scriptId1, Name = "Script 1", CreateDate = DateTime.Now, IsDelete = false };
-        ScriptEntity scriptDb2 = new ScriptEntity { Id = scriptId2, Name = "Script 2", CreateDate = DateTime.Now, IsDelete = false };
+        ScriptEntity scriptDb1 = new ScriptEntity { Id = scriptId1, Name = "Script 1", CreateDate = DateTime.Now, IsDelete = false, IsMigration = true };
+        ScriptEntity scriptDb2 = new ScriptEntity { Id = scriptId2, Name = "Script 2", CreateDate = DateTime.Now, IsDelete = false, IsMigration = true };
 
         modelBuilder.Entity<ScriptEntity>().HasData(
             scriptDb1,
@@ -414,14 +428,16 @@ public class AppDbContext : DbContext
         {
             ProjectId = projectId1,
             ScriptId = scriptId1,
-            IsDelete = false
+            IsDelete = false,
+            IsMigration = true
         };
 
         ScriptsInProjectEntity scriptsInProjectDb2 = new ScriptsInProjectEntity
         {
             ProjectId = projectId2,
             ScriptId = scriptId2,
-            IsDelete = false
+            IsDelete = false,
+            IsMigration = true
         };
 
         modelBuilder.Entity<ScriptsInProjectEntity>().HasData(
@@ -435,8 +451,8 @@ public class AppDbContext : DbContext
         Guid planId1 = Guid.NewGuid();
         Guid planId2 = Guid.NewGuid();
 
-        PlanEntity planDb1 = new PlanEntity { Id = planId1, Name = "Plan 1", CreateDate = DateTime.Now, IsDelete = false };
-        PlanEntity planDb2 = new PlanEntity { Id = planId2, Name = "Plan 2", CreateDate = DateTime.Now, IsDelete = false };
+        PlanEntity planDb1 = new PlanEntity { Id = planId1, Name = "Plan 1", CreateDate = DateTime.Now, IsDelete = false, IsMigration = true };
+        PlanEntity planDb2 = new PlanEntity { Id = planId2, Name = "Plan 2", CreateDate = DateTime.Now, IsDelete = false, IsMigration = true };
         modelBuilder.Entity<PlanEntity>().HasData(
             planDb1,
             planDb2
@@ -449,14 +465,16 @@ public class AppDbContext : DbContext
         {
             PlanId = planId1,
             ScriptId = scriptId1,
-            IsDelete = false
+            IsDelete = false,
+            IsMigration = true
         };
 
         ScriptsInPlanEntity scriptsInPlanDb2 = new ScriptsInPlanEntity
         {
             PlanId = planId2,
             ScriptId = scriptId2,
-            IsDelete = false
+            IsDelete = false,
+            IsMigration = true
         };
 
         modelBuilder.Entity<ScriptsInPlanEntity>().HasData(
@@ -478,7 +496,8 @@ public class AppDbContext : DbContext
             CreateDate = DateTime.Now,
             IsDelete = false,
             IsRun = StatusRunEnum.NotRun,
-            IsStatus = StatusEnum.Waitting
+            IsStatus = StatusEnum.Waitting,
+            IsMigration = true
         };
 
         ScheduleEntity scheduleDb2 = new ScheduleEntity
@@ -489,7 +508,8 @@ public class AppDbContext : DbContext
             CreateDate = DateTime.Now,
             IsDelete = false,
             IsRun = StatusRunEnum.NotRun,
-            IsStatus = StatusEnum.Waitting
+            IsStatus = StatusEnum.Waitting,
+            IsMigration = true
         };
 
         modelBuilder.Entity<ScheduleEntity>().HasData(
@@ -509,7 +529,8 @@ public class AppDbContext : DbContext
             Name = "Name1",
             IsStatus = StatusEnum.Waitting,
             IsDelete = false,
-            CreateDate = DateTime.Now
+            CreateDate = DateTime.Now,
+            IsMigration = true
         };
 
         DevicesEntity devicesDb2 = new DevicesEntity
@@ -518,7 +539,8 @@ public class AppDbContext : DbContext
             Name = "Name1",
             IsStatus = StatusEnum.Waitting,
             IsDelete = false,
-            CreateDate = DateTime.Now
+            CreateDate = DateTime.Now,
+            IsMigration = true
         };
 
         modelBuilder.Entity<DevicesEntity>().HasData(
@@ -537,7 +559,8 @@ public class AppDbContext : DbContext
             ScheduleId = scheduleId1,
             DeviceId = deviceId1,
             PlanId = planId1,
-            IsDelete = false
+            IsDelete = false,
+            IsMigration = true
         };
 
         PlansInScheduleEntity plansInScheduleDb2 = new PlansInScheduleEntity
@@ -545,7 +568,8 @@ public class AppDbContext : DbContext
             ScheduleId = scheduleId2,
             DeviceId = deviceId2,
             PlanId = planId2,
-            IsDelete = false
+            IsDelete = false,
+            IsMigration = true
         };
 
         modelBuilder.Entity<PlansInScheduleEntity>().HasData(
@@ -555,4 +579,5 @@ public class AppDbContext : DbContext
         #endregion
         return modelBuilder;
     }
+
 }

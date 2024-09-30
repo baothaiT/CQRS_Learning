@@ -11,5 +11,6 @@ namespace CQRS.Domain.Abstractions.Repository
     public interface IAccountRepository<T> : IRepository<T>
     {
         Task<List<Account_Browser_DTO>> GetBrowserByAccountId(Guid IdAccount);
+        Task<List<Proxy_Account_Browser_DTO>> GetProxyAndBrowser_ByAccountId(Guid IdAccount);
     }
 }

@@ -15,4 +15,5 @@ public class AccountsInProjectEntity
     public ProjectEntity AccountsInProject_Project { get; set; }
 
     public bool IsDelete { get; set; }
+    public bool? IsMigration { get; set; }
 }

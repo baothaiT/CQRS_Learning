@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    int iRow = 0;
 }
 
 <h1>Index</h1>
@@ -17,7 +18,7 @@
 </p>
 
 <div>
-    <table class="table">
+    <table class="table" id="myTable">
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -26,20 +27,148 @@
                 <th scope="col">User</th>
                 <th scope="col">Password</th>
                 <th scope="col">IsStatus</th>
+                <th scope="col">CreateDate</th>
+                <th scope="col">CheckLiveDate</th>
+                <th scope="col">Action</th>
+            </tr>
+
+            <tr>
+                <!-- Select Filters -->
+                <th></th>
+                <th>
+                    <select id="filterIp">
+                        <option value="">All Ip</option>
+                    </select>
+                </th>
+                <th>
+                    <select id="filterPort">
+                        <option value="">All Port</option>
+                    </select>
+                </th>
+                <th>
+                    <select id="filterUser">
+                        <option value="">All User</option>
+                    </select>
+                </th>
+                <th>
+                    <select id="filterPassword">
+                        <option value="">All Password</option>
+                    </select>
+                </th>
+                <th>
+                    <select id="filterIsStatus">
+                        <option value="">All Status</option>
+                    </select>
+                </th>
+                <th></th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var proxy in Model)
             {
+                ++iRow;
                 <tr>
-                    <th scope="row">1</th>
+                    <th scope="row">@iRow</th>
                     <td>@proxy.Ip</td>
                     <td>@proxy.Port</td>
                     <td>@proxy.User</td>
                     <td>@proxy.Password</td>
                     <td>@proxy.IsStatus</td>
+                    <td>@proxy.CreateDate</td>
+                    <td>@proxy.CheckLiveDate</td>
+                    <td>
+                        <a asp-action="Detail" asp-route-id="@proxy.Id">Detail</a>
+                        |
+                        <a asp-action="Edit" asp-route-id="@proxy.Id">Edit</a>
+                        |
+                        <a asp-action="Delete" asp-route-id="@proxy.Id">Delete</a>
+                    </td>
                 </tr>
             }
         </tbody>
     </table>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </div>
+
+<script>
+    $(document).ready(function () {
+        // Function to get unique values for each column
+        function getUniqueValues(columnIndex) {
+            var uniqueValues = [];
+            $("#myTable tbody tr").each(function () {
+                var value = $(this).children('td').eq(columnIndex).text();
+                if (uniqueValues.indexOf(value) === -1) {
+                    uniqueValues.push(value);
+                }
+            });
+            return uniqueValues;
+        }
+
+        // Populate select filters with unique values
+        function populateFilterOptions() {
+            var nameOptions = getUniqueValues(0);
+            var positionOptions = getUniqueValues(1);
+            var officeOptions = getUniqueValues(2);
+            var ageOptions = getUniqueValues(3);
+            var isStatusOption = getUniqueValues(4);
+
+            // Populate Name select
+            nameOptions.forEach(function (value) {
+                $('#filterIp').append('<option value="' + value + '">' + value + '</option>');
+            });
+
+            // Populate Position select
+            positionOptions.forEach(function (value) {
+                $('#filterPort').append('<option value="' + value + '">' + value + '</option>');
+            });
+
+            // Populate Office select
+            officeOptions.forEach(function (value) {
+                $('#filterUser').append('<option value="' + value + '">' + value + '</option>');
+            });
+
+            // Populate Age select
+            ageOptions.forEach(function (value) {
+                $('#filterPassword').append('<option value="' + value + '">' + value + '</option>');
+            });
+            isStatusOption.forEach(function (value) {
+                $('#filterIsStatus').append('<option value="' + value + '">' + value + '</option>');
+            });
+        }
+
+        // Call function to populate dropdowns
+        populateFilterOptions();
+
+        // Function to filter table rows based on selected filters
+        function filterTable() {
+            var filterName = $('#filterIp').val().toLowerCase();
+            var filterPosition = $('#filterPort').val().toLowerCase();
+            var filterOffice = $('#filterUser').val().toLowerCase();
+            var filterAge = $('#filterPassword').val();
+            var filterIsStatus = $('#filterIsStatus').val();
+
+            $("#myTable tbody tr").filter(function () {
+                var name = $(this).children('td').eq(0).text().toLowerCase();
+                var position = $(this).children('td').eq(1).text().toLowerCase();
+                var office = $(this).children('td').eq(2).text().toLowerCase();
+                var age = $(this).children('td').eq(3).text();
+                var isStatus = $(this).children('td').eq(4).text();
+
+                $(this).toggle(
+                    (filterName === "" || name === filterName) &&
+                    (filterPosition === "" || position === filterPosition) &&
+                    (filterOffice === "" || office === filterOffice) &&
+                    (filterAge === "" || age === filterAge) &&
+                    (filterIsStatus === "" || isStatus == filterIsStatus)
+                );
+            });
+        }
+
+        // Event listeners for filtering when select changes
+        $('#filterIp, #filterPort, #filterUser, #filterPassword, #filterIsStatus').on('change', function () {
+            filterTable();
+        });
+    });
+</script>

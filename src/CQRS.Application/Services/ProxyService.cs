@@ -49,11 +49,13 @@ namespace CQRS.Application.Services
                     if(response.IsSuccessStatusCode)
                     {
                         proxy.IsStatus = ProxyStatusEnum.Live;
+                        proxy.CheckLiveDate = DateTime.Now;
 
                     }
                     else
                     {
                         proxy.IsStatus = ProxyStatusEnum.Die;
+                        proxy.CheckLiveDate = DateTime.Now;
                     }
                 }
                 return proxy;
@@ -63,6 +65,7 @@ namespace CQRS.Application.Services
                 // Handle exceptions like timeouts, bad proxy credentials, etc.
                 Console.WriteLine($"Error: {ex.Message}");
                 proxy.IsStatus = ProxyStatusEnum.Die;
+                proxy.CheckLiveDate = DateTime.Now;
                 return proxy;
             }
         }

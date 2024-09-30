@@ -14,4 +14,5 @@ public class AccountsInBrowserEntity
     public Guid BrowserId { get; set; }
     public BrowserEntity AccountsInBrowser_Browser { get; set; }
     public bool IsDelete { get; set; }
+    public bool? IsMigration { get; set; }
 }

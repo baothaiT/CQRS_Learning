@@ -23,7 +23,7 @@ Install-Package AutoMapper.Extensions.Microsoft.DependencyInjection
 Add-Migration InitialCreate
 Update-Database
 
-
+dotnet tool uninstall
 
 # Layer Code
 

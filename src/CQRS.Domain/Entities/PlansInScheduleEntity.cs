@@ -18,4 +18,5 @@ public class PlansInScheduleEntity
     public PlanEntity? PlansInSchedule_Plan { get; set; }
 
     public bool IsDelete { get; set; }
+    public bool? IsMigration { get; set; }
 }

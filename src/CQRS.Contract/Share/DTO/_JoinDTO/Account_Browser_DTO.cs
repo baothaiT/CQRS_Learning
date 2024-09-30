@@ -9,6 +9,7 @@ namespace CQRS.Contract.Share.DTO._JoinDTO
     public class Account_Browser_DTO
     {
         public Guid AccountId { get; set; }
+        public Guid? ProxyId { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
         public bool IsStatus { get; set; }

@@ -84,8 +84,9 @@ namespace CQRS.API.Controllers
             {
                 UpdateProxyCommand updateProxyCommand = new UpdateProxyCommand();
 
-                updateProxyDto.Id = id;
+                
                 _mapper.Map(updateProxyDto, updateProxyCommand);
+                updateProxyDto.Id = id;
 
                 var proxy = await _sender.Send(updateProxyCommand);
                 return Ok(proxy);
@@ -140,17 +141,23 @@ namespace CQRS.API.Controllers
                 {
                     if (objectResult.StatusCode == 200)
                     {
+                        var proxyEntity = objectResult.Value as ProxyEntity;
                         UpdateProxyDto updateProxiesDto = new UpdateProxyDto()
                         {
-                            Id = proxy.Id,
+                            Id = proxyEntity.Id,
                             Ip = proxy.Ip,
                             Port = proxy.Port,
                             User = proxy.User,
                             Password = proxy.Password,
                             IsStatus = proxy.IsStatus,
-                            IsDelete = proxy.IsDelete
+                            IsDelete = proxy.IsDelete,
+                            CreateDate = proxy.CreateDate,
+                            UpdateDate = proxy.UpdateDate,
+                            CheckLiveDate = proxy.CheckLiveDate,
+                            IsMigration = proxy.IsMigration
                         };
-                        await Update(proxy.Id, updateProxiesDto);
+                        //_mapper.Map(proxy, updateProxiesDto);
+                        await Update(proxyEntity.Id, updateProxiesDto);
                         proxyListResult.Add((ProxyEntity)objectResult.Value);
 
                     }
@@ -164,8 +171,13 @@ namespace CQRS.API.Controllers
                         Port = proxy.Port,
                         User = proxy.User,
                         Password = proxy.Password,
-                        IsStatus = proxy.IsStatus
+                        IsStatus = proxy.IsStatus,
+                        CreateDate = proxy.CreateDate,
+                        UpdateDate = proxy.UpdateDate,
+                        CheckLiveDate = proxy.CheckLiveDate,
+                        IsMigration = proxy.IsMigration
                     };
+                    //_mapper.Map(proxy, createProxyDto);
                     IActionResult response = await Create(createProxyDto);
                     ProxyEntity proxyEntity = new ProxyEntity();
                     _mapper.Map(proxy, proxyEntity);

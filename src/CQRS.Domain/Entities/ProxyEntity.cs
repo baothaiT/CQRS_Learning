@@ -14,6 +14,9 @@ public class ProxyEntity: BasedTableEntity
     public int Port { get; set; }
     public string User { get; set; }
     public string Password { get; set; }
+    public DateTime? CreateDate { get; set; }
+    public DateTime? UpdateDate { get; set; }
+    public DateTime? CheckLiveDate { get; set; }
     public ProxyStatusEnum? IsStatus { get; set; }
-    public ICollection<AccountEntity>? Logs_Account { get; set; }
+    public ICollection<AccountEntity>? Proxy_Account { get; set; }
 }

@@ -28,6 +28,7 @@ public class UpdateProxyCommandHandler : IRequestHandler<UpdateProxyCommand, Pro
         {
             ProxyEntity proxyEntity = new ProxyEntity();
             _mapper.Map(request, proxyEntity);
+            proxyEntity.UpdateDate = DateTime.UtcNow;
 
             await _proxyRepository.UpdateAsync(proxyEntity);
             return proxyEntity;

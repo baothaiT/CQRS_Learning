@@ -10,4 +10,5 @@ public class BasedTableEntity
 {
     public Guid Id { get; set; }
     public bool IsDelete { get; set; }
+    public bool? IsMigration { get; set; }
 }

@@ -25,15 +25,14 @@ namespace CQRS.AspNetUI.Controllers
             IEnumerable<GetProxyDto> proxyResponse = await _proxyClientService.GetProxyAsync();
             List<GetProxyDto> proxies = new List<GetProxyDto>();
             proxies.AddRange(proxyResponse);
-            var a = TempData["proxyDtos"];
-            if (TempData["proxyDtos"] != null)
-            {
-                var proxyDtos = JsonConvert.DeserializeObject<List<GetProxyDto>>(TempData["proxyDtos"].ToString());
-                if (proxyDtos != null && proxyDtos.Any())
-                {
-                    proxies.AddRange(proxyDtos);
-                }
-            }
+            //if (TempData["proxyDtos"] != null)
+            //{
+            //    var proxyDtos = JsonConvert.DeserializeObject<List<GetProxyDto>>(TempData["proxyDtos"].ToString());
+            //    if (proxyDtos != null && proxyDtos.Any())
+            //    {
+            //        proxies.AddRange(proxyDtos);
+            //    }
+            //}
             
             return View(proxies);
         }
@@ -55,7 +54,7 @@ namespace CQRS.AspNetUI.Controllers
 
             var proxiesChecked = await _proxyClientService.IsProxyWorking(proxyLsit);
             await _proxyClientService.UpdateProxiesAsync(proxiesChecked);
-            TempData["proxyDtos"] = JsonConvert.SerializeObject(proxiesChecked);
+            //TempData["proxyDtos"] = JsonConvert.SerializeObject(proxiesChecked);
 
 
             return RedirectToAction("Index");

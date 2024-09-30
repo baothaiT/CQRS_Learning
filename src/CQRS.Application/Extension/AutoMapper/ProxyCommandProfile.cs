@@ -18,6 +18,9 @@ namespace CQRS.Application.Extension.AutoMapper
                 .ForMember(dest => dest.Id, opt => opt.Ignore());
 
 
+            CreateMap<ProxyEntity, CreateProxyDto>();
+            CreateMap<ProxyEntity, UpdateProxyDto>();
+
             CreateMap<GetProxyDto, ProxyEntity>();
             CreateMap<CreateProxyDto, CreateProxyCommand>();
             CreateMap<UpdateProxyDto, UpdateProxyCommand>();

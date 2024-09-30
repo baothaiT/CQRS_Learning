@@ -30,7 +30,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CQRS.Infrastructure.Message
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CQRS.AspNetUI", "src\CQRS.AspNetUI\CQRS.AspNetUI.csproj", "{B658B420-CD4F-48C2-AF06-A20C1840900D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CQRS.Benchmark.Test", "test\CQRS.Benchmark.Test\CQRS.Benchmark.Test.csproj", "{0A407B26-4A89-4931-8F5B-EF373DA253A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CQRS.Benchmark.Test", "test\CQRS.Benchmark.Test\CQRS.Benchmark.Test.csproj", "{0A407B26-4A89-4931-8F5B-EF373DA253A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

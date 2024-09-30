@@ -25,8 +25,11 @@ public class CreateProxyCommandHandler : IRequestHandler<CreateProxyCommand, Pro
             Port = request.Port,
             User = request.User,
             IsStatus = request.IsStatus,
-            Password = request.Password
-
+            Password = request.Password,
+            IsMigration = request.IsMigration,
+            CreateDate = DateTime.UtcNow,
+            UpdateDate = null,
+            CheckLiveDate = null
         };
         await _proxyRepository.AddAsync(proxyEntity);
         return proxyEntity;

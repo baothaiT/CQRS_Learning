@@ -15,4 +15,5 @@ public class ScriptsInPlanEntity
     public ScriptEntity? ScriptsInPlan_Script { get; set; }
 
     public bool IsDelete { get; set; }
+    public bool? IsMigration { get; set; }
 }

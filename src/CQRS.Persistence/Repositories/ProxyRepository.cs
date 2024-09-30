@@ -15,6 +15,7 @@ public class ProxyRepository : IProxyRepository<ProxyEntity>
 {
     private readonly AppDbContext _context;
     private readonly IMapper _mapper;
+    
 
     public ProxyRepository(AppDbContext context, IMapper mapper)
     {
