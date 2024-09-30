@@ -193,7 +193,7 @@ public class AppDbContext : DbContext
             .HasForeignKey(a => a.PlanId);
 
 
-        modelBuilder = SeedingData(modelBuilder);
+        //modelBuilder = SeedingData(modelBuilder);
     }
 
     private ModelBuilder SeedingData(ModelBuilder modelBuilder)

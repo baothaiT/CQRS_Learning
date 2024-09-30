@@ -4,6 +4,8 @@ using CQRS.Application.UserCases.V1.Commands.Account;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using CQRS.Contract.Share.DTO;
+using CQRS.Contract.Share.DTO._JoinDTO;
+using CQRS.Domain.Entities;
 
 namespace CQRS.API.Controllers
 {
@@ -20,7 +22,7 @@ namespace CQRS.API.Controllers
             _mapper = mapper;
         }
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> GetAll()
         {
             var account = await _sender.Send(new GetAllAccountQuery());
             return Ok(account);
@@ -55,6 +57,28 @@ namespace CQRS.API.Controllers
 
             return Ok(account);
         }
+
+        [HttpGet("GetAllProxyAndBrowserFromAllAccount")]
+        public async Task<IActionResult> GetAll_ProxyAndBrowserByAccountId()
+        {
+            List<Proxy_Account_Browser_DTO> proxy_Account_Browser_DTOs = new List<Proxy_Account_Browser_DTO>();
+            var accountResponse = await _sender.Send(new GetAllAccountQuery());
+            
+            if (accountResponse.Any())
+            {
+                List<AccountEntity> accounts = accountResponse.ToList();
+                foreach (var account in accounts)
+                {
+                    var proxy_browser_ByAccountIds = await _sender.Send(new GetProxyAndBrowserByAccountIdQuery { AccountId = account.Id });
+                    if(proxy_browser_ByAccountIds != null  && proxy_browser_ByAccountIds.Any())
+                    {
+                        proxy_Account_Browser_DTOs.AddRange(proxy_browser_ByAccountIds);
+                    }
+                }
+            }          
+            return Ok(proxy_Account_Browser_DTOs);
+        }
+
 
         [HttpPost]
         public async Task<ActionResult> Create([FromBody] CreateAccountsDto createAccountsDto)

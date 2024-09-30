@@ -164,6 +164,6 @@ public class AccountsRepository : IAccountRepository<AccountEntity>
                 return proxyResponse.ToList();
             }
         }
-        return new List<Proxy_Account_Browser_DTO>();
+        return null;
     }
 }
