@@ -119,14 +119,7 @@ namespace CQRS.API.Controllers
             {
                 return await _proxyService.IsProxyWorking(proxy);
             });
-
-            // Wait for all proxy checks to complete
             var results = await Task.WhenAll(tasks);
-
-            //for (int i = 0; i < proxies.Count(); i++)
-            //{
-            //    proxies[i] = await _proxyService.IsProxyWorking(proxies[i]);
-            //}
             return Ok(results);
         }
 
