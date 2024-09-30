@@ -12,6 +12,7 @@ using Azure;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Http.HttpResults;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using CQRS.Contract.Share.Enum;
 
 namespace CQRS.API.Controllers
 {
@@ -30,10 +31,20 @@ namespace CQRS.API.Controllers
         }
         // GET: ProxyController
         [HttpGet]
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> GetAll()
         {
             var proxy = await _sender.Send(new GetAllProxyQuery());
             return Ok(proxy);
+        }
+
+        [HttpGet("GetProxiesByStatus/{statusProxy}")]
+        public async Task<ActionResult> GetProxyByStatus(ProxyStatusEnum statusProxy)
+        {
+            var proxiesResponse = await _sender.Send(new GetAllProxyQuery());
+
+            List<ProxyEntity> proxies = proxiesResponse.ToList();
+            var result = proxies.Where(x => x.IsStatus == statusProxy);
+            return Ok(result);
         }
 
 
@@ -149,10 +160,8 @@ namespace CQRS.API.Controllers
                             CheckLiveDate = proxy.CheckLiveDate,
                             IsMigration = proxy.IsMigration
                         };
-                        //_mapper.Map(proxy, updateProxiesDto);
                         await Update(proxyEntity.Id, updateProxiesDto);
                         proxyListResult.Add((ProxyEntity)objectResult.Value);
-
                     }
                 }
 
@@ -170,7 +179,6 @@ namespace CQRS.API.Controllers
                         CheckLiveDate = proxy.CheckLiveDate,
                         IsMigration = proxy.IsMigration
                     };
-                    //_mapper.Map(proxy, createProxyDto);
                     IActionResult response = await Create(createProxyDto);
                     ProxyEntity proxyEntity = new ProxyEntity();
                     _mapper.Map(proxy, proxyEntity);
