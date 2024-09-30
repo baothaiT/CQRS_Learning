@@ -70,7 +70,8 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<AccountEntity>()
             .HasOne(a => a.Account_Proxy)
             .WithMany(at => at.Logs_Account)
-            .HasForeignKey(a => a.Proxy);
+            .HasForeignKey(a => a.Proxy)
+            .OnDelete(DeleteBehavior.SetNull); ;
 
         // Browser Configuration
         modelBuilder.Entity<BrowserEntity>()

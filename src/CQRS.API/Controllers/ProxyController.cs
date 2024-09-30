@@ -11,6 +11,7 @@ using CQRS.Domain.Entities;
 using Azure;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Http.HttpResults;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CQRS.API.Controllers
 {
@@ -113,11 +114,19 @@ namespace CQRS.API.Controllers
         [HttpPost("CheckProxies")]
         public async Task<IActionResult> CheckProxies([FromBody] List<GetProxyDto> proxies)
         {
-            for (int i = 0; i < proxies.Count(); i++)
+            var tasks = proxies.Select(async proxy =>
             {
-                proxies[i] = await _proxyService.IsProxyWorking(proxies[i]);
-            }
-            return Ok(proxies);
+                return await _proxyService.IsProxyWorking(proxy);
+            });
+
+            // Wait for all proxy checks to complete
+            var results = await Task.WhenAll(tasks);
+
+            //for (int i = 0; i < proxies.Count(); i++)
+            //{
+            //    proxies[i] = await _proxyService.IsProxyWorking(proxies[i]);
+            //}
+            return Ok(results);
         }
 
         [HttpPost("UpdateProxies")]

@@ -30,6 +30,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CQRS.Infrastructure.Message
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CQRS.AspNetUI", "src\CQRS.AspNetUI\CQRS.AspNetUI.csproj", "{B658B420-CD4F-48C2-AF06-A20C1840900D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CQRS.Benchmark.Test", "test\CQRS.Benchmark.Test\CQRS.Benchmark.Test.csproj", "{0A407B26-4A89-4931-8F5B-EF373DA253A0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -72,6 +74,10 @@ Global
 		{B658B420-CD4F-48C2-AF06-A20C1840900D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B658B420-CD4F-48C2-AF06-A20C1840900D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B658B420-CD4F-48C2-AF06-A20C1840900D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A407B26-4A89-4931-8F5B-EF373DA253A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A407B26-4A89-4931-8F5B-EF373DA253A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A407B26-4A89-4931-8F5B-EF373DA253A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A407B26-4A89-4931-8F5B-EF373DA253A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,6 +92,7 @@ Global
 		{9B2CBAB8-7936-4395-9F7D-603B060DD473} = {90E54CA3-8D24-42B3-9362-2D652B49050D}
 		{407A4DF7-FFA0-4B68-B63F-9C41A7E26519} = {90E54CA3-8D24-42B3-9362-2D652B49050D}
 		{B658B420-CD4F-48C2-AF06-A20C1840900D} = {90E54CA3-8D24-42B3-9362-2D652B49050D}
+		{0A407B26-4A89-4931-8F5B-EF373DA253A0} = {C22BE54A-06DB-4B24-91B0-368D4D839EDD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0D580EDA-F4D3-4448-9008-E8DCA7C6C7A1}
