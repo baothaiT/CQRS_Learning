@@ -193,7 +193,7 @@ public class AppDbContext : DbContext
             .HasForeignKey(a => a.PlanId);
 
 
-        //modelBuilder = SeedingData(modelBuilder);
+        modelBuilder = SeedingData(modelBuilder);
     }
 
     private ModelBuilder SeedingData(ModelBuilder modelBuilder)
@@ -204,9 +204,46 @@ public class AppDbContext : DbContext
         Guid proxyId2 = Guid.NewGuid();
         Guid proxyId3 = Guid.NewGuid();
 
-        ProxyEntity proxyDb1 = new ProxyEntity { Id = proxyId1, Ip = "192.168.1.6", Port = 8080, User = "proxyUser1", Password = "proxyPass1", IsDelete = false, IsMigration = true };
-        ProxyEntity proxyDb2 = new ProxyEntity { Id = proxyId2, Ip = "192.168.1.7", Port = 8080, User = "proxyUser2", Password = "proxyPass2", IsDelete = false, IsMigration = true };
-        ProxyEntity proxyDb3 = new ProxyEntity { Id = proxyId3, Ip = "192.168.1.8", Port = 8080, User = "proxyUser2", Password = "proxyPass2", IsDelete = false, IsMigration = true };
+        ProxyEntity proxyDb1 = new ProxyEntity
+        {
+            Id = proxyId1,
+            Ip = "192.168.1.6",
+            Port = 8080,
+            User = "proxyUser1",
+            Password = "proxyPass1",
+            Type = ProxyTypeEnum.Http,
+            IsStatus = ProxyStatusEnum.New,
+            IsDelete = false,
+            IsMigration = true,
+            CreateDate = DateTime.Now
+        };
+
+        ProxyEntity proxyDb2 = new ProxyEntity
+        {
+            Id = proxyId2,
+            Ip = "192.168.1.7",
+            Port = 8080,
+            User = "proxyUser2",
+            Password = "proxyPass2",
+            Type = ProxyTypeEnum.Http,
+            IsStatus = ProxyStatusEnum.New,
+            IsDelete = false,
+            IsMigration = true,
+            CreateDate = DateTime.Now
+        };
+        ProxyEntity proxyDb3 = new ProxyEntity
+        {
+            Id = proxyId3,
+            Ip = "192.168.1.8",
+            Port = 8080,
+            User = "proxyUser2",
+            Password = "proxyPass2",
+            Type = ProxyTypeEnum.Http,
+            IsStatus = ProxyStatusEnum.New,
+            IsDelete = false,
+            IsMigration = true,
+            CreateDate = DateTime.Now
+        };
 
         modelBuilder.Entity<ProxyEntity>().HasData(
             proxyDb1,

@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,12 +26,12 @@ public class ProxyRepository : IProxyRepository<ProxyEntity>
 
     public async Task<IEnumerable<ProxyEntity>> GetAllAsync()
     {
-        return await _context.ProxyTable.ToListAsync();
+        return await _context.ProxyTable.Where(x => x.IsDelete != true).ToListAsync();
     }
 
     public async Task<ProxyEntity> GetByIdAsync(Guid id)
     {
-        return await _context.ProxyTable.FindAsync(id);
+        return await _context.ProxyTable?.FirstOrDefaultAsync(x=> x.Id == id && x.IsDelete != true);
     }
 
     public async Task AddAsync(ProxyEntity proxy)
@@ -41,7 +42,7 @@ public class ProxyRepository : IProxyRepository<ProxyEntity>
 
     public async Task UpdateAsync(ProxyEntity proxy)
     {
-        var found = await _context.ProxyTable.FindAsync(proxy.Id);
+        var found = await _context.ProxyTable?.FirstOrDefaultAsync(x=> x.Id == proxy.Id && x.IsDelete != true);
 
         if (found != null)
         {
@@ -52,7 +53,7 @@ public class ProxyRepository : IProxyRepository<ProxyEntity>
 
     public async Task DeleteAsync(Guid id)
     {
-        var proxy = await _context.ProxyTable.FindAsync(id);
+        var proxy = await _context.ProxyTable?.FirstOrDefaultAsync(x => x.Id == id && x.IsDelete != true);
         if (proxy != null)
         {
             _context.ProxyTable.Remove(proxy);

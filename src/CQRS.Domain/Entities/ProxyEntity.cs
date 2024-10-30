@@ -14,6 +14,7 @@ public class ProxyEntity: BasedTableEntity
     public int Port { get; set; }
     public string User { get; set; }
     public string Password { get; set; }
+    public ProxyTypeEnum Type { get; set; }
     public DateTime? CreateDate { get; set; }
     public DateTime? UpdateDate { get; set; }
     public DateTime? CheckLiveDate { get; set; }

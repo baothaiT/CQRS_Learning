@@ -13,6 +13,7 @@ public class ProxyBaseDto
     public int Port { get; set; }
     public string User { get; set; }
     public string Password { get; set; }
+    public ProxyTypeEnum Type { get; set; }
     public ProxyStatusEnum? IsStatus { get; set; }
     public bool? IsMigration { get; set; }
     public DateTime? CreateDate { get; set; }

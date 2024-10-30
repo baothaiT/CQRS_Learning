@@ -8,7 +8,7 @@ namespace CQRS.Contract.Share.Enum;
 
 public enum ProxyStatusEnum
 {
-    NotYet,
+    New,
     Live,
     Die
 }

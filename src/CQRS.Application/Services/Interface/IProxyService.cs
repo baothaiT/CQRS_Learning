@@ -8,5 +8,4 @@ namespace CQRS.Application.Services.Interface;
 
 public interface IProxyService
 {
-    Task<GetProxyDto> IsProxyWorking(GetProxyDto proxy);
 }

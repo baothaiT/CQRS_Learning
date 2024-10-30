@@ -138,17 +138,6 @@ namespace CQRS.API.Controllers
             }
         }
 
-        [HttpPost("CheckProxies")]
-        public async Task<IActionResult> CheckProxies([FromBody] List<GetProxyDto> proxies)
-        {
-            var tasks = proxies.Select(async proxy =>
-            {
-                return await _proxyService.IsProxyWorking(proxy);
-            });
-            var results = await Task.WhenAll(tasks);
-            return Ok(results);
-        }
-
         [HttpPost("UpdateProxies")]
         public async Task<IActionResult> UpdateProxies([FromBody] List<GetProxyDto> proxies)
         {
