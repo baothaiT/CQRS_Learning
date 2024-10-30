@@ -123,6 +123,21 @@ namespace CQRS.API.Controllers
             }
         }
 
+        // POST: ProxyController/Delete/5
+        [HttpDelete]
+        public async Task<ActionResult> DeleteAll()
+        {
+            try
+            {
+                var query = await _sender.Send(new DeleteAllProxyCommand{});
+                return Ok();
+            }
+            catch
+            {
+                return NoContent();
+            }
+        }
+
         [HttpPost("CheckProxies")]
         public async Task<IActionResult> CheckProxies([FromBody] List<GetProxyDto> proxies)
         {

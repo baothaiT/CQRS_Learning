@@ -10,5 +10,6 @@ namespace CQRS.Domain.Abstractions.Repository
     public interface IProxyRepository<T> : IWriteRepository<T>, IReadRepository<T>
     {
         Task<ProxyEntity> GetProxyByIpAndPortAsync(string Ip, int Port);
+        Task DeleteAllAsync();
     }
 }

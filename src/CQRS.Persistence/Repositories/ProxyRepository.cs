@@ -59,6 +59,18 @@ public class ProxyRepository : IProxyRepository<ProxyEntity>
             await _context.SaveChangesAsync();
         }
     }
+
+
+    public async Task DeleteAllAsync()
+    {
+        var proxy = await _context.ProxyTable.ToListAsync();
+        if (proxy.Any())
+        {
+            _context.ProxyTable.RemoveRange(proxy);
+            await _context.SaveChangesAsync();
+        }
+    }
+
     public async Task<ProxyEntity> GetProxyByIpAndPortAsync(string Ip, int Port)
     {
         return await _context.ProxyTable.FirstOrDefaultAsync(x => x.Ip == Ip && x.Port == Port);
