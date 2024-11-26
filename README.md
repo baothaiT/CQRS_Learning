@@ -6,6 +6,7 @@ dotnet add package Microsoft.EntityFrameworkCore.Sqlite
 dotnet add package Microsoft.EntityFrameworkCore.Design
 dotnet add package Microsoft.EntityFrameworkCore
 
+dotnet add package Newtonsoft.Json
 
 Install-Package Microsoft.EntityFrameworkCore.SqlServer
 Install-Package Microsoft.EntityFrameworkCore.Sqlite
@@ -26,6 +27,24 @@ Update-Database
 dotnet ef migrations add init
 dotnet ef database update 
 dotnet tool uninstall
+
+dotnet sln add (ls -r **/*.csproj)
+
+dotnet add reference ./../CQRS.Infrastructure.OKX/CQRS.Infrastructure.OKX.csproj
+
+dotnet sln add src/CQRS.Infrastructure.OKX/CQRS.Infrastructure.OKX.csproj
+
+## Architecture
+CQRS.API
+CQRS.Worker
+CQRS.Application
+CQRS.Contract
+CQRS.Domain
+CQRS.Infrastructure
+CQRS.Infrastructure.MessageBus
+CQRS.Infrastructure.Mongo
+CQRS.Infrastructure.OKX
+CQRS.Persistence
 
 # Layer Code
 
