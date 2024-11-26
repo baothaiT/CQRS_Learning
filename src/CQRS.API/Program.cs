@@ -28,7 +28,7 @@ builder.Services.AddControllers(options =>
 
 // Register the AppDbContext with SQL Server or SQLite
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("SeverConnectionTest"), b => b.MigrationsAssembly("CQRS.API")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SeverConnection"), b => b.MigrationsAssembly("CQRS.API")));
 
 // Services
 builder.Services.AddScoped<IProxyService, ProxyService>();
@@ -83,7 +83,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-app.UseSwaggerUI();
+    app.UseSwaggerUI(); 
 }
 
 app.UseHttpsRedirection();
