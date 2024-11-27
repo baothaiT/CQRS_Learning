@@ -35,7 +35,6 @@ public class OkxApiClient : IOkxApiClient
     {
         using (HttpClient client = new HttpClient())
         {
-            // string timestamp = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
             string timestamp = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
             string signature = GenerateSignature(timestamp, method, endpoint, body);
             // Add required headers
@@ -43,7 +42,6 @@ public class OkxApiClient : IOkxApiClient
             client.DefaultRequestHeaders.Add("OK-ACCESS-SIGN", signature);
             client.DefaultRequestHeaders.Add("OK-ACCESS-TIMESTAMP", timestamp);
             client.DefaultRequestHeaders.Add("OK-ACCESS-PASSPHRASE", _Passphrase);
-            
             HttpResponseMessage response;
             if (method == "GET")
             {
@@ -70,12 +68,9 @@ public class OkxApiClient : IOkxApiClient
     }
     public async Task<RootModel> GetSpotOrderHistoryAsync(string queryParams)
     {
-        // Combine endpoint and query parameters
         string endpoint = $"/api/v5/trade/orders-history-archive{queryParams}";
         string response = await SendRequestAsync("GET", endpoint);
-        // var jsonResponse = JsonConvert.DeserializeObject(response);
-        RootModel result  = JsonConvert.DeserializeObject<RootModel>(response);
-        return result;
+        return JsonConvert.DeserializeObject<RootModel>(response);
     }
     public Task<string> GenerateQueryParam(string ordType, string instType, string begin = "", string end = "")
     {

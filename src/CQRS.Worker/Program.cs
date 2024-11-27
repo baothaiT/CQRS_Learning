@@ -1,3 +1,5 @@
+using CQRS.Application.Services;
+using CQRS.Application.Services.Interface;
 using CQRS.Domain.Abstractions.WorkerService;
 using CQRS.Infrastructure.OKX.Services;
 using CQRS.Worker;
@@ -12,6 +14,8 @@ builder.Services.AddSingleton<IOkxApiClient, OkxApiClient>();
 
 builder.Services.AddSingleton<IOKXFileService, OKXExcelService>();
 builder.Services.AddSingleton<IOKXExcelSerivce, OKXExcelSerivce>();
+
+builder.Services.AddSingleton<IAppSettingsService, AppSettingsService>();
 
 var host = builder.Build();
 host.Run();

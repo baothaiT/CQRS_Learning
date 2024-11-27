@@ -27,6 +27,26 @@ public class OKXExcelSerivce: IOKXExcelSerivce
             excelData.Where(x => x.Side == TypeSideEnum.SELL && x.Symbol_Prefix == SymbolCoinEnums.DOGE).ToList()
         );
 
-        Console.WriteLine($"Profit = {profit} USDT");
+        var buyExcel = excelData.Where(x => x.Side == TypeSideEnum.BUY && x.Symbol_Prefix == SymbolCoinEnums.DOGE).ToList();
+
+        foreach (var itemBuy in buyExcel)
+        {
+            Console.WriteLine($"Symbol_Prefix {itemBuy.Symbol_Prefix};");
+            Console.WriteLine($"Symbol_Suffix {itemBuy.Symbol_Suffix};");
+            Console.WriteLine($"Order Time {itemBuy.OrderTime};");
+            Console.WriteLine($"Side {itemBuy.Side};");
+            Console.WriteLine($"FillAndOrderPrice_Prefix {itemBuy.FillAndOrderPrice_Prefix};");
+            Console.WriteLine($"FillAndOrderPrice_Suffix {itemBuy.FillAndOrderPrice_Suffix};");
+            Console.WriteLine($"Filled and Total Prefix Value {itemBuy.FilledAndTotal_Prefix_Value};");
+            Console.WriteLine($"Filled and Total Prefix Symbol  {itemBuy.FilledAndTotal_Prefix_Symbol};");
+            Console.WriteLine($"Filled and Total Suffix Value  {itemBuy.FilledAndTotal_Suffix_Value};");
+            Console.WriteLine($"Filled and Total Suffix Symbol   {itemBuy.FilledAndTotal_Suffix_Symbol};");
+            Console.WriteLine($"Filled and Order Value Prefix   {itemBuy.FilledAndOrderValue_Prefix};");
+            Console.WriteLine($"Fee   {itemBuy.Fee};");
+            Console.WriteLine("--------------------------");
+        }
+
+        Console.WriteLine("--------------------------");
+        Console.WriteLine("--------------------------");
     }
 }
