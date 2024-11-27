@@ -28,7 +28,7 @@ builder.Services.AddControllers(options =>
 
 // Register the AppDbContext with SQL Server or SQLite
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("SeverConnection"), b => b.MigrationsAssembly("CQRS.API")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("CQRS.API")));
 
 // Services
 builder.Services.AddScoped<IProxyService, ProxyService>();
@@ -41,6 +41,8 @@ builder.Services.AddScoped<IRepository<BrowserEntity>, BrowserRepository>();
 builder.Services.AddScoped<IAccountRepository<AccountEntity>, AccountsRepository>();
 //builder.Services.AddScoped<IAccountRepository<Account_Browser_DTO>, AccountsRepository>();
 builder.Services.AddScoped<IAccountsInBrowserRepository<AccountsInBrowserEntity>, AccountsInBrowserRepository>();
+
+builder.Services.AddScoped<IHistoryOrderTradingRepository, HistoryOrderTradingRepository>();
 
 
 // Automapper CQRS.Persistence
@@ -59,6 +61,7 @@ builder.Services.AddAutoMapper(typeof(ProxyCommandProfile).Assembly);
 builder.Services.AddAutoMapper(typeof(BrowserCommandProfile).Assembly);
 builder.Services.AddAutoMapper(typeof(AccountCommandProfile).Assembly);
 builder.Services.AddAutoMapper(typeof(AccountsInBrowserCommandProfile).Assembly);
+builder.Services.AddAutoMapper(typeof(HistoryOrderTradingProfile).Assembly);
 
 //// Register Command Handlers
 builder.Services.AddScoped<CreateProductCommandHandler>();

@@ -29,11 +29,7 @@ public class Worker : BackgroundService
             // }
             //await _invokeOKXService.GetOrderHistory();
 
-            //_oKXExcelSerivce.ReadAndWriteNewExcel();
-            string response = _appSettingsService.GetSetting("OKXURL");
-            Console.WriteLine(response);
-            string response1 = _appSettingsService.GetSetting("Logging:LogLevel:Default");
-            Console.WriteLine(response1);
+            _oKXExcelSerivce.ReadAndWriteNewExcel();
             await Task.Delay(2000, stoppingToken);
         }
     }

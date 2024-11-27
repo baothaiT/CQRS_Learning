@@ -1,6 +1,7 @@
 ﻿using CQRS.Domain.Entities;
 using CQRS.Contract.Share.Enum;
 using Microsoft.EntityFrameworkCore;
+using System.Drawing;
 
 namespace CQRS.Persistence;
 
@@ -26,6 +27,7 @@ public class AppDbContext : DbContext
     public DbSet<DevicesEntity> DevicesTable { get; set; }
     public DbSet<ScheduleEntity> ScheduleTable { get; set; }
     public DbSet<PlansInScheduleEntity> PlansInScheduleTable { get; set; }
+    public DbSet<HistoryOrderTradingEntity> HistoryOrderTradingTable { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -191,6 +193,10 @@ public class AppDbContext : DbContext
             .HasOne(a => a.PlansInSchedule_Plan)
             .WithMany(at => at.PlansInSchedule)
             .HasForeignKey(a => a.PlanId);
+
+        // HistoryOrderTradingEntity Configuration
+        modelBuilder.Entity<HistoryOrderTradingEntity>()
+            .HasKey(ap => new { ap.Id });
 
 
         modelBuilder = SeedingData(modelBuilder);
@@ -613,6 +619,71 @@ public class AppDbContext : DbContext
             plansInScheduleDb1,
             plansInScheduleDb2
         );
+        #endregion
+
+        // Seeding HistoryOrderTrading
+        #region
+
+        Guid idHistoryTradingOrder1 = Guid.NewGuid();
+        Guid idHistoryTradingOrder2 = Guid.NewGuid();
+        Guid idHistoryTradingOrder3 = Guid.NewGuid();
+
+        HistoryOrderTradingEntity historyOrderTradingEntity1 = new HistoryOrderTradingEntity()
+        {
+            Id = idHistoryTradingOrder1,
+            Symbol_Prefix = "DOGE",
+            Symbol_Suffix = "USDT",
+            OrderTime = DateTime.Now,
+            Side = "BUY",
+            FillAndOrderPrice_Prefix = "0.381",
+            FillAndOrderPrice_Suffix = "0.381",
+            FilledAndTotal_Prefix_Value = "40",
+            FilledAndTotal_Prefix_Symbol = "DOGE",
+            FilledAndTotal_Suffix_Value = "40",
+            FilledAndTotal_Suffix_Symbol = "DOGE",
+            FilledAndOrderValue_Prefix = "15.25",
+            Fee = 0.08
+        };
+
+        HistoryOrderTradingEntity historyOrderTradingEntity2 = new HistoryOrderTradingEntity()
+        {
+            Id = idHistoryTradingOrder2,
+            Symbol_Prefix = "DOGE",
+            Symbol_Suffix = "USDT",
+            OrderTime = DateTime.Now,
+            Side = "SELL",
+            FillAndOrderPrice_Prefix = "0.381",
+            FillAndOrderPrice_Suffix = "0.381",
+            FilledAndTotal_Prefix_Value = "40",
+            FilledAndTotal_Prefix_Symbol = "DOGE",
+            FilledAndTotal_Suffix_Value = "40",
+            FilledAndTotal_Suffix_Symbol = "DOGE",
+            FilledAndOrderValue_Prefix = "15.25",
+            Fee = 0.08
+        };
+
+        HistoryOrderTradingEntity historyOrderTradingEntity3 = new HistoryOrderTradingEntity()
+        {
+            Id = idHistoryTradingOrder3,
+            Symbol_Prefix = "DOGE",
+            Symbol_Suffix = "USDT",
+            OrderTime = DateTime.Now,
+            Side = "SELL",
+            FillAndOrderPrice_Prefix = "0.381",
+            FillAndOrderPrice_Suffix = "0.381",
+            FilledAndTotal_Prefix_Value = "40",
+            FilledAndTotal_Prefix_Symbol = "DOGE",
+            FilledAndTotal_Suffix_Value = "40",
+            FilledAndTotal_Suffix_Symbol = "DOGE",
+            FilledAndOrderValue_Prefix = "15.25",
+            Fee = 0.08
+        };
+        modelBuilder.Entity<HistoryOrderTradingEntity>().HasData(
+            historyOrderTradingEntity1,
+            historyOrderTradingEntity2,
+            historyOrderTradingEntity3
+        );
+
         #endregion
         return modelBuilder;
     }
