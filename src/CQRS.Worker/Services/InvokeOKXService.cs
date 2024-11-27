@@ -1,5 +1,4 @@
-
-using CQRS.Domain.Abstractions.Repository;
+using CQRS.Domain.Abstractions.WorkerService;
 using CQRS.Worker.Services.Interfaces;
 using Newtonsoft.Json;
 

@@ -1,7 +1,8 @@
 
 using System.Security.Cryptography;
 using System.Text;
-using CQRS.Domain.Abstractions.Repository;
+using CQRS.Domain.Abstractions.WorkerService;
+using CQRS.Domain.Models.OKX;
 using Newtonsoft.Json;
 
 namespace CQRS.Infrastructure.OKX.Services;
@@ -13,7 +14,6 @@ public class OkxApiClient : IOkxApiClient
     private string _SecretKey;
     private string _Passphrase;
     public OkxApiClient(){}
-
     public Task Setup(string apiKey, string secretKey, string passphrase)
     {
         _ApiKey = apiKey;
@@ -21,7 +21,6 @@ public class OkxApiClient : IOkxApiClient
         _Passphrase = passphrase;
         return Task.CompletedTask;
     }
-
     private string GenerateSignature(string timestamp, string method, string requestPath, string body = "")
     {
         string preHash = timestamp + method + requestPath + body;
@@ -32,7 +31,6 @@ public class OkxApiClient : IOkxApiClient
             return Convert.ToBase64String(hashBytes);
         }
     }
-
     private async Task<string> SendRequestAsync(string method, string endpoint, string body = "")
     {
         using (HttpClient client = new HttpClient())
@@ -60,32 +58,26 @@ public class OkxApiClient : IOkxApiClient
             {
                 throw new InvalidOperationException("Unsupported HTTP method");
             }
-
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadAsStringAsync();
         }
     }
-
     public async Task<dynamic> GetAccountBalanceAsync()
     {
         string endpoint = "/api/v5/account/balance";
         string response = await SendRequestAsync("GET", endpoint);
         return JsonConvert.DeserializeObject(response);
     }
-
-    public async Task<dynamic> GetSpotOrderHistoryAsync(string queryParams)
+    public async Task<RootModel> GetSpotOrderHistoryAsync(string queryParams)
     {
         // Combine endpoint and query parameters
         string endpoint = $"/api/v5/trade/orders-history-archive{queryParams}";
         string response = await SendRequestAsync("GET", endpoint);
-        return JsonConvert.DeserializeObject(response);
+        // var jsonResponse = JsonConvert.DeserializeObject(response);
+        RootModel result  = JsonConvert.DeserializeObject<RootModel>(response);
+        return result;
     }
-    public Task<string> GenerateQueryParam(
-        string ordType, 
-        string instType, 
-        string begin = "", 
-        string end = ""
-    )
+    public Task<string> GenerateQueryParam(string ordType, string instType, string begin = "", string end = "")
     {
         string queryParams = $"?ordType={ordType}&instType={instType}";
         if(!string.IsNullOrEmpty(begin))

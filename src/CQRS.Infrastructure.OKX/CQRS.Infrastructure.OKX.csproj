@@ -1,11 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
+  <ItemGroup>
+    <PackageReference Include="EPPlus" Version="7.5.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CQRS.Domain\CQRS.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <PropertyGroup>

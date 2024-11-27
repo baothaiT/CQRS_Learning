@@ -8,6 +8,8 @@ dotnet add package Microsoft.EntityFrameworkCore
 
 dotnet add package Newtonsoft.Json
 
+dotnet add package EPPlus
+
 Install-Package Microsoft.EntityFrameworkCore.SqlServer
 Install-Package Microsoft.EntityFrameworkCore.Sqlite
 Install-Package Microsoft.EntityFrameworkCore.Tools
@@ -31,6 +33,7 @@ dotnet tool uninstall
 dotnet sln add (ls -r **/*.csproj)
 
 dotnet add reference ./../CQRS.Infrastructure.OKX/CQRS.Infrastructure.OKX.csproj
+dotnet add reference ./../CQRS.Domain/CQRS.Domain.csproj
 
 dotnet sln add src/CQRS.Infrastructure.OKX/CQRS.Infrastructure.OKX.csproj
 
