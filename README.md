@@ -38,6 +38,7 @@ dotnet add reference ./../CQRS.Domain/CQRS.Domain.csproj
 dotnet sln add src/CQRS.Infrastructure.OKX/CQRS.Infrastructure.OKX.csproj
 
 ## Architecture
+### API
 CQRS.API
 CQRS.Worker
 CQRS.Application
@@ -46,8 +47,12 @@ CQRS.Domain
 CQRS.Infrastructure
 CQRS.Infrastructure.MessageBus
 CQRS.Infrastructure.Mongo
-CQRS.Infrastructure.OKX
 CQRS.Persistence
+
+### Worker
+MMO.Worker
+MMO.Application
+MMO.Infrastructure.OKX
 
 # Layer Code
 

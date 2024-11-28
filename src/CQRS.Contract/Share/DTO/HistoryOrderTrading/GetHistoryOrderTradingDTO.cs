@@ -1,6 +1,6 @@
 ﻿namespace CQRS.Contract.Share.DTO.HistoryOrderTrading;
 
-public class DeleteHistoryOrderTradingDTO 
+public class GetHistoryOrderTradingDTO : BaseHistoryOrderTradingDTO
 {
     public Guid Id { get; set; }
 }
