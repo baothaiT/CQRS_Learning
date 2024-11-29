@@ -1,4 +1,6 @@
-﻿namespace CQRS.Contract.Share.DTO.HistoryOrderTrading;
+﻿using CQRS.Contract.Share.Enum;
+
+namespace CQRS.Contract.Share.DTO.HistoryOrderTrading;
 
 public class BaseHistoryOrderTradingDTO
 {

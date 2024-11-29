@@ -1,4 +1,5 @@
-﻿using MMO.Application.Abstractions;
+﻿using CQRS.Contract.Models.OKX;
+using MMO.Application.Abstractions;
 using Newtonsoft.Json;
 
 
@@ -33,7 +34,7 @@ public class InvokeOKXService: IInvokeOKXService
         return (startTimestampMillis, endTimestampMillis);
     }
 
-    public async Task GetOrderHistory()
+    public async Task<RootModel> GetOrderHistory()
     {
         var result = GetStartAndEndTimestamp();
         var queryParam = await _okxApiClient.GenerateQueryParam(
@@ -42,7 +43,6 @@ public class InvokeOKXService: IInvokeOKXService
             begin: result.startTimestampMillis.ToString(),
             end: result.endTimestampMillis.ToString()
         );
-        var response = await _okxApiClient.GetSpotOrderHistoryAsync(queryParam);
-        Console.WriteLine(JsonConvert.SerializeObject(response, Newtonsoft.Json.Formatting.Indented));
+        return await _okxApiClient.GetSpotOrderHistoryAsync(queryParam);
     }
 }

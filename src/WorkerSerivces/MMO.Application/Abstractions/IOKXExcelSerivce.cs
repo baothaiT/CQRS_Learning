@@ -1,6 +1,6 @@
 ﻿
 
-namespace MMO.Worker.Services.Interfaces;
+namespace MMO.Application.Abstractions;
 
 public interface IOKXExcelSerivce
 {

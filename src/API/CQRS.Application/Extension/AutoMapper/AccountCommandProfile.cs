@@ -1,11 +1,6 @@
 ﻿using AutoMapper;
 using CQRS.Application.UserCases.V1.Commands.Account;
-using CQRS.Application.UserCases.V1.Queries.Account;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace CQRS.Application.Extension.AutoMapper;
 

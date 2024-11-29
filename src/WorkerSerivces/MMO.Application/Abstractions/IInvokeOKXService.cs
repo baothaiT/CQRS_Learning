@@ -1,6 +1,8 @@
-﻿namespace MMO.Application.Abstractions;
+﻿using CQRS.Contract.Models.OKX;
+
+namespace MMO.Application.Abstractions;
 
 public interface IInvokeOKXService
 {
-    Task GetOrderHistory();
+    Task<RootModel> GetOrderHistory();
 }

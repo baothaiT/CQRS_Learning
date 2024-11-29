@@ -1,25 +1,20 @@
 
 
 using MMO.Application.Abstractions;
-using MMO.Worker.Services.Interfaces;
+using MMO.Worker.Services;
 
 namespace MMO.Worker;
 
 public class Worker : BackgroundService
 {
     private readonly ILogger<Worker> _logger;
-    private readonly IInvokeOKXService _invokeOKXService;
-    private readonly IOKXExcelSerivce _oKXExcelSerivce;
+    private readonly IJobService _jobService;
 
-    public Worker(
-        ILogger<Worker> logger, 
-        IInvokeOKXService invokeOKXService, 
-        IOKXExcelSerivce oKXExcelSerivce
-        )
+
+    public Worker(ILogger<Worker> logger, IJobService jobService)
     {
         _logger = logger;
-        _invokeOKXService = invokeOKXService;
-        _oKXExcelSerivce = oKXExcelSerivce;
+        _jobService = jobService;
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -30,10 +25,10 @@ public class Worker : BackgroundService
             // {
             //     _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
             // }
-            await _invokeOKXService.GetOrderHistory();
 
-            //_oKXExcelSerivce.ReadAndWriteNewExcel();
-            await Task.Delay(2000, stoppingToken);
+            await _jobService.Update_HistoryOrderTrading();
+
+            await Task.Delay(3000, stoppingToken);
         }
     }
 }

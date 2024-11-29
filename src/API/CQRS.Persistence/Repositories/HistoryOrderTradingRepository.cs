@@ -37,7 +37,7 @@ public class HistoryOrderTradingRepository : IHistoryOrderTradingRepository
 
     public async Task<List<HistoryOrderTradingEntity>> GetAllAsync()
     {
-        return await _context.HistoryOrderTradingTable.ToListAsync();
+        return await _context.HistoryOrderTradingTable.OrderByDescending(x => x.OrderTime).ToListAsync();
     }
 
     public async Task<HistoryOrderTradingEntity> GetById(Guid Id)

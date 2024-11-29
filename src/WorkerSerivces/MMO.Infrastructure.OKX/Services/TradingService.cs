@@ -1,9 +1,10 @@
 ﻿
 using CQRS.Contract.Models.OKX;
+using MMO.Application.Abstractions;
 
-namespace MMO.Worker.Services
+namespace MMO.Infrastructure.OKX.Services
 {
-    public class TradingService
+    public class TradingService: ITradingService
     {
         public TradingService()
         {

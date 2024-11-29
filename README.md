@@ -10,6 +10,8 @@ dotnet add package Newtonsoft.Json
 
 dotnet add package EPPlus
 
+dotnet add package Microsoft.Extensions.Http
+
 Install-Package Microsoft.EntityFrameworkCore.SqlServer
 Install-Package Microsoft.EntityFrameworkCore.Sqlite
 Install-Package Microsoft.EntityFrameworkCore.Tools
