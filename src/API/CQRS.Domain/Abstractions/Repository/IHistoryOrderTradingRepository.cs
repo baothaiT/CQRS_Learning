@@ -13,5 +13,5 @@ public interface IHistoryOrderTradingRepository
     public Task Create(HistoryOrderTradingEntity historyOrderTradingEntity);
     public Task<Boolean> ChangeResolve(Guid Id);
     public Task<HistoryOrderTradingEntity> GetById(Guid Id);
-    //public Task GetByParam();
+    Task<List<HistoryOrderTradingEntity>> GetByParam(string? side, DateTime? startDatetime, DateTime? endDatetime, string? symbol_Prefix, string? sysbol_Suffix);
 }

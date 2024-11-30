@@ -32,6 +32,27 @@ namespace CQRS.API.Controllers
             return Ok(historyOrderTrading);
         }
 
+        [HttpGet("/byparam")]
+        public async Task<IActionResult> GetByParamAsync([FromQuery] 
+            string? side, 
+            string? startDateTime, 
+            string? endDateTime,
+            string? symbol_Prefix,
+            string? symbol_Suffix
+            )
+        {
+            GetByParamHistoryOrderTradingQuery getByParamHistoryOrderTradingQuery = new GetByParamHistoryOrderTradingQuery();
+            getByParamHistoryOrderTradingQuery.Side = side;
+            getByParamHistoryOrderTradingQuery.startDatetime = !string.IsNullOrEmpty(startDateTime) ? DateTime.Parse(startDateTime) : null;
+            getByParamHistoryOrderTradingQuery.endDatetime = !string.IsNullOrEmpty(endDateTime) ? DateTime.Parse(endDateTime) : null;
+            getByParamHistoryOrderTradingQuery.Symbol_Prefix = symbol_Prefix;
+            getByParamHistoryOrderTradingQuery.Symbol_Suffix = symbol_Suffix;
+
+
+            var historyOrderTrading = await _sender.Send(getByParamHistoryOrderTradingQuery);
+            return Ok(historyOrderTrading);
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateAsync([FromBody] CreateHistoryOrderTradingDTO createHistoryOrderTradingDTO)
         {
