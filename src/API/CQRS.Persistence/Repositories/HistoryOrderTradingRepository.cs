@@ -1,6 +1,8 @@
-﻿using CQRS.Domain.Abstractions.Repository;
+﻿using CQRS.Contract.Share.Enum;
+using CQRS.Domain.Abstractions.Repository;
 using CQRS.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace CQRS.Persistence.Repositories;
 
@@ -17,7 +19,7 @@ public class HistoryOrderTradingRepository : IHistoryOrderTradingRepository
         var response = await GetById(Id);
         if (response != null)
         {
-            response.IsResovlve = !response.IsResovlve;
+            response.IsResovlve = response.IsResovlve == IsResovlveEnum.Resolved ? IsResovlveEnum.NotYet : IsResovlveEnum.Resolved;
             await _context.SaveChangesAsync();
             return true;
         }
@@ -45,7 +47,8 @@ public class HistoryOrderTradingRepository : IHistoryOrderTradingRepository
         DateTime? startDatetime,
         DateTime? endDatetime,
         string? symbol_Prefix,
-        string? symbol_Suffix // Fixed typo here
+        string? symbol_Suffix,
+        IsResovlveEnum isResolve
     )
     {
         // Start building the query
@@ -70,6 +73,10 @@ public class HistoryOrderTradingRepository : IHistoryOrderTradingRepository
 
         if (!string.IsNullOrEmpty(symbol_Suffix))
             query = query.Where(h => h.Symbol_Suffix == symbol_Suffix);
+
+        if (isResolve != IsResovlveEnum.All)
+            query = query.Where(h => h.IsResovlve == isResolve);
+
 
         // Order and execute the query
         return await query

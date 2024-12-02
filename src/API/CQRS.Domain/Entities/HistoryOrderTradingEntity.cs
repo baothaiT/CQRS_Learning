@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CQRS.Contract.Share.Enum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,8 @@ namespace CQRS.Domain.Entities
         public string FilledAndOrderValue_Prefix { get; set; }
         public double Fee { get; set; }
 
-        public Boolean IsResovlve { get; set; }
+        //public Boolean IsResovlve { get; set; }
+
+        public IsResovlveEnum IsResovlve { get; set; }
     }
 }

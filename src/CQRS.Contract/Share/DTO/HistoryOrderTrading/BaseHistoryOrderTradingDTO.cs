@@ -19,5 +19,6 @@ public class BaseHistoryOrderTradingDTO
     public string FilledAndOrderValue_Prefix { get; set; }
     public double Fee { get; set; }
 
-    public Boolean IsResovlve { get; set; }
+    //public Boolean IsResovlve { get; set; }
+    public IsResovlveEnum IsResovlve { get; set; }
 }

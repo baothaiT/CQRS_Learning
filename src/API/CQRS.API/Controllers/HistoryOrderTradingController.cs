@@ -5,6 +5,7 @@ using CQRS.Application.UserCases.V1.Queries.Account;
 using CQRS.Application.UserCases.V1.Queries.HistoryOrderTrading;
 using CQRS.Contract.Share.DTO;
 using CQRS.Contract.Share.DTO.HistoryOrderTrading;
+using CQRS.Contract.Share.Enum;
 using MediatR;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -38,7 +39,8 @@ namespace CQRS.API.Controllers
             string? startDateTime, 
             string? endDateTime,
             string? symbol_Prefix,
-            string? symbol_Suffix
+            string? symbol_Suffix,
+            IsResovlveEnum IsResovlve
             )
         {
             GetByParamHistoryOrderTradingQuery getByParamHistoryOrderTradingQuery = new GetByParamHistoryOrderTradingQuery();
@@ -47,6 +49,7 @@ namespace CQRS.API.Controllers
             getByParamHistoryOrderTradingQuery.endDatetime = !string.IsNullOrEmpty(endDateTime) ? DateTime.Parse(endDateTime) : null;
             getByParamHistoryOrderTradingQuery.Symbol_Prefix = symbol_Prefix;
             getByParamHistoryOrderTradingQuery.Symbol_Suffix = symbol_Suffix;
+            getByParamHistoryOrderTradingQuery.IsResovlve = IsResovlve;
 
 
             var historyOrderTrading = await _sender.Send(getByParamHistoryOrderTradingQuery);
