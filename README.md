@@ -37,7 +37,7 @@ dotnet sln add (ls -r **/*.csproj)
 dotnet add reference ./../CQRS.Infrastructure.OKX/CQRS.Infrastructure.OKX.csproj
 dotnet add reference ./../CQRS.Domain/CQRS.Domain.csproj
 
-dotnet sln add src/CQRS.Infrastructure.OKX/CQRS.Infrastructure.OKX.csproj
+dotnet sln add src/CQRS.API/CQRS.API.csproj
 
 ## Architecture
 ### API
