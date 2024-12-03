@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CQRS.Application.UserCases.V1.Commands.Account;
+using CQRS.Contract.Share.Enum;
 using CQRS.Domain.Abstractions.Repository;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,7 @@ public class CreateHistoryOrderTradingCommandHandler : IRequestHandler<CreateHis
         HistoryOrderTradingEntity historyOrderTradingEntity = new HistoryOrderTradingEntity();
         _mapper.Map(request, historyOrderTradingEntity);
         historyOrderTradingEntity.Id = Guid.NewGuid();
+        historyOrderTradingEntity.IsResovlve = IsResovlveEnum.NotYet;
         await _historyOrderTradingRepository.Create(historyOrderTradingEntity);
         return historyOrderTradingEntity;
     }

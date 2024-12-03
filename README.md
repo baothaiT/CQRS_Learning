@@ -39,6 +39,10 @@ dotnet add reference ./../CQRS.Domain/CQRS.Domain.csproj
 
 dotnet sln add src/CQRS.API/CQRS.API.csproj
 
+## Docker
+docker build -t cqrs-api .
+docker run -d -p 8082:8080 cqrs-api
+
 ## Architecture
 ### API
 CQRS.API

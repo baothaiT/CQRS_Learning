@@ -40,7 +40,9 @@ namespace CQRS.API.Controllers
             string? endDateTime,
             string? symbol_Prefix,
             string? symbol_Suffix,
-            IsResovlveEnum IsResovlve
+            IsResovlveEnum IsResovlve,
+            HistoryOrderTradingSortEnum sortName
+
             )
         {
             GetByParamHistoryOrderTradingQuery getByParamHistoryOrderTradingQuery = new GetByParamHistoryOrderTradingQuery();
@@ -50,6 +52,7 @@ namespace CQRS.API.Controllers
             getByParamHistoryOrderTradingQuery.Symbol_Prefix = symbol_Prefix;
             getByParamHistoryOrderTradingQuery.Symbol_Suffix = symbol_Suffix;
             getByParamHistoryOrderTradingQuery.IsResovlve = IsResovlve;
+            getByParamHistoryOrderTradingQuery.SortName = sortName;
 
 
             var historyOrderTrading = await _sender.Send(getByParamHistoryOrderTradingQuery);

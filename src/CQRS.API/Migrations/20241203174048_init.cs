@@ -75,8 +75,8 @@ namespace CQRS.API.Migrations
                     Symbol_Suffix = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     OrderTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Side = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FillAndOrderPrice_Prefix = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FillAndOrderPrice_Suffix = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FillAndOrderPrice_Prefix = table.Column<double>(type: "float", nullable: false),
+                    FillAndOrderPrice_Suffix = table.Column<double>(type: "float", nullable: false),
                     FilledAndTotal_Prefix_Value = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FilledAndTotal_Prefix_Symbol = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FilledAndTotal_Suffix_Value = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -387,8 +387,8 @@ namespace CQRS.API.Migrations
                 columns: new[] { "Id", "IsDelete", "IsMigration", "TypeName" },
                 values: new object[,]
                 {
-                    { new Guid("25b46b15-94a9-4a54-8302-f2a4af9a4c13"), false, true, 1 },
-                    { new Guid("3e1ba1dc-4331-4412-b749-92cfb7717e7a"), false, true, 0 }
+                    { new Guid("5030d0f9-d60f-42cd-87a6-fc634aae082f"), false, true, 1 },
+                    { new Guid("8398682b-8626-42bc-9819-baa6096c4083"), false, true, 0 }
                 });
 
             migrationBuilder.InsertData(
@@ -396,8 +396,8 @@ namespace CQRS.API.Migrations
                 columns: new[] { "Id", "CreateDate", "HightScreen", "IsDelete", "IsMigration", "IsStatus", "Name", "Path", "Scale", "UserAgent", "WithScreeen", "XPosition", "YPosition" },
                 values: new object[,]
                 {
-                    { new Guid("376f7d25-23c9-484c-8178-5d24b690edcd"), new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(1814), 600m, false, true, false, "Name2", "Path", 50m, "", 400m, 160m, 50m },
-                    { new Guid("5cf109ee-6071-42ef-ae0f-1972c411ad7a"), new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(1805), 600m, false, true, false, "Name1", "Path", 50m, "", 400m, 160m, 50m }
+                    { new Guid("281b2ace-6db3-4e83-9cee-8456b8157169"), new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8334), 600m, false, true, false, "Name2", "Path", 50m, "", 400m, 160m, 50m },
+                    { new Guid("5a73a12b-cb93-4f51-ab7c-de839e3f43f3"), new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8326), 600m, false, true, false, "Name1", "Path", 50m, "", 400m, 160m, 50m }
                 });
 
             migrationBuilder.InsertData(
@@ -405,8 +405,8 @@ namespace CQRS.API.Migrations
                 columns: new[] { "Id", "CreateDate", "IsDelete", "IsMigration", "IsStatus", "Name" },
                 values: new object[,]
                 {
-                    { new Guid("5facf2fb-1859-4dae-b14e-65d070b4b921"), new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(2073), false, true, 0, "Name1" },
-                    { new Guid("ff64a691-885c-4d27-936c-cb0cae4b32ae"), new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(2074), false, true, 0, "Name1" }
+                    { new Guid("d834ffe6-87fc-4e70-8d5d-1de3cb791f75"), new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8585), false, true, 0, "Name1" },
+                    { new Guid("db35d214-83b9-412a-aa90-3ac156838dd5"), new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8584), false, true, 0, "Name1" }
                 });
 
             migrationBuilder.InsertData(
@@ -414,9 +414,9 @@ namespace CQRS.API.Migrations
                 columns: new[] { "Id", "Fee", "FillAndOrderPrice_Prefix", "FillAndOrderPrice_Suffix", "FilledAndOrderValue_Prefix", "FilledAndTotal_Prefix_Symbol", "FilledAndTotal_Prefix_Value", "FilledAndTotal_Suffix_Symbol", "FilledAndTotal_Suffix_Value", "IsResovlve", "OrderTime", "Side", "Symbol_Prefix", "Symbol_Suffix" },
                 values: new object[,]
                 {
-                    { new Guid("184ead55-0b79-4697-a667-4613409c7607"), 0.080000000000000002, "0.381", "0.381", "15.25", "DOGE", "40", "DOGE", "40", 0, new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(2142), "SELL", "DOGE", "USDT" },
-                    { new Guid("9e0c85f5-4608-44e6-9dbc-3d8ff0a288d2"), 0.080000000000000002, "0.381", "0.381", "15.25", "DOGE", "40", "DOGE", "40", 0, new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(2132), "BUY", "DOGE", "USDT" },
-                    { new Guid("dc551311-3ad2-4ed4-a443-38aba6fd6be7"), 0.080000000000000002, "0.381", "0.381", "15.25", "DOGE", "40", "DOGE", "40", 0, new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(2139), "SELL", "DOGE", "USDT" }
+                    { new Guid("781fec36-3aec-4051-bde3-dd331498a0f7"), 0.080000000000000002, 0.38100000000000001, 0.38100000000000001, "15.25", "DOGE", "40", "DOGE", "40", 0, new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8644), "SELL", "DOGE", "USDT" },
+                    { new Guid("c6b15d2f-559e-4dd0-9374-98565aa99ca9"), 0.080000000000000002, 0.38100000000000001, 0.38100000000000001, "15.25", "DOGE", "40", "DOGE", "40", 0, new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8637), "BUY", "DOGE", "USDT" },
+                    { new Guid("e7b700da-edbf-41dc-a0bd-736944c4e11e"), 0.080000000000000002, 0.38100000000000001, 0.38100000000000001, "15.25", "DOGE", "40", "DOGE", "40", 0, new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8642), "SELL", "DOGE", "USDT" }
                 });
 
             migrationBuilder.InsertData(
@@ -424,8 +424,8 @@ namespace CQRS.API.Migrations
                 columns: new[] { "Id", "CreateDate", "IsDelete", "IsMigration", "Name" },
                 values: new object[,]
                 {
-                    { new Guid("b0d89e34-cdae-4ac3-96c2-2083fbea3dcd"), new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(2001), false, true, "Plan 2" },
-                    { new Guid("e145c218-9d0b-4204-89a6-45e0f3c0d1da"), new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(1999), false, true, "Plan 1" }
+                    { new Guid("765198d3-e070-46d4-bf31-f7479965d6e1"), new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8492), false, true, "Plan 2" },
+                    { new Guid("f118c9fc-d6e3-4a04-9f8b-7de8259a0c8f"), new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8489), false, true, "Plan 1" }
                 });
 
             migrationBuilder.InsertData(
@@ -433,8 +433,8 @@ namespace CQRS.API.Migrations
                 columns: new[] { "Id", "CreateDate", "EndDate", "IsDelete", "IsMigration", "Name", "StartDate" },
                 values: new object[,]
                 {
-                    { new Guid("1bdf7d56-7c5c-4c66-946a-6333e58f380d"), new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(1881), new DateTime(2024, 12, 8, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(1876), false, true, "Project1", new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(1875) },
-                    { new Guid("d631c471-80c5-4785-97fd-402b8bb651a6"), new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(1885), new DateTime(2024, 12, 8, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(1884), false, true, "Project2", new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(1884) }
+                    { new Guid("63eb1dfa-cd70-40b2-8dbc-b077c841e0b9"), new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8393), new DateTime(2024, 12, 9, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8387), false, true, "Project1", new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8386) },
+                    { new Guid("fa9e8849-c5c0-4b33-95df-aebcaaae3e35"), new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8396), new DateTime(2024, 12, 9, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8395), false, true, "Project2", new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8395) }
                 });
 
             migrationBuilder.InsertData(
@@ -442,9 +442,9 @@ namespace CQRS.API.Migrations
                 columns: new[] { "Id", "CheckLiveDate", "CreateDate", "Ip", "IsDelete", "IsMigration", "IsStatus", "Password", "Port", "Type", "UpdateDate", "User" },
                 values: new object[,]
                 {
-                    { new Guid("d69faa9f-a081-457d-9f12-1e69bb2497e1"), null, new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(1426), "192.168.1.6", false, true, 0, "proxyPass1", 8080, 0, null, "proxyUser1" },
-                    { new Guid("d79de5dd-56a1-465a-b123-b39b989c26d3"), null, new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(1443), "192.168.1.8", false, true, 0, "proxyPass2", 8080, 0, null, "proxyUser2" },
-                    { new Guid("fa1322fb-e3fa-41ea-a200-3480ef3c460f"), null, new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(1440), "192.168.1.7", false, true, 0, "proxyPass2", 8080, 0, null, "proxyUser2" }
+                    { new Guid("474b1972-b192-41a8-a429-090633c6bd53"), null, new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(7991), "192.168.1.8", false, true, 0, "proxyPass2", 8080, 0, null, "proxyUser2" },
+                    { new Guid("691bf9d1-7812-4e11-b86a-df52b4e01ef8"), null, new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(7973), "192.168.1.6", false, true, 0, "proxyPass1", 8080, 0, null, "proxyUser1" },
+                    { new Guid("fc176167-9291-447d-8b68-4c5faea2096c"), null, new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(7989), "192.168.1.7", false, true, 0, "proxyPass2", 8080, 0, null, "proxyUser2" }
                 });
 
             migrationBuilder.InsertData(
@@ -452,8 +452,8 @@ namespace CQRS.API.Migrations
                 columns: new[] { "Id", "CreateDate", "DateTimeStart", "IsDelete", "IsMigration", "IsRun", "IsStatus", "Name" },
                 values: new object[,]
                 {
-                    { new Guid("2318f928-098d-4296-a5cb-22f4f4fd49c4"), new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(2049), new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(2049), false, true, 0, 0, "Name1" },
-                    { new Guid("38a9e64c-8d6f-4618-bf91-1539a5dab06a"), new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(2047), new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(2046), false, true, 0, 0, "Name1" }
+                    { new Guid("76fb091b-a281-441e-85d0-2ddfb8bd3cdc"), new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8559), new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8558), false, true, 0, 0, "Name1" },
+                    { new Guid("d73c8cf3-e3da-451b-92d0-3c3f00554984"), new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8562), new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8561), false, true, 0, 0, "Name1" }
                 });
 
             migrationBuilder.InsertData(
@@ -461,8 +461,8 @@ namespace CQRS.API.Migrations
                 columns: new[] { "Id", "CreateDate", "IsDelete", "IsMigration", "Name" },
                 values: new object[,]
                 {
-                    { new Guid("53f89d61-fe23-489c-9348-dfa15219b9c8"), new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(1941), false, true, "Script 2" },
-                    { new Guid("f33917d8-ed83-4fdb-b67c-0652b33c4692"), new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(1940), false, true, "Script 1" }
+                    { new Guid("321f0b02-5829-4cb9-a0ac-e8a9cb8b0414"), new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8443), false, true, "Script 1" },
+                    { new Guid("3a81f0ad-1a55-466d-bef9-a6e1df44ac5c"), new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8444), false, true, "Script 2" }
                 });
 
             migrationBuilder.InsertData(
@@ -470,8 +470,8 @@ namespace CQRS.API.Migrations
                 columns: new[] { "PlanId", "ScriptId", "IsDelete", "IsMigration", "ScriptsInPlan_PlanId", "ScriptsInPlan_ScriptId" },
                 values: new object[,]
                 {
-                    { new Guid("b0d89e34-cdae-4ac3-96c2-2083fbea3dcd"), new Guid("53f89d61-fe23-489c-9348-dfa15219b9c8"), false, true, null, null },
-                    { new Guid("e145c218-9d0b-4204-89a6-45e0f3c0d1da"), new Guid("f33917d8-ed83-4fdb-b67c-0652b33c4692"), false, true, null, null }
+                    { new Guid("765198d3-e070-46d4-bf31-f7479965d6e1"), new Guid("3a81f0ad-1a55-466d-bef9-a6e1df44ac5c"), false, true, null, null },
+                    { new Guid("f118c9fc-d6e3-4a04-9f8b-7de8259a0c8f"), new Guid("321f0b02-5829-4cb9-a0ac-e8a9cb8b0414"), false, true, null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -479,9 +479,9 @@ namespace CQRS.API.Migrations
                 columns: new[] { "Id", "CreateDate", "Email", "IsDelete", "IsMigration", "IsStatus", "Password", "Proxy", "UserName", "UserType" },
                 values: new object[,]
                 {
-                    { new Guid("497ed262-5451-4157-a72b-cd04ac0d0c09"), new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(1729), "User@example.com", false, true, true, "UserPass", new Guid("d69faa9f-a081-457d-9f12-1e69bb2497e1"), "User1", new Guid("3e1ba1dc-4331-4412-b749-92cfb7717e7a") },
-                    { new Guid("d13c4377-31fb-4c77-aafd-2e197dcd0ab0"), new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(1733), "User@example.com", false, true, true, "UserPass", new Guid("d69faa9f-a081-457d-9f12-1e69bb2497e1"), "User2", new Guid("25b46b15-94a9-4a54-8302-f2a4af9a4c13") },
-                    { new Guid("f5582f31-a28e-4b17-9dd5-f4edbb69451d"), new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(1735), "User@example.com", false, true, true, "UserPass", null, "User3", new Guid("25b46b15-94a9-4a54-8302-f2a4af9a4c13") }
+                    { new Guid("06f297da-2abc-4c0b-a84b-186ba6df3674"), new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8266), "User@example.com", false, true, true, "UserPass", new Guid("691bf9d1-7812-4e11-b86a-df52b4e01ef8"), "User1", new Guid("8398682b-8626-42bc-9819-baa6096c4083") },
+                    { new Guid("7712d7bd-96ff-465d-bb19-25a7bd824b1d"), new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8271), "User@example.com", false, true, true, "UserPass", null, "User3", new Guid("5030d0f9-d60f-42cd-87a6-fc634aae082f") },
+                    { new Guid("e32b0529-3ef6-47bd-838f-c9e81e578342"), new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8269), "User@example.com", false, true, true, "UserPass", new Guid("691bf9d1-7812-4e11-b86a-df52b4e01ef8"), "User2", new Guid("5030d0f9-d60f-42cd-87a6-fc634aae082f") }
                 });
 
             migrationBuilder.InsertData(
@@ -489,8 +489,8 @@ namespace CQRS.API.Migrations
                 columns: new[] { "DeviceId", "PlanId", "ScheduleId", "IsDelete", "IsMigration" },
                 values: new object[,]
                 {
-                    { new Guid("ff64a691-885c-4d27-936c-cb0cae4b32ae"), new Guid("b0d89e34-cdae-4ac3-96c2-2083fbea3dcd"), new Guid("2318f928-098d-4296-a5cb-22f4f4fd49c4"), false, true },
-                    { new Guid("5facf2fb-1859-4dae-b14e-65d070b4b921"), new Guid("e145c218-9d0b-4204-89a6-45e0f3c0d1da"), new Guid("38a9e64c-8d6f-4618-bf91-1539a5dab06a"), false, true }
+                    { new Guid("db35d214-83b9-412a-aa90-3ac156838dd5"), new Guid("f118c9fc-d6e3-4a04-9f8b-7de8259a0c8f"), new Guid("76fb091b-a281-441e-85d0-2ddfb8bd3cdc"), false, true },
+                    { new Guid("d834ffe6-87fc-4e70-8d5d-1de3cb791f75"), new Guid("765198d3-e070-46d4-bf31-f7479965d6e1"), new Guid("d73c8cf3-e3da-451b-92d0-3c3f00554984"), false, true }
                 });
 
             migrationBuilder.InsertData(
@@ -498,8 +498,8 @@ namespace CQRS.API.Migrations
                 columns: new[] { "ProjectId", "ScriptId", "IsDelete", "IsMigration" },
                 values: new object[,]
                 {
-                    { new Guid("1bdf7d56-7c5c-4c66-946a-6333e58f380d"), new Guid("f33917d8-ed83-4fdb-b67c-0652b33c4692"), false, true },
-                    { new Guid("d631c471-80c5-4785-97fd-402b8bb651a6"), new Guid("53f89d61-fe23-489c-9348-dfa15219b9c8"), false, true }
+                    { new Guid("63eb1dfa-cd70-40b2-8dbc-b077c841e0b9"), new Guid("321f0b02-5829-4cb9-a0ac-e8a9cb8b0414"), false, true },
+                    { new Guid("fa9e8849-c5c0-4b33-95df-aebcaaae3e35"), new Guid("3a81f0ad-1a55-466d-bef9-a6e1df44ac5c"), false, true }
                 });
 
             migrationBuilder.InsertData(
@@ -507,8 +507,8 @@ namespace CQRS.API.Migrations
                 columns: new[] { "AccountId", "BrowserId", "IsDelete", "IsMigration" },
                 values: new object[,]
                 {
-                    { new Guid("497ed262-5451-4157-a72b-cd04ac0d0c09"), new Guid("5cf109ee-6071-42ef-ae0f-1972c411ad7a"), false, true },
-                    { new Guid("d13c4377-31fb-4c77-aafd-2e197dcd0ab0"), new Guid("376f7d25-23c9-484c-8178-5d24b690edcd"), false, true }
+                    { new Guid("06f297da-2abc-4c0b-a84b-186ba6df3674"), new Guid("5a73a12b-cb93-4f51-ab7c-de839e3f43f3"), false, true },
+                    { new Guid("e32b0529-3ef6-47bd-838f-c9e81e578342"), new Guid("281b2ace-6db3-4e83-9cee-8456b8157169"), false, true }
                 });
 
             migrationBuilder.InsertData(
@@ -516,8 +516,8 @@ namespace CQRS.API.Migrations
                 columns: new[] { "AccountId", "ProjectId", "IsDelete", "IsMigration" },
                 values: new object[,]
                 {
-                    { new Guid("497ed262-5451-4157-a72b-cd04ac0d0c09"), new Guid("1bdf7d56-7c5c-4c66-946a-6333e58f380d"), false, true },
-                    { new Guid("d13c4377-31fb-4c77-aafd-2e197dcd0ab0"), new Guid("d631c471-80c5-4785-97fd-402b8bb651a6"), false, true }
+                    { new Guid("06f297da-2abc-4c0b-a84b-186ba6df3674"), new Guid("63eb1dfa-cd70-40b2-8dbc-b077c841e0b9"), false, true },
+                    { new Guid("e32b0529-3ef6-47bd-838f-c9e81e578342"), new Guid("fa9e8849-c5c0-4b33-95df-aebcaaae3e35"), false, true }
                 });
 
             migrationBuilder.InsertData(
@@ -525,8 +525,8 @@ namespace CQRS.API.Migrations
                 columns: new[] { "Id", "Code", "CreateDate", "IsDelete", "IsMigration", "Message", "User" },
                 values: new object[,]
                 {
-                    { new Guid("08a2c973-eb8c-40fa-b7ec-6cf5e05a16f6"), 200, new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(1766), false, true, "Message", new Guid("497ed262-5451-4157-a72b-cd04ac0d0c09") },
-                    { new Guid("47ea70b3-74aa-437b-893f-b5162e9ba710"), 200, new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(1768), false, true, "Message", new Guid("d13c4377-31fb-4c77-aafd-2e197dcd0ab0") }
+                    { new Guid("483266e9-35cc-413c-b66d-21e33b23a576"), 200, new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8300), false, true, "Message", new Guid("e32b0529-3ef6-47bd-838f-c9e81e578342") },
+                    { new Guid("c056ada4-6602-4f4c-9b69-12a64a1bd211"), 200, new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8297), false, true, "Message", new Guid("06f297da-2abc-4c0b-a84b-186ba6df3674") }
                 });
 
             migrationBuilder.CreateIndex(

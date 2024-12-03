@@ -15,4 +15,5 @@ public class GetByParamHistoryOrderTradingDTO
     public string? Symbol_Prefix { get; set; } = string.Empty;
     public string? Symbol_Suffix { get; set; } = string.Empty;
     public IsResovlveEnum IsResovlve { get; set; }
+    public HistoryOrderTradingSortEnum SortName { get; set; }
 }

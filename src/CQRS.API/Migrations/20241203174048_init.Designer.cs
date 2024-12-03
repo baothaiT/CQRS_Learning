@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CQRS.API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241203123617_init")]
+    [Migration("20241203174048_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -72,41 +72,41 @@ namespace CQRS.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("497ed262-5451-4157-a72b-cd04ac0d0c09"),
-                            CreateDate = new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(1729),
+                            Id = new Guid("06f297da-2abc-4c0b-a84b-186ba6df3674"),
+                            CreateDate = new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8266),
                             Email = "User@example.com",
                             IsDelete = false,
                             IsMigration = true,
                             IsStatus = true,
                             Password = "UserPass",
-                            Proxy = new Guid("d69faa9f-a081-457d-9f12-1e69bb2497e1"),
+                            Proxy = new Guid("691bf9d1-7812-4e11-b86a-df52b4e01ef8"),
                             UserName = "User1",
-                            UserType = new Guid("3e1ba1dc-4331-4412-b749-92cfb7717e7a")
+                            UserType = new Guid("8398682b-8626-42bc-9819-baa6096c4083")
                         },
                         new
                         {
-                            Id = new Guid("d13c4377-31fb-4c77-aafd-2e197dcd0ab0"),
-                            CreateDate = new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(1733),
+                            Id = new Guid("e32b0529-3ef6-47bd-838f-c9e81e578342"),
+                            CreateDate = new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8269),
                             Email = "User@example.com",
                             IsDelete = false,
                             IsMigration = true,
                             IsStatus = true,
                             Password = "UserPass",
-                            Proxy = new Guid("d69faa9f-a081-457d-9f12-1e69bb2497e1"),
+                            Proxy = new Guid("691bf9d1-7812-4e11-b86a-df52b4e01ef8"),
                             UserName = "User2",
-                            UserType = new Guid("25b46b15-94a9-4a54-8302-f2a4af9a4c13")
+                            UserType = new Guid("5030d0f9-d60f-42cd-87a6-fc634aae082f")
                         },
                         new
                         {
-                            Id = new Guid("f5582f31-a28e-4b17-9dd5-f4edbb69451d"),
-                            CreateDate = new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(1735),
+                            Id = new Guid("7712d7bd-96ff-465d-bb19-25a7bd824b1d"),
+                            CreateDate = new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8271),
                             Email = "User@example.com",
                             IsDelete = false,
                             IsMigration = true,
                             IsStatus = true,
                             Password = "UserPass",
                             UserName = "User3",
-                            UserType = new Guid("25b46b15-94a9-4a54-8302-f2a4af9a4c13")
+                            UserType = new Guid("5030d0f9-d60f-42cd-87a6-fc634aae082f")
                         });
                 });
 
@@ -132,14 +132,14 @@ namespace CQRS.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("3e1ba1dc-4331-4412-b749-92cfb7717e7a"),
+                            Id = new Guid("8398682b-8626-42bc-9819-baa6096c4083"),
                             IsDelete = false,
                             IsMigration = true,
                             TypeName = 0
                         },
                         new
                         {
-                            Id = new Guid("25b46b15-94a9-4a54-8302-f2a4af9a4c13"),
+                            Id = new Guid("5030d0f9-d60f-42cd-87a6-fc634aae082f"),
                             IsDelete = false,
                             IsMigration = true,
                             TypeName = 1
@@ -169,15 +169,15 @@ namespace CQRS.API.Migrations
                     b.HasData(
                         new
                         {
-                            AccountId = new Guid("497ed262-5451-4157-a72b-cd04ac0d0c09"),
-                            BrowserId = new Guid("5cf109ee-6071-42ef-ae0f-1972c411ad7a"),
+                            AccountId = new Guid("06f297da-2abc-4c0b-a84b-186ba6df3674"),
+                            BrowserId = new Guid("5a73a12b-cb93-4f51-ab7c-de839e3f43f3"),
                             IsDelete = false,
                             IsMigration = true
                         },
                         new
                         {
-                            AccountId = new Guid("d13c4377-31fb-4c77-aafd-2e197dcd0ab0"),
-                            BrowserId = new Guid("376f7d25-23c9-484c-8178-5d24b690edcd"),
+                            AccountId = new Guid("e32b0529-3ef6-47bd-838f-c9e81e578342"),
+                            BrowserId = new Guid("281b2ace-6db3-4e83-9cee-8456b8157169"),
                             IsDelete = false,
                             IsMigration = true
                         });
@@ -206,15 +206,15 @@ namespace CQRS.API.Migrations
                     b.HasData(
                         new
                         {
-                            AccountId = new Guid("497ed262-5451-4157-a72b-cd04ac0d0c09"),
-                            ProjectId = new Guid("1bdf7d56-7c5c-4c66-946a-6333e58f380d"),
+                            AccountId = new Guid("06f297da-2abc-4c0b-a84b-186ba6df3674"),
+                            ProjectId = new Guid("63eb1dfa-cd70-40b2-8dbc-b077c841e0b9"),
                             IsDelete = false,
                             IsMigration = true
                         },
                         new
                         {
-                            AccountId = new Guid("d13c4377-31fb-4c77-aafd-2e197dcd0ab0"),
-                            ProjectId = new Guid("d631c471-80c5-4785-97fd-402b8bb651a6"),
+                            AccountId = new Guid("e32b0529-3ef6-47bd-838f-c9e81e578342"),
+                            ProjectId = new Guid("fa9e8849-c5c0-4b33-95df-aebcaaae3e35"),
                             IsDelete = false,
                             IsMigration = true
                         });
@@ -276,8 +276,8 @@ namespace CQRS.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("5cf109ee-6071-42ef-ae0f-1972c411ad7a"),
-                            CreateDate = new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(1805),
+                            Id = new Guid("5a73a12b-cb93-4f51-ab7c-de839e3f43f3"),
+                            CreateDate = new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8326),
                             HightScreen = 600m,
                             IsDelete = false,
                             IsMigration = true,
@@ -292,8 +292,8 @@ namespace CQRS.API.Migrations
                         },
                         new
                         {
-                            Id = new Guid("376f7d25-23c9-484c-8178-5d24b690edcd"),
-                            CreateDate = new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(1814),
+                            Id = new Guid("281b2ace-6db3-4e83-9cee-8456b8157169"),
+                            CreateDate = new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8334),
                             HightScreen = 600m,
                             IsDelete = false,
                             IsMigration = true,
@@ -337,8 +337,8 @@ namespace CQRS.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("5facf2fb-1859-4dae-b14e-65d070b4b921"),
-                            CreateDate = new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(2073),
+                            Id = new Guid("db35d214-83b9-412a-aa90-3ac156838dd5"),
+                            CreateDate = new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8584),
                             IsDelete = false,
                             IsMigration = true,
                             IsStatus = 0,
@@ -346,8 +346,8 @@ namespace CQRS.API.Migrations
                         },
                         new
                         {
-                            Id = new Guid("ff64a691-885c-4d27-936c-cb0cae4b32ae"),
-                            CreateDate = new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(2074),
+                            Id = new Guid("d834ffe6-87fc-4e70-8d5d-1de3cb791f75"),
+                            CreateDate = new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8585),
                             IsDelete = false,
                             IsMigration = true,
                             IsStatus = 0,
@@ -364,13 +364,11 @@ namespace CQRS.API.Migrations
                     b.Property<double>("Fee")
                         .HasColumnType("float");
 
-                    b.Property<string>("FillAndOrderPrice_Prefix")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("FillAndOrderPrice_Prefix")
+                        .HasColumnType("float");
 
-                    b.Property<string>("FillAndOrderPrice_Suffix")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("FillAndOrderPrice_Suffix")
+                        .HasColumnType("float");
 
                     b.Property<string>("FilledAndOrderValue_Prefix")
                         .IsRequired()
@@ -417,51 +415,51 @@ namespace CQRS.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("9e0c85f5-4608-44e6-9dbc-3d8ff0a288d2"),
+                            Id = new Guid("c6b15d2f-559e-4dd0-9374-98565aa99ca9"),
                             Fee = 0.080000000000000002,
-                            FillAndOrderPrice_Prefix = "0.381",
-                            FillAndOrderPrice_Suffix = "0.381",
+                            FillAndOrderPrice_Prefix = 0.38100000000000001,
+                            FillAndOrderPrice_Suffix = 0.38100000000000001,
                             FilledAndOrderValue_Prefix = "15.25",
                             FilledAndTotal_Prefix_Symbol = "DOGE",
                             FilledAndTotal_Prefix_Value = "40",
                             FilledAndTotal_Suffix_Symbol = "DOGE",
                             FilledAndTotal_Suffix_Value = "40",
                             IsResovlve = 0,
-                            OrderTime = new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(2132),
+                            OrderTime = new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8637),
                             Side = "BUY",
                             Symbol_Prefix = "DOGE",
                             Symbol_Suffix = "USDT"
                         },
                         new
                         {
-                            Id = new Guid("dc551311-3ad2-4ed4-a443-38aba6fd6be7"),
+                            Id = new Guid("e7b700da-edbf-41dc-a0bd-736944c4e11e"),
                             Fee = 0.080000000000000002,
-                            FillAndOrderPrice_Prefix = "0.381",
-                            FillAndOrderPrice_Suffix = "0.381",
+                            FillAndOrderPrice_Prefix = 0.38100000000000001,
+                            FillAndOrderPrice_Suffix = 0.38100000000000001,
                             FilledAndOrderValue_Prefix = "15.25",
                             FilledAndTotal_Prefix_Symbol = "DOGE",
                             FilledAndTotal_Prefix_Value = "40",
                             FilledAndTotal_Suffix_Symbol = "DOGE",
                             FilledAndTotal_Suffix_Value = "40",
                             IsResovlve = 0,
-                            OrderTime = new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(2139),
+                            OrderTime = new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8642),
                             Side = "SELL",
                             Symbol_Prefix = "DOGE",
                             Symbol_Suffix = "USDT"
                         },
                         new
                         {
-                            Id = new Guid("184ead55-0b79-4697-a667-4613409c7607"),
+                            Id = new Guid("781fec36-3aec-4051-bde3-dd331498a0f7"),
                             Fee = 0.080000000000000002,
-                            FillAndOrderPrice_Prefix = "0.381",
-                            FillAndOrderPrice_Suffix = "0.381",
+                            FillAndOrderPrice_Prefix = 0.38100000000000001,
+                            FillAndOrderPrice_Suffix = 0.38100000000000001,
                             FilledAndOrderValue_Prefix = "15.25",
                             FilledAndTotal_Prefix_Symbol = "DOGE",
                             FilledAndTotal_Prefix_Value = "40",
                             FilledAndTotal_Suffix_Symbol = "DOGE",
                             FilledAndTotal_Suffix_Value = "40",
                             IsResovlve = 0,
-                            OrderTime = new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(2142),
+                            OrderTime = new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8644),
                             Side = "SELL",
                             Symbol_Prefix = "DOGE",
                             Symbol_Suffix = "USDT"
@@ -502,23 +500,23 @@ namespace CQRS.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("08a2c973-eb8c-40fa-b7ec-6cf5e05a16f6"),
+                            Id = new Guid("c056ada4-6602-4f4c-9b69-12a64a1bd211"),
                             Code = 200,
-                            CreateDate = new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(1766),
+                            CreateDate = new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8297),
                             IsDelete = false,
                             IsMigration = true,
                             Message = "Message",
-                            User = new Guid("497ed262-5451-4157-a72b-cd04ac0d0c09")
+                            User = new Guid("06f297da-2abc-4c0b-a84b-186ba6df3674")
                         },
                         new
                         {
-                            Id = new Guid("47ea70b3-74aa-437b-893f-b5162e9ba710"),
+                            Id = new Guid("483266e9-35cc-413c-b66d-21e33b23a576"),
                             Code = 200,
-                            CreateDate = new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(1768),
+                            CreateDate = new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8300),
                             IsDelete = false,
                             IsMigration = true,
                             Message = "Message",
-                            User = new Guid("d13c4377-31fb-4c77-aafd-2e197dcd0ab0")
+                            User = new Guid("e32b0529-3ef6-47bd-838f-c9e81e578342")
                         });
                 });
 
@@ -548,16 +546,16 @@ namespace CQRS.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("e145c218-9d0b-4204-89a6-45e0f3c0d1da"),
-                            CreateDate = new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(1999),
+                            Id = new Guid("f118c9fc-d6e3-4a04-9f8b-7de8259a0c8f"),
+                            CreateDate = new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8489),
                             IsDelete = false,
                             IsMigration = true,
                             Name = "Plan 1"
                         },
                         new
                         {
-                            Id = new Guid("b0d89e34-cdae-4ac3-96c2-2083fbea3dcd"),
-                            CreateDate = new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(2001),
+                            Id = new Guid("765198d3-e070-46d4-bf31-f7479965d6e1"),
+                            CreateDate = new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8492),
                             IsDelete = false,
                             IsMigration = true,
                             Name = "Plan 2"
@@ -592,17 +590,17 @@ namespace CQRS.API.Migrations
                     b.HasData(
                         new
                         {
-                            ScheduleId = new Guid("38a9e64c-8d6f-4618-bf91-1539a5dab06a"),
-                            DeviceId = new Guid("5facf2fb-1859-4dae-b14e-65d070b4b921"),
-                            PlanId = new Guid("e145c218-9d0b-4204-89a6-45e0f3c0d1da"),
+                            ScheduleId = new Guid("76fb091b-a281-441e-85d0-2ddfb8bd3cdc"),
+                            DeviceId = new Guid("db35d214-83b9-412a-aa90-3ac156838dd5"),
+                            PlanId = new Guid("f118c9fc-d6e3-4a04-9f8b-7de8259a0c8f"),
                             IsDelete = false,
                             IsMigration = true
                         },
                         new
                         {
-                            ScheduleId = new Guid("2318f928-098d-4296-a5cb-22f4f4fd49c4"),
-                            DeviceId = new Guid("ff64a691-885c-4d27-936c-cb0cae4b32ae"),
-                            PlanId = new Guid("b0d89e34-cdae-4ac3-96c2-2083fbea3dcd"),
+                            ScheduleId = new Guid("d73c8cf3-e3da-451b-92d0-3c3f00554984"),
+                            DeviceId = new Guid("d834ffe6-87fc-4e70-8d5d-1de3cb791f75"),
+                            PlanId = new Guid("765198d3-e070-46d4-bf31-f7479965d6e1"),
                             IsDelete = false,
                             IsMigration = true
                         });
@@ -662,23 +660,23 @@ namespace CQRS.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("1bdf7d56-7c5c-4c66-946a-6333e58f380d"),
-                            CreateDate = new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(1881),
-                            EndDate = new DateTime(2024, 12, 8, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(1876),
+                            Id = new Guid("63eb1dfa-cd70-40b2-8dbc-b077c841e0b9"),
+                            CreateDate = new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8393),
+                            EndDate = new DateTime(2024, 12, 9, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8387),
                             IsDelete = false,
                             IsMigration = true,
                             Name = "Project1",
-                            StartDate = new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(1875)
+                            StartDate = new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8386)
                         },
                         new
                         {
-                            Id = new Guid("d631c471-80c5-4785-97fd-402b8bb651a6"),
-                            CreateDate = new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(1885),
-                            EndDate = new DateTime(2024, 12, 8, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(1884),
+                            Id = new Guid("fa9e8849-c5c0-4b33-95df-aebcaaae3e35"),
+                            CreateDate = new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8396),
+                            EndDate = new DateTime(2024, 12, 9, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8395),
                             IsDelete = false,
                             IsMigration = true,
                             Name = "Project2",
-                            StartDate = new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(1884)
+                            StartDate = new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8395)
                         });
                 });
 
@@ -731,8 +729,8 @@ namespace CQRS.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("d69faa9f-a081-457d-9f12-1e69bb2497e1"),
-                            CreateDate = new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(1426),
+                            Id = new Guid("691bf9d1-7812-4e11-b86a-df52b4e01ef8"),
+                            CreateDate = new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(7973),
                             Ip = "192.168.1.6",
                             IsDelete = false,
                             IsMigration = true,
@@ -744,8 +742,8 @@ namespace CQRS.API.Migrations
                         },
                         new
                         {
-                            Id = new Guid("fa1322fb-e3fa-41ea-a200-3480ef3c460f"),
-                            CreateDate = new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(1440),
+                            Id = new Guid("fc176167-9291-447d-8b68-4c5faea2096c"),
+                            CreateDate = new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(7989),
                             Ip = "192.168.1.7",
                             IsDelete = false,
                             IsMigration = true,
@@ -757,8 +755,8 @@ namespace CQRS.API.Migrations
                         },
                         new
                         {
-                            Id = new Guid("d79de5dd-56a1-465a-b123-b39b989c26d3"),
-                            CreateDate = new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(1443),
+                            Id = new Guid("474b1972-b192-41a8-a429-090633c6bd53"),
+                            CreateDate = new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(7991),
                             Ip = "192.168.1.8",
                             IsDelete = false,
                             IsMigration = true,
@@ -805,9 +803,9 @@ namespace CQRS.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("38a9e64c-8d6f-4618-bf91-1539a5dab06a"),
-                            CreateDate = new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(2047),
-                            DateTimeStart = new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(2046),
+                            Id = new Guid("76fb091b-a281-441e-85d0-2ddfb8bd3cdc"),
+                            CreateDate = new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8559),
+                            DateTimeStart = new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8558),
                             IsDelete = false,
                             IsMigration = true,
                             IsRun = 0,
@@ -816,9 +814,9 @@ namespace CQRS.API.Migrations
                         },
                         new
                         {
-                            Id = new Guid("2318f928-098d-4296-a5cb-22f4f4fd49c4"),
-                            CreateDate = new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(2049),
-                            DateTimeStart = new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(2049),
+                            Id = new Guid("d73c8cf3-e3da-451b-92d0-3c3f00554984"),
+                            CreateDate = new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8562),
+                            DateTimeStart = new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8561),
                             IsDelete = false,
                             IsMigration = true,
                             IsRun = 0,
@@ -853,16 +851,16 @@ namespace CQRS.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("f33917d8-ed83-4fdb-b67c-0652b33c4692"),
-                            CreateDate = new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(1940),
+                            Id = new Guid("321f0b02-5829-4cb9-a0ac-e8a9cb8b0414"),
+                            CreateDate = new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8443),
                             IsDelete = false,
                             IsMigration = true,
                             Name = "Script 1"
                         },
                         new
                         {
-                            Id = new Guid("53f89d61-fe23-489c-9348-dfa15219b9c8"),
-                            CreateDate = new DateTime(2024, 12, 3, 19, 36, 16, 414, DateTimeKind.Local).AddTicks(1941),
+                            Id = new Guid("3a81f0ad-1a55-466d-bef9-a6e1df44ac5c"),
+                            CreateDate = new DateTime(2024, 12, 4, 0, 40, 45, 488, DateTimeKind.Local).AddTicks(8444),
                             IsDelete = false,
                             IsMigration = true,
                             Name = "Script 2"
@@ -900,15 +898,15 @@ namespace CQRS.API.Migrations
                     b.HasData(
                         new
                         {
-                            PlanId = new Guid("e145c218-9d0b-4204-89a6-45e0f3c0d1da"),
-                            ScriptId = new Guid("f33917d8-ed83-4fdb-b67c-0652b33c4692"),
+                            PlanId = new Guid("f118c9fc-d6e3-4a04-9f8b-7de8259a0c8f"),
+                            ScriptId = new Guid("321f0b02-5829-4cb9-a0ac-e8a9cb8b0414"),
                             IsDelete = false,
                             IsMigration = true
                         },
                         new
                         {
-                            PlanId = new Guid("b0d89e34-cdae-4ac3-96c2-2083fbea3dcd"),
-                            ScriptId = new Guid("53f89d61-fe23-489c-9348-dfa15219b9c8"),
+                            PlanId = new Guid("765198d3-e070-46d4-bf31-f7479965d6e1"),
+                            ScriptId = new Guid("3a81f0ad-1a55-466d-bef9-a6e1df44ac5c"),
                             IsDelete = false,
                             IsMigration = true
                         });
@@ -937,15 +935,15 @@ namespace CQRS.API.Migrations
                     b.HasData(
                         new
                         {
-                            ProjectId = new Guid("1bdf7d56-7c5c-4c66-946a-6333e58f380d"),
-                            ScriptId = new Guid("f33917d8-ed83-4fdb-b67c-0652b33c4692"),
+                            ProjectId = new Guid("63eb1dfa-cd70-40b2-8dbc-b077c841e0b9"),
+                            ScriptId = new Guid("321f0b02-5829-4cb9-a0ac-e8a9cb8b0414"),
                             IsDelete = false,
                             IsMigration = true
                         },
                         new
                         {
-                            ProjectId = new Guid("d631c471-80c5-4785-97fd-402b8bb651a6"),
-                            ScriptId = new Guid("53f89d61-fe23-489c-9348-dfa15219b9c8"),
+                            ProjectId = new Guid("fa9e8849-c5c0-4b33-95df-aebcaaae3e35"),
+                            ScriptId = new Guid("3a81f0ad-1a55-466d-bef9-a6e1df44ac5c"),
                             IsDelete = false,
                             IsMigration = true
                         });

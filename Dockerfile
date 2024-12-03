@@ -3,7 +3,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
 
 # Copy the solution file
-COPY ./src/API/*.sln ./
+COPY ./src/*.sln ./
 
 # Maintain folder structure and copy all projects
 COPY ./src/CQRS.API/ ./CQRS.API/

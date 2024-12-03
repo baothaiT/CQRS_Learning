@@ -3,6 +3,8 @@ using CQRS.Domain.Abstractions.Repository;
 using CQRS.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using OfficeOpenXml.Drawing.Slicer.Style;
+using System.Diagnostics;
 
 namespace CQRS.Persistence.Repositories;
 
@@ -48,7 +50,8 @@ public class HistoryOrderTradingRepository : IHistoryOrderTradingRepository
         DateTime? endDatetime,
         string? symbol_Prefix,
         string? symbol_Suffix,
-        IsResovlveEnum isResolve
+        IsResovlveEnum isResolve,
+        HistoryOrderTradingSortEnum sortName
     )
     {
         // Start building the query
@@ -77,10 +80,25 @@ public class HistoryOrderTradingRepository : IHistoryOrderTradingRepository
         if (isResolve != IsResovlveEnum.All)
             query = query.Where(h => h.IsResovlve == isResolve);
 
+        query = GenOrderBy(query, sortName);
 
-        // Order and execute the query
-        return await query
-            .OrderByDescending(h => h.OrderTime)
-            .ToListAsync();
+        return await query.ToListAsync();
+    }
+
+    private IQueryable<HistoryOrderTradingEntity> GenOrderBy(IQueryable<HistoryOrderTradingEntity> query, HistoryOrderTradingSortEnum sortName)
+    {
+        switch (sortName)
+        {
+            case HistoryOrderTradingSortEnum.OrderPrice_Desc:
+                query = query.OrderByDescending(h => h.FillAndOrderPrice_Suffix);
+                break;
+            case HistoryOrderTradingSortEnum.OrderPrice_Asc:
+                query = query.OrderBy(h => h.FillAndOrderPrice_Suffix);
+                break;
+            default:
+                query = query.OrderByDescending(h => h.OrderTime);
+                break;
+        }
+        return query;
     }
 }

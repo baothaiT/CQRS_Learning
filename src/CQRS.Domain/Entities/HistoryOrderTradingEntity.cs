@@ -15,8 +15,8 @@ namespace CQRS.Domain.Entities
         public DateTime OrderTime { get; set; }
         public string Side { get; set; }
 
-        public string FillAndOrderPrice_Prefix { get; set; }
-        public string FillAndOrderPrice_Suffix { get; set; }
+        public double FillAndOrderPrice_Prefix { get; set; }
+        public double FillAndOrderPrice_Suffix { get; set; }
         public string FilledAndTotal_Prefix_Value { get; set; }
         public string FilledAndTotal_Prefix_Symbol { get; set; }
 

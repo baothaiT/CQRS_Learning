@@ -31,7 +31,8 @@ public class GetByParamHistoryOrderTradingQueryHandler : IRequestHandler<GetByPa
             endDatetime: request.endDatetime,
             symbol_Prefix: request.Symbol_Prefix,
             sysbol_Suffix: request.Symbol_Suffix,
-            isResolve: request.IsResovlve  
+            isResolve: request.IsResovlve,
+            sortName: request.SortName
             );
         _mapper.Map(HistoryOrderTradingEntities, getHistoryOrderTradingDTOs);
         return getHistoryOrderTradingDTOs;
