@@ -24,47 +24,56 @@ public class JobService : IJobService
 
     public async Task Update_HistoryOrderTrading()
     {
-        // 1: Get data from OKX DEX
-        RootModel response = await _invokeOKXService.GetOrderHistory();
-        List<GetHistoryOrderTradingDTO> responseFromDEXC = _baseHistoryOrderTradingComparer.ConvertTo_GetHistoryOrderTradingDTO(response.Data);
-
-        // 2: Get data from SQL 
-        var responseFromSql = await _historyOrderTradingClientService.GetHistoryOrderTradingAsync();
-
-
-        // 3: Check and add to SQL if it not exist on SQL
-        var newHistoryOrderTradingList = _baseHistoryOrderTradingComparer.GetNewList(responseFromSql.ToList(), responseFromDEXC);
-
-        if (newHistoryOrderTradingList.isStatus)
+        try
         {
-            Console.WriteLine($"Number of list: {newHistoryOrderTradingList.newHistoryOrderTradingList.Count}");
-            int index = 0;
-            int maxParallelism = Environment.ProcessorCount;
-            Console.WriteLine($"Max parallelism allowed: {maxParallelism}");
-            var semaphore = new SemaphoreSlim(maxParallelism);
+            // 1: Get data from OKX DEX
+            RootModel response = await _invokeOKXService.GetOrderHistory();
+            List<GetHistoryOrderTradingDTO> responseFromDEXC = _baseHistoryOrderTradingComparer.ConvertTo_GetHistoryOrderTradingDTO(response.Data);
 
-            var tasks = newHistoryOrderTradingList.newHistoryOrderTradingList.Select(async itemHistoryOrderTrading =>
+            // 2: Get data from SQL 
+            var responseFromSql = await _historyOrderTradingClientService.GetHistoryOrderTradingAsync();
+
+
+            // 3: Check and add to SQL if it not exist on SQL
+            var newHistoryOrderTradingList = _baseHistoryOrderTradingComparer.GetNewList(responseFromSql.ToList(), responseFromDEXC);
+
+            if (newHistoryOrderTradingList.isStatus)
             {
-                await semaphore.WaitAsync();
-                try
-                {
-                    Console.WriteLine("Proccess with: " + ++index);
-                    await _historyOrderTradingClientService.PostHistoryOrderTradingAsync(itemHistoryOrderTrading);
-                }
-                finally
-                {
-                    semaphore.Release();
-                }
-            });
-            await Task.WhenAll(tasks);
+                Console.WriteLine($"Number of list: {newHistoryOrderTradingList.newHistoryOrderTradingList.Count}");
+                int index = 0;
+                int maxParallelism = Environment.ProcessorCount;
+                Console.WriteLine($"Max parallelism allowed: {maxParallelism}");
+                var semaphore = new SemaphoreSlim(maxParallelism);
 
-            Console.WriteLine("Update Changed");
+                var tasks = newHistoryOrderTradingList.newHistoryOrderTradingList.Select(async itemHistoryOrderTrading =>
+                {
+                    await semaphore.WaitAsync();
+                    try
+                    {
+                        Console.WriteLine("Proccess with: " + ++index);
+                        await _historyOrderTradingClientService.PostHistoryOrderTradingAsync(itemHistoryOrderTrading);
+                    }
+                    finally
+                    {
+                        semaphore.Release();
+                    }
+                });
+                await Task.WhenAll(tasks);
+
+                Console.WriteLine("Update Changed");
+            }
+            else
+            {
+                Console.WriteLine("Not Changed");
+            }
+            Console.WriteLine($"All task started: ");
         }
-        else
+        catch (Exception ex)
         {
-            Console.WriteLine("Not Changed");
+
+            Console.WriteLine(ex);
         }
-        Console.WriteLine($"All task started: ");
+        
     }
 
     private List<GetHistoryOrderTradingDTO> fakeData1()
