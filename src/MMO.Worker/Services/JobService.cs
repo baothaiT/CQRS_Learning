@@ -2,6 +2,7 @@
 using CQRS.Contract.Share.DTO.HistoryOrderTrading;
 using MMO.Application.Abstractions;
 using MMO.Application.Abstractions.CompareServices;
+using MMO.Worker.Services.Interface;
 using System.Collections.Generic;
 using System.Drawing;
 namespace MMO.Worker.Services;
@@ -11,15 +12,23 @@ public class JobService : IJobService
     private readonly IInvokeOKXService _invokeOKXService;
     private readonly IHistoryOrderTradingClientService _historyOrderTradingClientService;
     private readonly IBaseHistoryOrderTradingComparer _baseHistoryOrderTradingComparer;
+    private readonly IAppSettingsService _appSettingsService;
     public JobService(
         IInvokeOKXService invokeOKXService,
         IHistoryOrderTradingClientService historyOrderTradingClientService,
-        IBaseHistoryOrderTradingComparer baseHistoryOrderTradingComparer
+        IBaseHistoryOrderTradingComparer baseHistoryOrderTradingComparer,
+        IAppSettingsService appSettingsService
         )
     {
         _invokeOKXService = invokeOKXService;
         _historyOrderTradingClientService = historyOrderTradingClientService;
         _baseHistoryOrderTradingComparer = baseHistoryOrderTradingComparer;
+        _appSettingsService = appSettingsService;
+
+        _invokeOKXService.Setup(
+            apiKey: _appSettingsService.GetSetting("OKX:ApiKey"),
+            secretKey: _appSettingsService.GetSetting("OKX:SecretKey"),
+            passphrase: _appSettingsService.GetSetting("OKX:Passphrase"));
     }
 
     public async Task Update_HistoryOrderTrading()

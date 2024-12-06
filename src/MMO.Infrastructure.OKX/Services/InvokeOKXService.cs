@@ -7,16 +7,20 @@ namespace MMO.Infrastructure.OKX.Services;
 
 public class InvokeOKXService: IInvokeOKXService
 {
-    private readonly string _apiKey;
-    private readonly string _secretKey;
-    private readonly string _passphrase;
+    private string _apiKey;
+    private string _secretKey;
+    private string _passphrase;
     private readonly IOkxApiClient _okxApiClient;
     public InvokeOKXService(IOkxApiClient okxApiClient)
     {
-        _apiKey = "ee436608-591d-400a-bf5f-f21a74df31d8";
-        _secretKey = "FFD6793A773DD8D3A30426F6C34A7547";
-        _passphrase = "0VfQFsA3e9gP3Ffd5eYz!";
         _okxApiClient = okxApiClient;
+    }
+   
+    public void Setup(string apiKey, string secretKey, string passphrase)
+    {
+        _apiKey = apiKey;
+        _secretKey = secretKey;
+        _passphrase = passphrase;
         _okxApiClient.Setup(_apiKey, _secretKey, _passphrase);
     }
 

@@ -1,7 +1,12 @@
-﻿using CQRS.Application.Services.Interface;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using MMO.Worker.Services.Interface;
 
-namespace CQRS.Application.Services
+namespace MMO.Worker.Services
 {
     public class AppSettingsService : IAppSettingsService
     {
