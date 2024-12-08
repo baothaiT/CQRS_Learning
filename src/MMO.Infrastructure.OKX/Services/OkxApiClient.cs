@@ -56,7 +56,11 @@ public class OkxApiClient : IOkxApiClient
             {
                 throw new InvalidOperationException("Unsupported HTTP method");
             }
-            response.EnsureSuccessStatusCode();
+            var responseString = await response.Content.ReadAsStringAsync();
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception(responseString);
+            }
             return await response.Content.ReadAsStringAsync();
         }
     }

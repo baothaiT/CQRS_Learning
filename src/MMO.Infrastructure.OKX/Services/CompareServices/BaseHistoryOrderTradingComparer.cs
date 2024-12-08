@@ -24,6 +24,7 @@ public class BaseHistoryOrderTradingComparer : IBaseHistoryOrderTradingComparer
             bool result = true;
             foreach (var itemSQL in listFromSQL)
             {
+                //True is existing, false is not exsting
                 result = true;
                 result = IsCompare(itemSQL.Symbol_Prefix, itemDEXC.Symbol_Prefix, result);
                 result = IsCompare(itemSQL.Symbol_Suffix, itemDEXC.Symbol_Suffix, result);
@@ -33,7 +34,7 @@ public class BaseHistoryOrderTradingComparer : IBaseHistoryOrderTradingComparer
                 result = IsCompare(itemSQL.FilledAndTotal_Suffix_Value, itemDEXC.FilledAndTotal_Suffix_Value, result);
                 result = IsCompare(itemSQL.FilledAndOrderValue_Prefix, itemDEXC.FilledAndOrderValue_Prefix, result);
                 result = IsCompare(itemSQL.Fee, itemDEXC.Fee, result);
-                
+
                 if (result)
                     break;
             }
@@ -56,7 +57,7 @@ public class BaseHistoryOrderTradingComparer : IBaseHistoryOrderTradingComparer
     public bool IsCompare(double itemSQL, double itemDEXC, bool isStatus)
     {
         if ((isStatus) && (itemSQL == null && itemDEXC == null))
-            return false;
+            return true;
         if ((isStatus) && (itemSQL == itemDEXC))
             return true;
         return false;
@@ -83,8 +84,8 @@ public class BaseHistoryOrderTradingComparer : IBaseHistoryOrderTradingComparer
                 Console.WriteLine("Invalid millisecond timestamp string.");
             }
             getHistoryOrderTradingDTO.Side = itemHistoryOrderTrading.Side.ToUpper();
-            getHistoryOrderTradingDTO.FillAndOrderPrice_Prefix = itemHistoryOrderTrading.FillPx;
-            getHistoryOrderTradingDTO.FillAndOrderPrice_Suffix = itemHistoryOrderTrading.FillPx;
+            getHistoryOrderTradingDTO.FillAndOrderPrice_Prefix = Convert.ToDouble(itemHistoryOrderTrading.FillPx);
+            getHistoryOrderTradingDTO.FillAndOrderPrice_Suffix = Convert.ToDouble(itemHistoryOrderTrading.FillPx);
             getHistoryOrderTradingDTO.FilledAndTotal_Prefix_Value = itemHistoryOrderTrading.Sz;
             getHistoryOrderTradingDTO.FilledAndTotal_Prefix_Symbol = itemHistoryOrderTrading.FeeCcy;
             getHistoryOrderTradingDTO.FilledAndTotal_Suffix_Value = itemHistoryOrderTrading.Sz;

@@ -105,23 +105,23 @@ public class JobService : IJobService
         return list;
     }
 
-    private List<GetHistoryOrderTradingDTO> fakeData2()
-    {
-        List<GetHistoryOrderTradingDTO> list = new List<GetHistoryOrderTradingDTO>();
-        for (int i = 0; i < 3; i++)
-        {
-            GetHistoryOrderTradingDTO getHistoryOrderTradingDTO = new GetHistoryOrderTradingDTO();
-            getHistoryOrderTradingDTO.Symbol_Prefix = $"test{i}";
-            getHistoryOrderTradingDTO.Symbol_Suffix = $"test{i}";
-            //getHistoryOrderTradingDTO.OrderTime = DateTime.Now;
-            getHistoryOrderTradingDTO.Side = $"test{i}";
-            getHistoryOrderTradingDTO.FillAndOrderPrice_Suffix = $"test{i}";
-            getHistoryOrderTradingDTO.FilledAndTotal_Suffix_Value = $"test{i}";
-            getHistoryOrderTradingDTO.FilledAndOrderValue_Prefix = $"test{i}";
-            getHistoryOrderTradingDTO.Fee = 1;
+    //private List<GetHistoryOrderTradingDTO> fakeData2()
+    //{
+    //    List<GetHistoryOrderTradingDTO> list = new List<GetHistoryOrderTradingDTO>();
+    //    for (int i = 0; i < 3; i++)
+    //    {
+    //        GetHistoryOrderTradingDTO getHistoryOrderTradingDTO = new GetHistoryOrderTradingDTO();
+    //        getHistoryOrderTradingDTO.Symbol_Prefix = $"test{i}";
+    //        getHistoryOrderTradingDTO.Symbol_Suffix = $"test{i}";
+    //        //getHistoryOrderTradingDTO.OrderTime = DateTime.Now;
+    //        getHistoryOrderTradingDTO.Side = $"test{i}";
+    //        getHistoryOrderTradingDTO.FillAndOrderPrice_Suffix = $"test{i}";
+    //        getHistoryOrderTradingDTO.FilledAndTotal_Suffix_Value = $"test{i}";
+    //        getHistoryOrderTradingDTO.FilledAndOrderValue_Prefix = $"test{i}";
+    //        getHistoryOrderTradingDTO.Fee = 1;
 
-            list.Add(getHistoryOrderTradingDTO);
-        }
-        return list;
-    }
+    //        list.Add(getHistoryOrderTradingDTO);
+    //    }
+    //    return list;
+    //}
 }

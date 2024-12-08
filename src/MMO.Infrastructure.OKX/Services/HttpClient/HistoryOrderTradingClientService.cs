@@ -1,12 +1,8 @@
-﻿using CQRS.Contract.Share.DTO;
-using CQRS.Contract.Share.DTO.HistoryOrderTrading;
+﻿using CQRS.Contract.Share.DTO.HistoryOrderTrading;
 using MMO.Application.Abstractions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 
 namespace MMO.Infrastructure.OKX.Services;
 
@@ -20,11 +16,16 @@ public class HistoryOrderTradingClientService : IHistoryOrderTradingClientServic
 
     public async Task<IEnumerable<GetHistoryOrderTradingDTO>> GetHistoryOrderTradingAsync()
     {
+        var options = new JsonSerializerOptions()
+        {
+            NumberHandling = JsonNumberHandling.AllowReadingFromString | JsonNumberHandling.WriteAsString,
+            PropertyNameCaseInsensitive = true
+        };
         var response = await _httpClient.GetAsync("HistoryOrderTrading");
         response.EnsureSuccessStatusCode();
 
         var jsonResponse = await response.Content.ReadAsStringAsync();
-        return JsonSerializer.Deserialize<IEnumerable<GetHistoryOrderTradingDTO>>(jsonResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        return JsonSerializer.Deserialize<IEnumerable<GetHistoryOrderTradingDTO>>(jsonResponse, options);
     }
 
     public async Task PostHistoryOrderTradingAsync(GetHistoryOrderTradingDTO getHistoryOrderTradingDTO)
