@@ -21,6 +21,10 @@ Install-Package MediatR -Version 11.1.0
 Install-Package MediatR.Extensions.Microsoft.DependencyInjection -Version 11.1.0
 Install-Package MediatR.CommandQuery.EntityFrameworkCore -Version 11.0.750
 
+dotnet add package MediatR --version 11.0.0
+dotnet add package MediatR.CommandQuery.EntityFrameworkCore --version 11.0.750
+dotnet add package MediatR.Extensions.Microsoft.DependencyInjection --version 11.1.0
+
 Install-Package AutoMapper
 Install-Package AutoMapper.Extensions.Microsoft.DependencyInjection
 
